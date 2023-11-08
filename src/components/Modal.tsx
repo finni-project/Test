@@ -3,43 +3,49 @@ import styled from "styled-components"
 const Wrapper = styled.div`
     width: 328px;
     height: 164px;
-    background-color: lightblue;
+    background-color: #FFF;
     padding: 20px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     gap: 32px;
+    border-radius: 16px;
+    box-shadow: 0px 1px 16px 0px rgba(0, 0, 0, 0.10);
 `
 
 const TitleWrapper = styled.div`
-    background-color: lightpink;
+    /* background-color: lightpink; */
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     h1{
         ${({theme}) => theme.fonts.body17b}
-        ${({theme}) => theme.colors.neutral.n100}
+        color: ${({theme}) => theme.colors.neutral.n100}
     }
     p{
         ${({theme}) => theme.fonts.body14r}
-        ${({theme}) => theme.colors.neutral.n60}
+        color: ${({theme}) => theme.colors.neutral.n60}
     }
 `
 
 const ButtonWrapper = styled.div`
-    background-color: lightgreen;
+    /* background-color: lightgreen; */
     width: 100%;
-    display: flex;
+    display: inline-flex;
     flex-direction: row;
     justify-content: space-between;
     gap: 8px;
 `
 
-const Button = styled.button`
-    background-color: lightcyan;
-    width: 50%;
-    border: 0px;
+const LeftButton = styled.button`
+    width: 100%;
+    ${({theme}) => theme.mediumBtns.enabled.tertiary}
+`
+
+const RightButton = styled.button`
+    width: 100%;
+    ${({theme}) => theme.mediumBtns.enabled.primary}
 `
 
 export default function Modal(){
@@ -50,8 +56,8 @@ export default function Modal(){
                 <p>text</p>
             </TitleWrapper>
             <ButtonWrapper>
-                <Button>버튼</Button>
-                <Button>버튼</Button>
+                <LeftButton>버튼💛</LeftButton>
+                <RightButton>버튼💛</RightButton>
             </ButtonWrapper>
         </Wrapper>
     )

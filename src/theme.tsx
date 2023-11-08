@@ -1,3 +1,44 @@
+const mediumBtns = {
+    enabled: {
+        primary: `
+            border: 0;
+            border-radius: 8px;
+            background-color: #5E4EF4;
+            color: #FFFFFF;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            height: 48px;
+            padding: 15px 24px;
+            gap: 8px;
+        `,
+        secondary: `
+            border: 0;
+            border-radius: 8px;
+            background-color: #F2F0FE;
+            color: #5E4EF4;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            height: 48px;
+            padding: 15px 24px;
+            gap: 8px;
+        `,
+        tertiary: `
+            border: 0;
+            border-radius: 8px;
+            background-color: #EFEFEF;
+            color: #777777;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            height: 48px;
+            padding: 15px 24px;
+            gap: 8px;
+        `
+    }
+}
+
 const fonts = {
     title34b: `
         font-family: 'SF Pro';
@@ -193,7 +234,7 @@ const devices = {
 };
 
 const theme = {
-    fonts, colors, devices
+    fonts, colors, devices, mediumBtns
 };
 
 export default theme;
