@@ -1,3 +1,4 @@
+import Modal from 'components/Modal';
 import EconomyClass from 'pages/EconomyClass';
 import Home from 'pages/Home';
 import Ledger from 'pages/Ledger';
@@ -11,6 +12,7 @@ function App() {
   return (
     <Routes>
       <Route path='/' element={<Home/>} />
+      <Route path='/modal' element={<Modal/>} />
       <Route path='/login' element={<Login/>} />
       <Route path='/ledger' element={<Ledger/>} />
       <Route path='/piggyBank' element={<PiggyBank/>} />

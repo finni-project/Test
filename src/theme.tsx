@@ -3,140 +3,140 @@ const fonts = {
         font-family: 'SF Pro';
         font-size: 34px;
         line-height: 41px;
-        letter-spacing: -0.4%;
+        letter-spacing: -0.004em;
         font-weight: 700;
     `,
     title34r: `
         font-family: 'SF Pro';
         font-size: 34px;
         line-height: 41px;
-        letter-spacing: -0.4%;
+        letter-spacing: -0.004em;
         font-weight: 400;
     `,
     title28b: `
         font-family: 'SF Pro';
         font-size: 28px;
         line-height: 34px;
-        letter-spacing: -0.4%;
+        letter-spacing: -0.004em;
         font-weight: 700;
     `,
     title28r: `
         font-family: 'SF Pro';
         font-size: 28px;
         line-height: 34px;
-        letter-spacing: -0.4%;
+        letter-spacing: -0.004em;
         font-weight: 400;
     `,
     headline22b: `
         font-family: 'SF Pro';
         font-size: 22px;
         line-height: 28px;
-        letter-spacing: -0.4%;
+        letter-spacing: -0.004em;
         font-weight: 700;
     `,
     headline22r: `
         font-family: 'SF Pro';
         font-size: 22px;
         line-height: 28px;
-        letter-spacing: -0.4%;
+        letter-spacing: -0.004em;
         font-weight: 400;
     `,
     headline20b: `
         font-family: 'SF Pro';
         font-size: 20px;
         line-height: 25px;
-        letter-spacing: -0.4%;
+        letter-spacing: -0.004em;
         font-weight: 590;
     `,
     headline20r: `
         font-family: 'SF Pro';
         font-size: 20px;
         line-height: 25px;
-        letter-spacing: -0.4%;
+        letter-spacing: -0.004em;
         font-weight: 400;
     `,
     body17b: `
         font-family: 'SF Pro';
         font-size: 17px;
         line-height: 22px;
-        letter-spacing: -0.4%;
+        letter-spacing: -0.004em;
         font-weight: 700;
     `,
     body17m: `
         font-family: 'SF Pro';
         font-size: 17px;
         line-height: 22px;
-        letter-spacing: -0.4%;
+        letter-spacing: -0.004em;
         font-weight: 590;
     `,
     body17r: `
         font-family: 'SF Pro';
         font-size: 17px;
         line-height: 22px;
-        letter-spacing: -0.4%;
+        letter-spacing: -0.004em;
         font-weight: 400;
     `,
     body14b: `
         font-family: 'SF Pro';
         font-size: 14px;
         line-height: 18px;
-        letter-spacing: -0.4%;
+        letter-spacing: -0.004em;
         font-weight: 700;
     `,
     body14m: `
         font-family: 'SF Pro';
         font-size: 14px;
         line-height: 18px;
-        letter-spacing: -0.4%;
+        letter-spacing: -0.004em;
         font-weight: 590;
     `,
     body14r: `
         font-family: 'SF Pro';
         font-size: 14px;
         line-height: 18px;
-        letter-spacing: -0.4%;
+        letter-spacing: -0.004em;
         font-weight: 400;
     `,
     callout16b: `
         font-family: 'SF Pro';
         font-size: 16px;
         line-height: 21px;
-        letter-spacing: -0.4%;
+        letter-spacing: -0.004em;
         font-weight: 590;
     `,
     callout16r: `
         font-family: 'SF Pro';
         font-size: 16px;
         line-height: 21px;
-        letter-spacing: -0.4%;
+        letter-spacing: -0.004em;
         font-weight: 400;
     `,
     label13b: `
         font-family: 'SF Pro';
         font-size: 13px;
         line-height: 18px;
-        letter-spacing: -0.4%;
+        letter-spacing: -0.004em;
         font-weight: 590;
     `,
     label13r: `
         font-family: 'SF Pro';
         font-size: 13px;
         line-height: 18px;
-        letter-spacing: -0.4%;
+        letter-spacing: -0.004em;
         font-weight: 400;
     `,
     label11b: `
         font-family: 'SF Pro';
         font-size: 11px;
         line-height: 13px;
-        letter-spacing: -0.4%;
+        letter-spacing: -0.004em;
         font-weight: 590;
     `,
     label11r: `
         font-family: 'SF Pro';
         font-size: 11px;
         line-height: 13px;
-        letter-spacing: -0.4%;
+        letter-spacing: -0.004em;
         font-weight: 400;
     `,
 };
