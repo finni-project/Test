@@ -1,17 +1,16 @@
-import { useNavigate } from "react-router-dom";
 import styled from "styled-components"
-import { useRef } from 'react';
-import { Link } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 
 const Wrapper = styled.div`
     width: 100%;
-    background-color: lightblue;
+    background-color: ${({theme})=>theme.colors.neutral.n0};
     padding: 12px 0px;
     display: inline-flex;
     justify-content: center;
     gap: 16px;
-    
+    position: sticky;
+    bottom: 0;
+
     .home-link {
         path{
             fill: ${({theme})=>theme.colors.neutral.n100};
