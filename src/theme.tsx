@@ -1,42 +1,323 @@
+const iconBtns = {
+    primary:`
+        width: 54px;
+        height: 54px;
+        border-radius: 100%;
+        background-color: #5E4EF4;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        path{
+            fill: #FFFFFF;
+        }
+        cursor: pointer;
+        &:hover{
+            background-color: #3B2BCA
+        }
+        &[data-disabled=true]{
+            pointer-events: none;
+            background-color: #B6AEF9;
+        }
+    `,
+    secondary:`
+        width: 54px;
+        height: 54px;
+        border: 2px solid #5E4EF4;
+        border-radius: 100%;
+        background-color: #FFFFFF;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        path{
+            fill: #5E4EF4;
+        }
+        cursor: pointer;
+        &:hover{
+            border-color: #3B2BCA;
+            path{
+                fill: #3B2BCA;
+            }
+        }
+        &[data-disabled=true]{
+            pointer-events: none;
+            border-color: #B6AEF9;
+            path{
+                fill: #B6AEF9;
+            }
+        }
+    `
+}
+
+const plusBtns = {
+    primary: `
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        path{
+            fill: #5E4EF4;
+        }
+        cursor: pointer;
+        &:hover{
+            path{
+                fill: #3B2BCA;
+            }
+        }
+        &[data-disabled=true]{
+            pointer-events: none;
+            path{
+                fill: #B6AEF9;
+            }
+        }
+    `,
+    secondary: `
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        path{
+            fill: #777777;
+        }
+        cursor: pointer;
+        &:hover{
+            path{
+                fill: #000000;
+            }
+        }
+        &[data-disabled=true]{
+            pointer-events: none;
+            path{
+                fill: #B7B7B7;
+            }
+        }
+    `
+}
+
 const mediumBtns = {
-    enabled: {
-        primary: `
-            border: 0;
-            border-radius: 8px;
-            background-color: #5E4EF4;
-            color: #FFFFFF;
-            display: inline-flex;
-            justify-content: center;
-            align-items: center;
-            height: 48px;
-            padding: 15px 24px;
-            gap: 8px;
-        `,
-        secondary: `
-            border: 0;
-            border-radius: 8px;
-            background-color: #F2F0FE;
-            color: #5E4EF4;
-            display: inline-flex;
-            justify-content: center;
-            align-items: center;
-            height: 48px;
-            padding: 15px 24px;
-            gap: 8px;
-        `,
-        tertiary: `
-            border: 0;
-            border-radius: 8px;
-            background-color: #EFEFEF;
-            color: #777777;
-            display: inline-flex;
-            justify-content: center;
-            align-items: center;
-            height: 48px;
-            padding: 15px 24px;
-            gap: 8px;
-        `
-    }
+    primary: `
+        font-family: 'SF Pro';
+        font-size: 14px;
+        line-height: 18px;
+        letter-spacing: -0.004em;
+        font-weight: 700;
+        border: 0;
+        border-radius: 8px;
+        background-color: #5E4EF4;
+        color: #FFFFFF;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        height: 48px;
+        padding: 15px 24px;
+        gap: 8px;
+        cursor: pointer;
+        &:hover{
+            background-color: #3B2BCA;
+        }
+        &[data-disabled=true]{
+            pointer-events: none;
+            background-color: #B6AEF9;
+        }
+    `,
+    secondary: `
+        font-family: 'SF Pro';
+        font-size: 14px;
+        line-height: 18px;
+        letter-spacing: -0.004em;
+        font-weight: 700;
+        border: 0;
+        border-radius: 8px;
+        background-color: #F2F0FE;
+        color: #5E4EF4;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        height: 48px;
+        padding: 15px 24px;
+        gap: 8px;
+        cursor: pointer;
+        &:hover{
+            color: #3B2BCA;
+            path{
+                fill: #3B2BCA;
+            }
+        }
+        &[data-disabled=true]{
+            pointer-events: none;
+            color: #B6AEF9;
+            path{
+                fill: #B6AEF9;
+            }
+        }
+    `,
+    tertiary: `
+        font-family: 'SF Pro';
+        font-size: 14px;
+        line-height: 18px;
+        letter-spacing: -0.004em;
+        font-weight: 700;
+        border: 0;
+        border-radius: 8px;
+        background-color: #EFEFEF;
+        color: #777777;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        height: 48px;
+        padding: 15px 24px;
+        gap: 8px;
+        cursor: pointer;
+        &:hover{
+            color: #000000;
+            path{
+                fill: #000000;
+            }
+        }
+        &[data-disabled=true]{
+            pointer-events: none;
+            color: #B7B7B7;
+            path{
+                fill: #B7B7B7;
+            }
+        }
+    `,
+    delete: `
+        font-family: 'SF Pro';
+        font-size: 14px;
+        line-height: 18px;
+        letter-spacing: -0.004em;
+        font-weight: 700;
+        border: 0;
+        border-radius: 8px;
+        background-color: #F04438;
+        color: #FFFFFF;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        height: 48px;
+        padding: 15px 24px;
+        gap: 8px;
+        cursor: pointer;
+        &:hover{
+            background-color: #C43127;
+        }
+        &[data-disabled=true]{
+            pointer-events: none;
+            background-color: #F79E97;
+        }
+    `
+}
+const largeBtns = {
+    primary: `
+        font-family: 'SF Pro';
+        font-size: 17px;
+        line-height: 22px;
+        letter-spacing: -0.004em;
+        font-weight: 700;
+        border: 0;
+        border-radius: 8px;
+        background-color: #5E4EF4;
+        color: #FFFFFF;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        height: 52px;
+        padding: 15px 24px;
+        gap: 8px;
+        cursor: pointer;
+        &:hover{
+            background-color: #3B2BCA;
+        }
+        &[data-disabled=true]{
+            pointer-events: none;
+            background-color: #B6AEF9;
+        }
+    `,
+    secondary: `
+        font-family: 'SF Pro';
+        font-size: 17px;
+        line-height: 22px;
+        letter-spacing: -0.004em;
+        font-weight: 700;
+        border: 0;
+        border-radius: 8px;
+        background-color: #F2F0FE;
+        color: #5E4EF4;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        height: 52px;
+        padding: 15px 24px;
+        gap: 8px;
+        cursor: pointer;
+        &:hover{
+            color: #3B2BCA;
+            path{
+                fill: #3B2BCA;
+            }
+        }
+        &[data-disabled=true]{
+            pointer-events: none;
+            color: #B6AEF9;
+            path{
+                fill: #B6AEF9;
+            }
+        }
+    `,
+    tertiary: `
+        font-family: 'SF Pro';
+        font-size: 17px;
+        line-height: 22px;
+        letter-spacing: -0.004em;
+        font-weight: 700;
+        border: 0;
+        border-radius: 8px;
+        background-color: #EFEFEF;
+        color: #777777;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        height: 52px;
+        padding: 15px 24px;
+        gap: 8px;
+        cursor: pointer;
+        &:hover{
+            color: #000000;
+            path{
+                fill: #000000;
+            }
+        }
+        &[data-disabled=true]{
+            pointer-events: none;
+            color: #B7B7B7;
+            path{
+                fill: #B7B7B7;
+            }
+        }
+    `,
+    delete: `
+        font-family: 'SF Pro';
+        font-size: 17px;
+        line-height: 22px;
+        letter-spacing: -0.004em;
+        font-weight: 700;
+        border: 0;
+        border-radius: 8px;
+        background-color: #F04438;
+        color: #FFFFFF;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        height: 52px;
+        padding: 15px 24px;
+        gap: 8px;
+        cursor: pointer;
+        &:hover{
+            background-color: #C43127;
+        }
+        &[data-disabled=true]{
+            pointer-events: none;
+            background-color: #F79E97;
+        }
+    `
 }
 
 const fonts = {
@@ -234,7 +515,7 @@ const devices = {
 };
 
 const theme = {
-    fonts, colors, devices, mediumBtns
+    fonts, colors, devices, mediumBtns, largeBtns, iconBtns, plusBtns
 };
 
 export default theme;

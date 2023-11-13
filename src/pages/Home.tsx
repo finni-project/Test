@@ -1,3 +1,5 @@
+import Navbar from "components/Navbar"
+import Topbar from "components/Topbar"
 import { Link } from "react-router-dom"
 import styled from "styled-components"
 
@@ -13,17 +15,20 @@ const Wrapper = styled.div`
     }
 `
 
+const Temp = styled.div`
+    width: 100%;
+    height: 800px;
+    background-color: lemonchiffon;
+
+`
+
 export default function Home(){
     return(
         <Wrapper>
+            <Topbar />
             <h1>Home</h1>
-            <ul>
-                <Link to='/login'><li>로그인</li></Link>
-                <Link to='/ledger'><li>Ledger</li></Link>
-                <Link to='/piggyBank'><li>PiggyBank</li></Link>
-                <Link to='/economyClass'><li>EconomyClass</li></Link>
-                <Link to='/myPage'><li>MyPage</li></Link>
-            </ul>
+            <Temp />
+            <Navbar />
         </Wrapper>
     )
 }

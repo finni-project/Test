@@ -5,6 +5,7 @@ import Ledger from 'pages/Ledger';
 import Login from 'pages/Login';
 import MyPage from 'pages/MyPage';
 import PiggyBank from 'pages/PiggyBank';
+import GuideIndex from 'pages/GuideIndex';
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 
@@ -12,7 +13,7 @@ function App() {
   return (
     <Routes>
       <Route path='/' element={<Home/>} />
-      <Route path='/modal' element={<Modal/>} />
+      <Route path='/guideIndex' element={<GuideIndex />} />
       <Route path='/login' element={<Login/>} />
       <Route path='/ledger' element={<Ledger/>} />
       <Route path='/piggyBank' element={<PiggyBank/>} />

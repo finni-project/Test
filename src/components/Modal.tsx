@@ -40,12 +40,12 @@ const ButtonWrapper = styled.div`
 
 const LeftButton = styled.button`
     width: 100%;
-    ${({theme}) => theme.mediumBtns.enabled.tertiary}
+    ${({theme}) => theme.mediumBtns.tertiary}
 `
 
 const RightButton = styled.button`
     width: 100%;
-    ${({theme}) => theme.mediumBtns.enabled.primary}
+    ${({theme}) => theme.mediumBtns.primary}
 `
 
 export default function Modal(){
