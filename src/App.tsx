@@ -8,17 +8,20 @@ import PiggyBank from 'pages/PiggyBank';
 import GuideIndex from 'pages/GuideIndex';
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
+import Layout from 'components/Layout';
 
 function App() {
   return (
     <Routes>
-      <Route path='/' element={<Home/>} />
+      <Route element={<Layout />}>
+        <Route path='/' element={<Home/>} />
+        <Route path='/login' element={<Login/>} />
+        <Route path='/ledger' element={<Ledger/>} />
+        <Route path='/piggyBank' element={<PiggyBank/>} />
+        <Route path='/economyClass' element={<EconomyClass/>} />
+        <Route path='/myPage' element={<MyPage/>} />
+      </Route>
       <Route path='/guideIndex' element={<GuideIndex />} />
-      <Route path='/login' element={<Login/>} />
-      <Route path='/ledger' element={<Ledger/>} />
-      <Route path='/piggyBank' element={<PiggyBank/>} />
-      <Route path='/economyClass' element={<EconomyClass/>} />
-      <Route path='/myPage' element={<MyPage/>} />
     </Routes>
   );
 }

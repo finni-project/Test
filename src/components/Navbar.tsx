@@ -8,7 +8,7 @@ const Wrapper = styled.div`
     display: inline-flex;
     justify-content: center;
     gap: 16px;
-    position: sticky;
+    position: fixed;
     bottom: 0;
 
     .home-link {

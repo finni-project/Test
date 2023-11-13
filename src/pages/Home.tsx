@@ -1,6 +1,3 @@
-import Navbar from "components/Navbar"
-import Topbar from "components/Topbar"
-import { Link } from "react-router-dom"
 import styled from "styled-components"
 
 const Wrapper = styled.div`
@@ -25,10 +22,8 @@ const Temp = styled.div`
 export default function Home(){
     return(
         <Wrapper>
-            <Topbar />
             <h1>Home</h1>
             <Temp />
-            <Navbar />
         </Wrapper>
     )
 }
