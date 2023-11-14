@@ -9,6 +9,8 @@ const Wrapper = styled.div`
     display: inline-flex;
     justify-content: center;
     align-items: center;
+    position: fixed;
+    top: 0;
 
 `
 const ItemsWrapper = styled.div`
