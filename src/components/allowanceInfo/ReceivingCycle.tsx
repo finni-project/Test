@@ -127,7 +127,7 @@ export default function ReceivingCycle(){
             <ButtonsWrapper>
                 <>
                     {buttonState.map((itm)=>{
-                        return <CheckingButton id={itm.id} text={itm.text} active={itm.active} handleButtonClick={handleButtonClick}/>
+                        return <CheckingButton key={itm.id} id={itm.id} text={itm.text} active={itm.active} handleButtonClick={handleButtonClick}/>
                     })}
                 </>
                 <TypingButton data-disabled={false}>
