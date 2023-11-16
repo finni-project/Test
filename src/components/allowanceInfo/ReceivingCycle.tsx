@@ -124,25 +124,24 @@ export default function ReceivingCycle(){
         setNotTyping(false);
     }
 
-    const [amount, setAmount] = useState("")
+    const [cycle, setCycle] = useState("")
     function handleInputChange(e:any){
         const val = e.target.value
         if(val){
-            setAmount(val);
+            setCycle(val);
             setBtnDisabled(false);
         } else{
-            setAmount("")
+            setCycle("")
             setBtnDisabled(true);
         }
     }
 
     function handleIconClick(){
-        setAmount("");
+        setCycle("");
         setBtnDisabled(true);
     }
 
     const [btnDisabled, setBtnDisabled] = useState(true);
-
 
     return(
         <>
@@ -168,7 +167,7 @@ export default function ReceivingCycle(){
                 </TypingButton>
             </ButtonsWrapper>
             ):(
-            <AllowanceInput amount={amount} handleInputChange={handleInputChange} handleIconClick={handleIconClick} />
+            <AllowanceInput cycle={cycle} handleInputChange={handleInputChange} handleIconClick={handleIconClick} />
             )}
             <NextButton data-disabled={btnDisabled}>다음으로</NextButton>
             <HelpingQ>

@@ -1,4 +1,4 @@
-import { useRef, useState } from "react"
+import { useState } from "react"
 import styled from "styled-components"
 
 const EditWrapper = styled.div`
@@ -61,7 +61,7 @@ const Input = styled.input`
     input[type="number"] {
         -moz-appearance: textfield;
     }
-    /* background-color: lightgreen; */
+    background-color: lightcyan;
     ${({theme})=>theme.fonts.body17b};
     color: ${({theme})=>theme.colors.neutral.n100};
 `
@@ -73,13 +73,13 @@ const DeleteBtnWrapper = styled.div`
 `
 
 type AllowanceInputProps = {
-    amount: string;
+    cycle: string;
     handleInputChange: any;
     handleIconClick: () => void;
 }
 
 
-export default function AllowanceInput({ amount, handleInputChange, handleIconClick}:AllowanceInputProps){
+export default function AllowanceInput({ cycle, handleInputChange, handleIconClick}:AllowanceInputProps){
     const [notEdited, setNotEdited] = useState(true)
     function handleEditBtnClick(){
         setNotEdited(false)
@@ -101,7 +101,7 @@ export default function AllowanceInput({ amount, handleInputChange, handleIconCl
             ):(
             <Form>
                 {/* 수정가능 부분 */}
-                <Input type="number" value={amount} onChange={handleInputChange}/>
+                <Input type="number" name="allowanceCycle" value={cycle} onChange={handleInputChange}/>
                 <span>일</span>
                 <DeleteBtnWrapper onClick={handleIconClick}>
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
