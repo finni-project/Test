@@ -43,8 +43,7 @@ export default function ReceivingCycle(){
 
     return(
         <>
-            <FormTop step={"first"}
-                text={"용돈 주기"} title={"용돈 언제마다 받아요?"}/>
+            <FormTop step={"first"} text={"용돈 주기"} title={"용돈 언제마다 받아요?"} detail={undefined}/>
             {notTyping?
             (
             <CheckingButton buttonArr={buttonArr} setNotTyping={setNotTyping}/>

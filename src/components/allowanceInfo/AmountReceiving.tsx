@@ -13,7 +13,7 @@ export default function AmountReceving(){
 
     return(
         <>
-            <FormTop step={"second"} text={"용돈 금액"} title={"용돈은 얼마씩 받아요?"}/>
+            <FormTop step={"second"} text={"용돈 금액"} title={"용돈은 얼마씩 받아요?"} detail={undefined}/>
             {notTyping?
             <CheckingButton buttonArr={buttonArr} setNotTyping={setNotTyping}/>
             :<TypingInput unit={"원"}/>

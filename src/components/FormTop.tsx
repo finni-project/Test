@@ -25,7 +25,7 @@ const TitleWrapper = styled.div`
     gap: 0.5rem;
     /* background-color: #fff; */
     margin-bottom: 2rem;
-    p{
+    span{
         color: ${({theme}) => theme.colors.neutral.n60};
         ${({theme}) => theme.fonts.label13b}
     }
@@ -33,15 +33,20 @@ const TitleWrapper = styled.div`
         color: ${({theme}) => theme.colors.neutral.n100};
         ${({theme}) => theme.fonts.headline22b}
     }
+    p{
+        color: ${({theme}) => theme.colors.neutral.n60};
+        ${({theme}) => theme.fonts.body14r}
+    }
 `
 
 type FormTopProps = {
     step: string;
     text: string;
     title: string;
+    detail: string | undefined;
 }
 
-export default function FormTop({step, text, title}:FormTopProps){
+export default function FormTop({step, text, title, detail}:FormTopProps){
     return(
         <>
             <StepCirclesWrapper>
@@ -50,8 +55,9 @@ export default function FormTop({step, text, title}:FormTopProps){
                 <StepCircle className={step==="third"? "filled-circle":undefined}/>
             </StepCirclesWrapper>
             <TitleWrapper>
-                <p>{text}</p>
+                <span>{text}</span>
                 <h2>{title}</h2>
+                <p>{detail}</p>
             </TitleWrapper>
         </>
     )
