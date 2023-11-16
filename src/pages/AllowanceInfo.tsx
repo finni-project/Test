@@ -4,7 +4,7 @@ import ReceivingCycle from "components/allowanceInfo/ReceivingCycle";
 export default function AllowanceInfo(){
     return(
         <>
-            {/*<AllowanceInfoStart/>*/}
+            {/* <AllowanceInfoStart/> */}
             <ReceivingCycle/>
         </>
     )

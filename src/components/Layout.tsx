@@ -5,6 +5,7 @@ import styled from "styled-components";
 
 const Wrapper = styled.div`
     background-color: lemonchiffon;
+    min-height: 100vh;
     padding: calc(${({theme})=>theme.height.topbar} + ${({theme})=>theme.height.topPadding}) 1rem
         calc(${({theme})=>theme.height.navbar} + ${({theme})=>theme.height.bottomPadding}) 1rem;
 `

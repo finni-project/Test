@@ -1,6 +1,7 @@
 import CheckingButton from "components/CheckingButton"
 import styled from "styled-components"
 import {useState} from "react"
+import AllowanceInput from "./AllowanceInput"
 
 const StepCirclesWrapper = styled.div`
     /* background-color: aliceblue; */
@@ -109,9 +110,39 @@ export default function ReceivingCycle(){
     function handleButtonClick(e:any){
         const btnId = e.target.id;
         setButtonState(
-            buttonState.map(itm => itm.id == btnId ? {...itm, active: !itm.active} : {...itm, active: false})
+            buttonState.map(itm => itm.id == btnId ? {...itm, active: true} : {...itm, active: false})
         );
+        setBtnDisabled(false);
     }
+
+    const [notTyping, setNotTyping] = useState(true)
+    function handleTypingBtnClick(){
+        setBtnDisabled(true);
+        setButtonState(
+            buttonState.map(itm => ({...itm, active: false}))
+        );
+        setNotTyping(false);
+    }
+
+    const [amount, setAmount] = useState("")
+    function handleInputChange(e:any){
+        const val = e.target.value
+        if(val){
+            setAmount(val);
+            setBtnDisabled(false);
+        } else{
+            setAmount("")
+            setBtnDisabled(true);
+        }
+    }
+
+    function handleIconClick(){
+        setAmount("");
+        setBtnDisabled(true);
+    }
+
+    const [btnDisabled, setBtnDisabled] = useState(true);
+
 
     return(
         <>
@@ -124,17 +155,22 @@ export default function ReceivingCycle(){
                 <p>용돈 주기</p>
                 <h2>용돈은 언제마다 받아요?</h2>
             </TitleWrapper>
+            {notTyping?
+            (
             <ButtonsWrapper>
                 <>
                     {buttonState.map((itm)=>{
                         return <CheckingButton key={itm.id} id={itm.id} text={itm.text} active={itm.active} handleButtonClick={handleButtonClick}/>
                     })}
                 </>
-                <TypingButton data-disabled={false}>
+                <TypingButton onClick={handleTypingBtnClick}>
                     <span>제가 직접 입력할게요</span>
                 </TypingButton>
             </ButtonsWrapper>
-            <NextButton data-disabled={true}>다음으로</NextButton>
+            ):(
+            <AllowanceInput amount={amount} handleInputChange={handleInputChange} handleIconClick={handleIconClick} />
+            )}
+            <NextButton data-disabled={btnDisabled}>다음으로</NextButton>
             <HelpingQ>
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M11.9956 20.9911C16.9167 20.9911 20.9911 16.9079 20.9911 11.9956C20.9911 7.07447 16.9079 3 11.9868 3C7.07447 3 3 7.07447 3 11.9956C3 16.9079 7.08329 20.9911 11.9956 20.9911ZM11.9956 19.4919C7.83292 19.4919 4.50809 16.1583 4.50809 11.9956C4.50809 7.83292 7.8241 4.49927 11.9868 4.49927C16.1495 4.49927 19.4919 7.83292 19.4919 11.9956C19.4919 16.1583 16.1583 19.4919 11.9956 19.4919Z" fill="#777777"/>
