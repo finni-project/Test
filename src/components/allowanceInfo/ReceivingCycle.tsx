@@ -1,8 +1,8 @@
 import CheckingButton from "components/CheckingButton"
 import styled from "styled-components"
 import {useState} from "react"
-import FormTop from "./FormTop"
-import TypingInput from "./TypingInput"
+import FormTop from "../FormTop"
+import TypingInput from "../TypingInput"
 
 const HelpingQ = styled.div`
     /* background-color: blanchedalmond; */
