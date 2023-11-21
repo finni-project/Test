@@ -1,12 +1,20 @@
 import { useEffect, useState } from "react"
 import styled from "styled-components"
+import EmojiPicker from "./Picker"
+import { useDispatch } from "react-redux"
 
 const Wrapper = styled.div`
+    .picker-visible{
+        display: flex;
+    }
+`
+
+const InputWrapper = styled.div`
     display: flex;
     align-items: center;
     /* background-color: #fff; */
     gap: 1rem;
-    margin-bottom: 2rem;
+    /* margin-bottom: 2rem; */
 `
 
 const IconWrapper = styled.div`
@@ -18,6 +26,7 @@ const IconWrapper = styled.div`
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    ${({theme})=>theme.fonts.title28b};
 `
 
 const Form = styled.form`
@@ -72,6 +81,11 @@ const SvgWrapper = styled.div`
     }
 `
 
+const PickerWrapper = styled.div`
+    display: none;
+    background-color: beige;
+`
+
 export default function AddingCategory(){
     const [input, setInput] = useState("");
     function handleInputChange(e:any){
@@ -86,23 +100,38 @@ export default function AddingCategory(){
         setInput("")
     }
 
+    const [isPickerVisible, setPickerVisible] = useState(false)
+    function handleIconClick(){
+        setPickerVisible(!isPickerVisible)
+    }
+
+    const [currentEmoji, setCurrentEmoji] = useState("")
+    function handleEmojiPick(e:any){
+        setCurrentEmoji(e.native);
+        setPickerVisible(!isPickerVisible);
+    }
+
     useEffect(()=>{
         if(input.length > 0){
-            setNotTyped(false);
-            setInputLength(input.length)
+            setInputLength(input.length);
+            if(currentEmoji){
+                setNotTyped(false);
+            }
         }else{
             setNotTyped(true);
             setInputLength(0)
         }
-    },[input])
+    },[input, currentEmoji])
 
     return(
-        <>
-            <Wrapper>
-                <IconWrapper>
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <Wrapper>
+            <InputWrapper>
+                <IconWrapper onClick={handleIconClick}>
+                    {currentEmoji === ""
+                    ?<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M4 12.2617C4 11.9167 4.1237 11.6204 4.37109 11.373C4.61849 11.1257 4.91471 11.002 5.25977 11.002H11.0117V5.25977C11.0117 4.91471 11.1322 4.61849 11.373 4.37109C11.6139 4.1237 11.9102 4 12.2617 4C12.6068 4 12.903 4.1237 13.1504 4.37109C13.3978 4.61849 13.5215 4.91471 13.5215 5.25977V11.002H19.2734C19.612 11.002 19.9049 11.1257 20.1523 11.373C20.3997 11.6204 20.5234 11.9167 20.5234 12.2617C20.5234 12.6133 20.3997 12.9128 20.1523 13.1602C19.9049 13.401 19.612 13.5215 19.2734 13.5215H13.5215V19.2734C13.5215 19.612 13.3978 19.9049 13.1504 20.1523C12.903 20.3997 12.6068 20.5234 12.2617 20.5234C11.9102 20.5234 11.6139 20.3997 11.373 20.1523C11.1322 19.9049 11.0117 19.612 11.0117 19.2734V13.5215H5.25977C4.91471 13.5215 4.61849 13.401 4.37109 13.1602C4.1237 12.9128 4 12.6133 4 12.2617Z" fill="#777777"/>
                     </svg>
+                    :currentEmoji}
                 </IconWrapper>
                 <Form>
                     <Input type="text" placeholder="이름을 입력해주세요" value={input} maxLength={6} onChange={handleInputChange}/>
@@ -119,8 +148,11 @@ export default function AddingCategory(){
                         
                     </ElementWrapper>
                 </Form>
-            </Wrapper>
+            </InputWrapper>
+            <PickerWrapper className={isPickerVisible ? "picker-visible" : undefined}>
+                <EmojiPicker handleEmojiPick={handleEmojiPick}/>
+            </PickerWrapper>
             <Button data-disabled={notTyped}>저장</Button>
-        </>
+        </Wrapper>
     )
 }
