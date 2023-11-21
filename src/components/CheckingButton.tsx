@@ -1,5 +1,6 @@
 import styled from "styled-components"
 import {useState} from "react"
+import { useDispatch } from "react-redux"
 
 const ButtonsWrapper = styled.div`
     /* background-color: beige; */
@@ -63,9 +64,10 @@ type CheckingButtonProps = {
         active: boolean;
     }[]
     setNotTyping: React.Dispatch<React.SetStateAction<boolean>>;
+    nextPage: string;
 }
 
-export default function CheckingButton({buttonArr, setNotTyping}:CheckingButtonProps){
+export default function CheckingButton({ nextPage, buttonArr, setNotTyping}:CheckingButtonProps){
     const [buttonState, setButtonState] = useState(buttonArr);
     function handleButtonClick(e:any){
         const btnId = e.target.id;
@@ -81,6 +83,11 @@ export default function CheckingButton({buttonArr, setNotTyping}:CheckingButtonP
         );
         setNotTyping(false);
         setBtnDisabled(true);
+    }
+
+    const dispatch = useDispatch();
+    function handleLinkClick(){
+        dispatch({type: "GONEXT", payload: nextPage});
     }
 
     const [btnDisabled, setBtnDisabled] = useState(true);
@@ -103,7 +110,7 @@ export default function CheckingButton({buttonArr, setNotTyping}:CheckingButtonP
                     <span>제가 직접 입력할게요</span>
                 </TypingButton>
             </ButtonsWrapper>
-            <NextButton data-disabled={btnDisabled}>다음으로</NextButton>
+            <NextButton data-disabled={btnDisabled} onClick={handleLinkClick}>다음으로</NextButton>
         </>
     )
 }

@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { useDispatch } from "react-redux"
 import styled from "styled-components"
 
 const EditWrapper = styled.div`
@@ -79,10 +80,11 @@ const NextButton = styled.button`
 `
 
 type TypingInputProps = {
+    nextPage: string;
     unit: string;
 }
 
-export default function TypingInput({unit}:TypingInputProps){
+export default function TypingInput({nextPage, unit}:TypingInputProps){
     const [notEdited, setNotEdited] = useState(true)
     function handleEditBtnClick(){
         setNotEdited(false)
@@ -105,6 +107,11 @@ export default function TypingInput({unit}:TypingInputProps){
     }
 
     const [btnDisabled, setBtnDisabled] = useState(true);
+    
+    const dispatch = useDispatch();
+    function handleLinkClick(){
+        dispatch({type: "GONEXT", payload: nextPage});
+    }
 
     return(
         <>
@@ -131,7 +138,7 @@ export default function TypingInput({unit}:TypingInputProps){
                         </svg>
                     </DeleteBtnWrapper>
                 </Form>
-                <NextButton data-disabled={btnDisabled}>다음으로</NextButton>
+                <NextButton data-disabled={btnDisabled} onClick={handleLinkClick}>다음으로</NextButton>
             </>
             )}
         </>

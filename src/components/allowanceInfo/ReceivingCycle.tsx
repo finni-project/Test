@@ -46,9 +46,9 @@ export default function ReceivingCycle(){
             <FormTop step={"first"} text={"용돈 주기"} title={"용돈 언제마다 받아요?"} detail={undefined}/>
             {notTyping?
             (
-            <CheckingButton buttonArr={buttonArr} setNotTyping={setNotTyping}/>
+            <CheckingButton nextPage={"amount"} buttonArr={buttonArr} setNotTyping={setNotTyping}/>
             ):(
-            <TypingInput unit={"일"}/>
+            <TypingInput nextPage={"amount"} unit={"일"}/>
             )}
             <HelpingQ>
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
