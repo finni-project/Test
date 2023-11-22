@@ -87,25 +87,25 @@ const PickerWrapper = styled.div`
 `
 
 export default function AddingCategory(){
-    const [input, setInput] = useState("");
-    function handleInputChange(e:any){
-        const val = e.target.value
-        setInput(val)
+    const [input, setInput] = useState<string>("");
+    function handleInputChange(e: React.ChangeEvent<HTMLInputElement>){
+        const val = e.target.value;
+        setInput(val);
     }
 
-    const [notTyped, setNotTyped] = useState(true);
+    const [notTyped, setNotTyped] = useState<boolean>(true);
 
-    const [inputLength, setInputLength] = useState(0);
+    const [inputLength, setInputLength] = useState<number>(0);
     function handleDeleteClick(){
-        setInput("")
+        setInput("");
     }
 
-    const [isPickerVisible, setPickerVisible] = useState(false)
+    const [isPickerVisible, setPickerVisible] = useState<boolean>(false)
     function handleIconClick(){
         setPickerVisible(!isPickerVisible)
     }
 
-    const [currentEmoji, setCurrentEmoji] = useState("")
+    const [currentEmoji, setCurrentEmoji] = useState<string>("")
     function handleEmojiPick(e:any){
         setCurrentEmoji(e.native);
         setPickerVisible(!isPickerVisible);

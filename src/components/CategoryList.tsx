@@ -1,6 +1,7 @@
 import styled from "styled-components"
 import {useState, useEffect} from "react"
 import AddingCategory from "./allowanceInfo/AddingCategory"
+import { Category } from "model/model"
 
 const CategoryListWrapper = styled.div`
     /* background-color: beige; */
@@ -57,7 +58,7 @@ const Button = styled.button`
     ${({theme})=>theme.mediumBtns.primary}
 `
 
-const categoryArr = [{id: 1, emogi: "🍚", name: "밥", active:false},
+const categoryArr: Category = [{id: 1, emogi: "🍚", name: "밥", active:false},
         {id: 2, emogi: "☕️", name: "카페/간식", active:false},
         {id: 3, emogi: "🕹️", name: "게임게임게임", active:false},
         {id: 4, emogi: "🧸", name: "장난감", active:false},
@@ -73,14 +74,14 @@ const addBtnStyle = {opacity:1};
 
 
 export default function CategoryList(){
-    const [categoryState, setCategoryState] = useState(categoryArr);
+    const [categoryState, setCategoryState] = useState<Category>(categoryArr);
     function handleCategoryClick(e:any){
         const cId = e.target.id;
         setCategoryState(
             categoryState.map(itm => itm.id === Number(cId) ? {...itm, active: !(itm.active)} : itm)
         );
     }
-    const [notDisabled, setNotDisabled] = useState(true);
+    const [notDisabled, setNotDisabled] = useState<boolean>(true);
     function changeButtonState(){
         const result = categoryState.filter(itm => itm.active === true);
         if(result.length !== 0){
@@ -90,7 +91,7 @@ export default function CategoryList(){
         }
     }
 
-    const [notAdding, setNotAdding] = useState(true);
+    const [notAdding, setNotAdding] = useState<boolean>(true);
     function handleAddBtnClick(){
         setNotAdding(false)
     }

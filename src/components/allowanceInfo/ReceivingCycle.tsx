@@ -3,6 +3,7 @@ import styled from "styled-components"
 import {useState} from "react"
 import FormTop from "../FormTop"
 import TypingInput from "../TypingInput"
+import { CheckBtns } from "model/model"
 
 const HelpingQ = styled.div`
     /* background-color: blanchedalmond; */
@@ -33,13 +34,14 @@ const HelpingA = styled.div`
     }
 `
 
-export default function ReceivingCycle(){
-    const buttonArr = [{id: 1, text: "매일", active: false},
+const buttonArr: CheckBtns = [{id: 1, text: "매일", active: false},
         {id: 2, text: "일주일에 한 번", active: false},
         {id: 3, text: "2주에 한 번", active: false},
         {id: 4, text: "한 달에 한 번", active: false}];
 
-    const [notTyping, setNotTyping] = useState(true)
+export default function ReceivingCycle(){
+
+    const [notTyping, setNotTyping] = useState<boolean>(true)
 
     return(
         <>

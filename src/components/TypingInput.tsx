@@ -85,16 +85,16 @@ type TypingInputProps = {
 }
 
 export default function TypingInput({nextPage, unit}:TypingInputProps){
-    const [notEdited, setNotEdited] = useState(true)
+    const [notEdited, setNotEdited] = useState<boolean>(true)
     function handleEditBtnClick(){
         setNotEdited(false)
     }
 
-    const [cycle, setCycle] = useState("")
-    function handleInputChange(e:any){
-        const val = e.target.value
-        if(val){
-            setCycle(val);
+    const [cycle, setCycle] = useState<string>("")
+    function handleInputChange(e: React.ChangeEvent<HTMLInputElement>){
+        const { value } = e.target;
+        if(value){
+            setCycle(value);
             setBtnDisabled(false);
         } else{
             setCycle("")
@@ -106,7 +106,7 @@ export default function TypingInput({nextPage, unit}:TypingInputProps){
         setBtnDisabled(true);
     }
 
-    const [btnDisabled, setBtnDisabled] = useState(true);
+    const [btnDisabled, setBtnDisabled] = useState<boolean>(true);
     
     const dispatch = useDispatch();
     function handleLinkClick(){

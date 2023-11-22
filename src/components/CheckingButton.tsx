@@ -1,6 +1,7 @@
 import styled from "styled-components"
 import {useState} from "react"
 import { useDispatch } from "react-redux"
+import { CheckBtns } from "model/model"
 
 const ButtonsWrapper = styled.div`
     /* background-color: beige; */
@@ -58,21 +59,17 @@ const NextButton = styled.button`
 
 
 type CheckingButtonProps = {
-    buttonArr: {
-        id: number;
-        text: string;
-        active: boolean;
-    }[]
+    buttonArr: CheckBtns
     setNotTyping: React.Dispatch<React.SetStateAction<boolean>>;
     nextPage: string;
 }
 
 export default function CheckingButton({ nextPage, buttonArr, setNotTyping}:CheckingButtonProps){
-    const [buttonState, setButtonState] = useState(buttonArr);
-    function handleButtonClick(e:any){
+    const [buttonState, setButtonState] = useState<CheckBtns>(buttonArr);
+    function handleButtonClick(e: any){
         const btnId = e.target.id;
         setButtonState(
-            buttonState.map(itm => itm.id == btnId ? {...itm, active: true} : {...itm, active: false})
+            buttonState.map(itm => itm.id+"" === btnId ? {...itm, active: true} : {...itm, active: false})
         );
         setBtnDisabled(false);
     }
