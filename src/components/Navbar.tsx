@@ -17,6 +17,7 @@ const Wrapper = styled.div`
         }
         span{
             color: ${({theme})=>theme.colors.neutral.n100};
+            ${({theme})=>theme.fonts.label11b};
         }
     }
     .banknote-link, .school-link, .save-link{
@@ -26,6 +27,7 @@ const Wrapper = styled.div`
         }
         span{
             color: ${({theme})=>theme.colors.neutral.n100};
+            ${({theme})=>theme.fonts.label11b};
         }
     }
     .save-link{
@@ -50,6 +52,7 @@ const Wrapper = styled.div`
         }
         span{
             color: ${({theme})=>theme.colors.neutral.n100};
+            ${({theme})=>theme.fonts.label11b};
         }
     }
 `
