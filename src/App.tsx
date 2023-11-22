@@ -24,7 +24,7 @@ function App() {
         <Route path='/economyClass' element={<EconomyClass/>} />
         <Route path='/myPage' element={<MyPage/>} />
         <Route path='/allowanceInfo' element={<AllowanceInfo/>} />
-        <Route path='/addingCategory' element={<AddingCategory/>} />
+        <Route path='/allowanceInfo/*' element={<AllowanceInfo/>} />
       </Route>
       <Route path='/guideIndex' element={<GuideIndex />} />
     </Routes>

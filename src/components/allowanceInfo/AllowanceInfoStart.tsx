@@ -25,8 +25,10 @@ export default function AllowanceInfoStart(){
     }
 
     return(
-        <Wrapper onClick={handleLinkCLick}>
-            <p>용돈을 주기적으로 입력하기 위해서 몇 가지 질문을 할게요</p>
-        </Wrapper>
+        <Link to='/allowanceInfo/cycle'>
+            <Wrapper>
+                <p>용돈을 주기적으로 입력하기 위해서 몇 가지 질문을 할게요</p>
+            </Wrapper>
+        </Link>
     )
 }

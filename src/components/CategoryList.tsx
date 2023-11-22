@@ -99,6 +99,10 @@ export default function CategoryList(){
     useEffect(()=>{
         changeButtonState();
     },[categoryState])
+    
+    useEffect(()=>{
+        setCategoryState(categoryArr)
+    },[notAdding])
 
     return(
         <>
@@ -125,7 +129,7 @@ export default function CategoryList(){
                 </CategoryListWrapper>
                 <Button data-disabled={notDisabled}>저장</Button>
             </>)
-            : <AddingCategory/>}
+            : <AddingCategory setNotAdding={setNotAdding}/>}
         </>
     )
 }

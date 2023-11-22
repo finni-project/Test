@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import styled from "styled-components"
 import EmojiPicker from "./Picker"
 import { useDispatch } from "react-redux"
+import { useNavigate } from "react-router-dom"
 
 const Wrapper = styled.div`
     .picker-visible{
@@ -86,7 +87,11 @@ const PickerWrapper = styled.div`
     background-color: beige;
 `
 
-export default function AddingCategory(){
+type AddingCategoryProps = {
+    setNotAdding: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+export default function AddingCategory({setNotAdding}:AddingCategoryProps){
     const [input, setInput] = useState<string>("");
     function handleInputChange(e: React.ChangeEvent<HTMLInputElement>){
         const val = e.target.value;
@@ -109,6 +114,10 @@ export default function AddingCategory(){
     function handleEmojiPick(e:any){
         setCurrentEmoji(e.native);
         setPickerVisible(!isPickerVisible);
+    }
+
+    function handleSaveBtnClick(){
+        setNotAdding(true);
     }
 
     useEffect(()=>{
@@ -152,7 +161,7 @@ export default function AddingCategory(){
             <PickerWrapper className={isPickerVisible ? "picker-visible" : undefined}>
                 <EmojiPicker handleEmojiPick={handleEmojiPick}/>
             </PickerWrapper>
-            <Button data-disabled={notTyped}>저장</Button>
+            <Button data-disabled={notTyped} onClick={handleSaveBtnClick}>저장</Button>
         </Wrapper>
     )
 }

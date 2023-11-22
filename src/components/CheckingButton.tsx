@@ -2,6 +2,8 @@ import styled from "styled-components"
 import {useState} from "react"
 import { useDispatch } from "react-redux"
 import { CheckBtns } from "model/model"
+import { useNavigate } from "react-router-dom"
+import { Link } from "react-router-dom"
 
 const ButtonsWrapper = styled.div`
     /* background-color: beige; */
@@ -83,8 +85,10 @@ export default function CheckingButton({ nextPage, buttonArr, setNotTyping}:Chec
     }
 
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     function handleLinkClick(){
-        dispatch({type: "GONEXT", payload: nextPage});
+        // dispatch({type: "GONEXT", payload: nextPage});
+        navigate(`/allowanceInfo/` + nextPage)
     }
 
     const [btnDisabled, setBtnDisabled] = useState(true);

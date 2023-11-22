@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { useDispatch } from "react-redux"
+import { Link, useNavigate } from "react-router-dom"
 import styled from "styled-components"
 
 const EditWrapper = styled.div`
@@ -109,8 +110,10 @@ export default function TypingInput({nextPage, unit}:TypingInputProps){
     const [btnDisabled, setBtnDisabled] = useState<boolean>(true);
     
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     function handleLinkClick(){
-        dispatch({type: "GONEXT", payload: nextPage});
+        // dispatch({type: "GONEXT", payload: nextPage});
+        navigate(`/allowanceInfo/` + nextPage)
     }
 
     return(

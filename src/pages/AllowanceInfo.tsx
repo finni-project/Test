@@ -3,19 +3,15 @@ import AmountReceving from "components/allowanceInfo/AmountReceiving";
 import CategoryReceiving from "components/allowanceInfo/CategoryReceiving";
 import ReceivingCycle from "components/allowanceInfo/ReceivingCycle";
 import {useSelector} from 'react-redux';
+import { Route, Routes } from "react-router-dom";
 
 export default function AllowanceInfo(){
-    const page = useSelector((state:any) => state.page);
-    switch(page){
-        case "start":
-            return <AllowanceInfoStart/>
-        case "cycle":
-            return <ReceivingCycle/>
-        case "amount":
-            return <AmountReceving />
-        case "category":
-            return <CategoryReceiving/>
-        default:
-            return null;
-    }
+    return(
+        <Routes>
+            <Route path='/start' element={<AllowanceInfoStart/>} />
+            <Route path='/cycle' element={<ReceivingCycle/>} />
+            <Route path='/amount' element={<AmountReceving/>} />
+            <Route path='/category' element={<CategoryReceiving/>} />
+        </Routes>
+    )
 }
