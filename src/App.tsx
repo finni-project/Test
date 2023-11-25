@@ -9,6 +9,9 @@ import GuideIndex from 'pages/GuideIndex';
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Layout from 'components/Layout';
+import AllowanceInfo from 'pages/AllowanceInfo';
+import AddingCategory from 'components/allowanceInfo/AddingCategory';
+
 
 function App() {
   return (
@@ -20,6 +23,8 @@ function App() {
         <Route path='/piggyBank' element={<PiggyBank/>} />
         <Route path='/economyClass' element={<EconomyClass/>} />
         <Route path='/myPage' element={<MyPage/>} />
+        <Route path='/allowanceInfo' element={<AllowanceInfo/>} />
+        <Route path='/allowanceInfo/*' element={<AllowanceInfo/>} />
       </Route>
       <Route path='/guideIndex' element={<GuideIndex />} />
     </Routes>

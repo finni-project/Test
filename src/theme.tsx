@@ -1,3 +1,10 @@
+const height = {
+    topbar:"3.5rem",
+    navbar:"4.313rem",
+    topPadding:"2rem",
+    bottomPadding: "0.5rem"
+}
+
 const iconBtns = {
     primary:`
         width: 54px;
@@ -515,7 +522,7 @@ const devices = {
 };
 
 const theme = {
-    fonts, colors, devices, mediumBtns, largeBtns, iconBtns, plusBtns
+    fonts, colors, devices, mediumBtns, largeBtns, iconBtns, plusBtns, height
 };
 
 export default theme;
