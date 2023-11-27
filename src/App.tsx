@@ -11,6 +11,7 @@ import { Routes, Route } from 'react-router-dom';
 import Layout from 'components/Layout';
 import AllowanceInfo from 'pages/AllowanceInfo';
 import AddingCategory from 'components/allowanceInfo/AddingCategory';
+import Test from 'pages/Test';
 
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
         <Route path='/allowanceInfo/*' element={<AllowanceInfo/>} />
       </Route>
       <Route path='/guideIndex' element={<GuideIndex />} />
+      <Route path='/test' element={<Test/>} />
     </Routes>
   );
 }

@@ -1,7 +1,9 @@
+import Monthly from "components/ledger/Monthly";
+
 export default function Ledger(){
     return(
         <>
-            <h1>Ledger</h1>
+            <Monthly/>
         </>
     )
 }
