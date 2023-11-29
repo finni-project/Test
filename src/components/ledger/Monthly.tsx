@@ -9,7 +9,6 @@ const Wrapper = styled.div`
     /* background-color: azure; */
     min-height: calc(100vh - ${({theme})=>theme.height.topbar} - ${({theme})=>theme.height.navbar}
     - ${({theme})=>theme.height.topPadding} - ${({theme})=>theme.height.bottomPadding});
-    position: relative;
 `
 
 const TopWrapper = styled.div`
@@ -81,7 +80,46 @@ const Spend = styled.div`
 const today = new Date();
 const thisYear = today.getFullYear();
 
+const monthlyData = [
+    {date: "2023-10-28",
+    list: [
+        {emoji: "🍚", name: "예림이랑 떡볶이", type: "spend", amount: 3000},
+        {emoji: "🕹️", name: "PC방 충전", type: "spend", amount: 6000 },
+        {emoji: "🧸", name: "쿠로미 키링", type: "spend", amount: 3000},
+        {emoji: "💰", name: "저금", type: "deposit", amount: 5000},
+        {emoji: "💝", name: "용돈", type: "income", amount: 10000},
+    ]},
+    {date: "2023-10-25",
+    list: [
+        {emoji: "🎁", name: "하늘이 생일선물", type: "spend", amount: 5000},
+    ]},
+    {date: "2023-10-21",
+    list: [
+        {emoji: "💰", name: "저금", type: "deposit", amount: 5000},
+        {emoji: "💝", name: "용돈", type: "income", amount: 10000},
+    ]},
+    {date: "2023-10-17",
+    list: [
+        {emoji: "🍚", name: "지현이랑 마라탕", type: "spend", amount: 8000},
+    ]},
+    {date: "2023-10-4",
+    list: [
+        {emoji: "💝", name: "용돈", type: "income", amount: 10000},
+    ]},
+]
+
 export default function Monthly(){
+    const ledgerList:any[] = [];
+    monthlyData.forEach(itm=>itm.list.map(elm => ledgerList.push(elm)));
+    let incomeArr = ledgerList.filter(itm=>itm.type==="income").map(elm=>elm.amount);
+    const monthlyIncome = incomeArr.reduce(
+        (accumulator, currentValue) => accumulator + currentValue, 0,
+    ).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+    let spendArr = ledgerList.filter(itm=>itm.type==="spend").map(elm=>elm.amount);
+    const monthlySpend = spendArr.reduce(
+        (accumulator, currentValue) => accumulator + currentValue, 0,
+    ).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+
 
     return(
         <Wrapper>
@@ -103,15 +141,15 @@ export default function Monthly(){
             </TopWrapper>
             <Income>
                 <span>수입</span>
-                {/* <span>{income === 0 ? income : "+" + income}원</span> */}
+                <span>{monthlyIncome === 0 ? monthlyIncome : "+" + monthlyIncome}원</span>
             </Income>
             <Spend>
                 <span>지출</span>
-                {/* <span>{spend === 0 ? spend : "-" + spend}원</span> */}
+                <span>{monthlySpend === 0 ? monthlySpend : "-" + monthlySpend}원</span>
             </Spend>
-            {/* <NoRecord/> */}
-            <IsRecord/>
-            <PlusBtn />
+            <NoRecord/>
+            {/* <IsRecord monthlyData={monthlyData} /> */}
+            <PlusBtn/>
         </Wrapper>
     )
 }
