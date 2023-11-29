@@ -21,6 +21,7 @@ function App() {
         <Route path='/' element={<Home/>} />
         <Route path='/login' element={<Login/>} />
         <Route path='/ledger' element={<Ledger/>} />
+        <Route path='/ledger/*' element={<Ledger/>} />
         <Route path='/piggyBank' element={<PiggyBank/>} />
         <Route path='/economyClass' element={<EconomyClass/>} />
         <Route path='/myPage' element={<MyPage/>} />
