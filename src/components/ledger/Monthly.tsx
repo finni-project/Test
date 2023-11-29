@@ -4,6 +4,7 @@ import Navbar from "components/Navbar";
 import PlusBtn from "./PlusBtn";
 import { useState } from "react";
 import IsRecord from "./IsRecord";
+import SearchBox from "./SearchBox";
 
 const Wrapper = styled.div`
     /* background-color: azure; */
@@ -139,7 +140,7 @@ export default function Monthly(){
                     </svg>
                 </Search>
             </TopWrapper>
-            <Income>
+            {/* <Income>
                 <span>수입</span>
                 <span>{monthlyIncome === 0 ? monthlyIncome : "+" + monthlyIncome}원</span>
             </Income>
@@ -148,8 +149,9 @@ export default function Monthly(){
                 <span>{monthlySpend === 0 ? monthlySpend : "-" + monthlySpend}원</span>
             </Spend>
             <NoRecord/>
-            {/* <IsRecord monthlyData={monthlyData} /> */}
-            <PlusBtn/>
+            <IsRecord monthlyData={monthlyData} />
+            <PlusBtn/> */}
+            <SearchBox/>
         </Wrapper>
     )
 }
