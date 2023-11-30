@@ -6,6 +6,8 @@ import { useState } from "react";
 import IsRecord from "./IsRecord";
 import SearchBox from "./SearchBox";
 import { Link } from "react-router-dom";
+import AllowanceModal from "./AllowanceModal";
+import DepositModal from "./DepositModal";
 
 const Wrapper = styled.div`
     /* background-color: azure; */
@@ -112,6 +114,8 @@ const monthlyData = [
 
 export default function Monthly(){
     const [monthlyRecord, setMonthlyRecord] = useState(monthlyData);
+    const [shownAmodal, setShownAmodal] = useState(true);
+    const [shownDmodal, setShownDmodal] = useState(true);
 
     const ledgerList:any[] = [];
     monthlyRecord.forEach(itm=>itm.list.map(elm => ledgerList.push(elm)));
@@ -126,6 +130,8 @@ export default function Monthly(){
 
     return(
         <Wrapper>
+            {shownAmodal && <AllowanceModal setShownModal={setShownAmodal}/>}
+            {shownDmodal && <DepositModal setShownModal={setShownDmodal}/>}
             <TopWrapper>
                 <Month>
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

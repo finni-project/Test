@@ -12,11 +12,18 @@ function reducer(currentState: any, action: any){
   if(currentState === undefined){
       return {
           page: "start",
+          depositActive: false,
       }
   }
   const newState = {...currentState};
   if(action.type === "GONEXT"){
     newState.page = action.payload;
+  }
+  if(action.type === "ACTIVE_DEPOSIT"){
+    newState.depositActive = true;
+  }
+  if(action.type === "INACTIVE_DEPOSIT"){
+    newState.depositActive = false;
   }
   return newState;
 }

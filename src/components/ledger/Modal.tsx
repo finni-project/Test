@@ -1,3 +1,4 @@
+import { useDispatch } from "react-redux"
 import styled from "styled-components"
 
 const Wrapper = styled.div`
@@ -30,6 +31,12 @@ const TitleWrapper = styled.div`
         ${({theme}) => theme.fonts.body14r}
         color: ${({theme}) => theme.colors.neutral.n60}
     }
+    .income{
+        color: ${({theme}) => theme.colors.success.main}
+    }
+    .deposit{
+        color: ${({theme}) => theme.colors.primary.main}
+    }
 `
 
 const ButtonWrapper = styled.div`
@@ -51,23 +58,45 @@ const RightButton = styled.button`
     ${({theme}) => theme.mediumBtns.primary}
 `
 
-type ModalProps = {
-    title: string;
+type LedgerModalProps = {
+    type: string;
     text: string;
-    leftBtn: string;
-    rightBtn: string;
+    amount: number;
+    setShownModal: any;
 }
 
-export default function Modal({title, text, leftBtn, rightBtn}:ModalProps){
+export default function LedgerModal({type, text, amount, setShownModal}:LedgerModalProps){
+    const dispatch = useDispatch();
+    
+    function handleNoBtnClick(){
+        setShownModal(false);
+    }
+    function handleYesBtnClick(){
+        setShownModal(false);
+    }
+    function doneSaveBtnClick(){
+        handleYesBtnClick();
+        dispatch({type: "ACTIVE_DEPOSIT"});
+    }
+
     return(
         <Wrapper>
             <TitleWrapper>
-                <h1>{title}</h1>
-                <p>{text}</p>
+                <h1>오늘 {text} 날이네요!</h1>
+                <p>약속대로
+                    {type==="income" ? <span className="income"> +{amount}</span> : <span className="deposit"> {amount}</span>}
+                를 받았나요?</p>
             </TitleWrapper>
             <ButtonWrapper>
-                <LeftButton>{leftBtn}</LeftButton>
-                <RightButton>{rightBtn}</RightButton>
+                {type==="income" ?
+                <>
+                    <LeftButton onClick={handleNoBtnClick}>아뇨, 안 받았어요</LeftButton>
+                    <RightButton onClick={handleYesBtnClick}>네, 받았어요</RightButton>
+                </>
+                :<>
+                    <LeftButton onClick={handleNoBtnClick}>아뇨, 안 했어요</LeftButton>
+                    <RightButton onClick={doneSaveBtnClick}>네, 저금했어요</RightButton>
+                </>}
             </ButtonWrapper>
         </Wrapper>
     )

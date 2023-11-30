@@ -113,7 +113,7 @@ const mediumBtns = {
         justify-content: center;
         align-items: center;
         height: 48px;
-        padding: 15px 24px;
+        padding: 0.9375rem 1.5rem;
         gap: 8px;
         cursor: pointer;
         &:hover{
@@ -169,7 +169,7 @@ const mediumBtns = {
         justify-content: center;
         align-items: center;
         height: 48px;
-        padding: 15px 24px;
+        padding: 0.9375rem 1.5rem;
         gap: 8px;
         cursor: pointer;
         &:hover{
