@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import styled from "styled-components"
-import EmojiPicker from "./Picker"
+import EmojiPicker from "../Picker"
 import { useDispatch } from "react-redux"
 import { useNavigate } from "react-router-dom"
 
@@ -23,6 +23,7 @@ const IconWrapper = styled.div`
     background-color: ${({theme})=>theme.colors.neutral.n15};
     width: 3.5rem;
     height: 3.5rem;
+    padding: 1rem;
     display: flex;
     justify-content: center;
     align-items: center;
