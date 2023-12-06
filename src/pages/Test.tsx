@@ -8,8 +8,8 @@ export default function Test(){
         <>
             {/* <MonthPicker/> */}
             {/* <SearchBox/> */}
-            {/* <AddDataModal/> */}
-            <CategoryModal/>
+            <AddDataModal/>
+            {/* <CategoryModal/> */}
         </>
     )
 }

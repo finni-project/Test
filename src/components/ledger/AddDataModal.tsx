@@ -1,5 +1,6 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import styled from "styled-components"
+import CategoryModal from "./CategoryModal"
 
 const Wrapper = styled.div`
     position: fixed;
@@ -12,7 +13,7 @@ const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    /* background-color: bisque; */
+    background-color: ${({theme})=>theme.colors.neutral.n0};
 `
 
 const TitleWrapper = styled.div`
@@ -138,13 +139,10 @@ const InputBox = styled.div`
     justify-content: space-between;
     align-items: center;
     height: 2.75rem;
-    div{
-        display: flex;
-        gap: 1.5rem;
-    }
     span{
         color: ${({theme})=>theme.colors.neutral.n60};
         ${({theme})=>theme.fonts.label13r}
+        white-space: nowrap;
     }
     p{
         color: ${({theme})=>theme.colors.neutral.n40};
@@ -157,6 +155,51 @@ const InputBox = styled.div`
     .filled-input{
         color: ${({theme})=>theme.colors.neutral.n100};
     }
+    .disappear{
+        display: none;
+    }
+    
+`
+
+const LeftElmWrapper = styled.div`
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    width: 100%;
+    /* background-color: beige; */
+    input{
+        width: 100%;
+        border: 0;
+        /* background-color: lightcyan; */
+        ${({theme})=>theme.fonts.body14r}
+        color: ${({theme})=>theme.colors.neutral.n100};
+        &:focus{
+            outline: none;
+        }
+        margin-right: 1.5rem;
+        &::placeholder{
+            color: ${({theme})=>theme.colors.neutral.n40};
+            ${({theme})=>theme.fonts.body14r}
+        }
+    }
+`
+
+const RightElmWrapper = styled.div`
+    /* background-color: bisque; */
+    display: none;
+    &.appear{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        span{
+            ${({theme})=>theme.fonts.label11r}
+            color: ${({theme})=>theme.colors.neutral.n60};
+        }
+        svg{
+            margin: 0.62rem;
+        }
+    }
+    
 `
 
 const SaveBtnWrapper = styled.div`
@@ -193,7 +236,7 @@ export default function AddDataModal(){
         setBtnDisabled(true);
     }
 
-    const [select, setSelect] = useState({spend: false, income: false, deposit: false});
+    const [select, setSelect] = useState({spend: true, income: false, deposit: false});
     function handleTypeClick(e:any){
         const name = e.target.name;
         switch(name){
@@ -206,7 +249,28 @@ export default function AddDataModal(){
         }
     }
 
+    const [contents, setContents] = useState("");
+    function handleContentsChange(e:any){
+        setContents(e.target.value);
+    }
+
+    const [contentsLength, setContentsLength] = useState(0);
+
+    useEffect(()=>{
+        const len = contents.length;
+        if(len > 20){
+            // input value가 contents일 때 적용
+            setContents(contents.substring(0,20));
+        }
+        setContentsLength(len);
+    },[contents])
+
+    const [showModal, setShowModal] = useState(false);
+
+    const [choosedCategory, setChoosedCategory] = useState<{id: number, emogi: string, name: string} | undefined>();
+
     return(
+        <>
         <Wrapper>
             <div>
             <TitleWrapper>
@@ -243,28 +307,36 @@ export default function AddDataModal(){
             </TypeWrapper>
             {select.spend &&
             <InputBox>
-                <div>
+                <LeftElmWrapper>
                     <span>분류</span>
-                    <p>선택해보세요</p>
-                </div>
+                    {choosedCategory ?
+                    <p className="filled-input" onClick={()=>setShowModal(!showModal)}>{choosedCategory.name}</p>
+                    :<p onClick={()=>setShowModal(!showModal)}>선택해보세요</p>}
+                </LeftElmWrapper>
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M9.00002 15.875L12.88 11.995L9.00002 8.11501C8.61002 7.72501 8.61002 7.09501 9.00002 6.70501C9.39002 6.31501 10.02 6.31501 10.41 6.70501L15 11.295C15.39 11.685 15.39 12.315 15 12.705L10.41 17.295C10.02 17.685 9.39002 17.685 9.00002 17.295C8.62002 16.905 8.61002 16.265 9.00002 15.875Z" fill="#777777"/>
                 </svg>
             </InputBox>}
             <InputBox>
-                <div>
+                <LeftElmWrapper>
                     <span>내용</span>
-                    <p>내용을 남겨보세요</p>
-                </div>
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <input type="text" placeholder="내용을 남겨보세요" autoFocus value={contents} onChange={handleContentsChange}/>
+                </LeftElmWrapper>
+                <svg className={contentsLength > 0 ? "disappear" : undefined} width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M9.00002 15.875L12.88 11.995L9.00002 8.11501C8.61002 7.72501 8.61002 7.09501 9.00002 6.70501C9.39002 6.31501 10.02 6.31501 10.41 6.70501L15 11.295C15.39 11.685 15.39 12.315 15 12.705L10.41 17.295C10.02 17.685 9.39002 17.685 9.00002 17.295C8.62002 16.905 8.61002 16.265 9.00002 15.875Z" fill="#777777"/>
                 </svg>
+                <RightElmWrapper className={contentsLength > 0 ? "appear" : undefined}>
+                    <span>{contentsLength}/20</span>
+                    <svg onClick={()=>setContents("")} width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 21C10.7689 21 9.60978 20.764 8.52253 20.2921C7.43528 19.8259 6.47747 19.1784 5.64909 18.3496C4.82071 17.5209 4.17066 16.5655 3.69895 15.4835C3.23298 14.3957 3 13.2331 3 11.9957C3 10.764 3.23298 9.60719 3.69895 8.52518C4.17066 7.43741 4.81783 6.47914 5.64046 5.65036C6.46884 4.82158 7.42665 4.1741 8.5139 3.70791C9.60115 3.23597 10.7603 3 11.9914 3C13.2224 3 14.3816 3.23597 15.4688 3.70791C16.5618 4.1741 17.5197 4.82158 18.3423 5.65036C19.1707 6.47914 19.8207 7.43741 20.2924 8.52518C20.7641 9.60719 21 10.764 21 11.9957C21 13.2331 20.7641 14.3957 20.2924 15.4835C19.8207 16.5655 19.1707 17.5209 18.3423 18.3496C17.5197 19.1784 16.5647 19.8259 15.4775 20.2921C14.3902 20.764 13.2311 21 12 21ZM9.21285 15.6734C9.47747 15.6734 9.69895 15.5871 9.87728 15.4144L12.0086 13.2734L14.1486 15.4144C14.3154 15.5871 14.5283 15.6734 14.7872 15.6734C15.0403 15.6734 15.2531 15.5871 15.4257 15.4144C15.5983 15.2417 15.6846 15.0288 15.6846 14.7755C15.6846 14.5281 15.5954 14.3209 15.4171 14.154L13.2685 12.0043L15.4257 9.85468C15.5983 9.67626 15.6846 9.46906 15.6846 9.23309C15.6846 8.97986 15.5983 8.76978 15.4257 8.60288C15.2589 8.43022 15.0518 8.34388 14.8044 8.34388C14.5513 8.34388 14.3384 8.43022 14.1659 8.60288L12.0086 10.7525L9.86002 8.61151C9.68169 8.43885 9.46596 8.35252 9.21285 8.35252C8.96548 8.35252 8.75551 8.43885 8.58293 8.61151C8.41611 8.77842 8.33269 8.98849 8.33269 9.24173C8.33269 9.4777 8.41898 9.68201 8.59156 9.85468L10.7488 12.0043L8.59156 14.1626C8.41898 14.3353 8.33269 14.5396 8.33269 14.7755C8.33269 15.0288 8.41611 15.2417 8.58293 15.4144C8.75551 15.5871 8.96548 15.6734 9.21285 15.6734Z" fill="#B7B7B7"/>
+                    </svg>
+                </RightElmWrapper>
             </InputBox>
             <InputBox>
-                <div>
+                <LeftElmWrapper>
                     <span>날짜</span>
                     <p className="filled-input">{todayFormat}</p>
-                </div>
+                </LeftElmWrapper>
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M9.00002 15.875L12.88 11.995L9.00002 8.11501C8.61002 7.72501 8.61002 7.09501 9.00002 6.70501C9.39002 6.31501 10.02 6.31501 10.41 6.70501L15 11.295C15.39 11.685 15.39 12.315 15 12.705L10.41 17.295C10.02 17.685 9.39002 17.685 9.00002 17.295C8.62002 16.905 8.61002 16.265 9.00002 15.875Z" fill="#777777"/>
                 </svg>
@@ -274,5 +346,7 @@ export default function AddDataModal(){
                 <button data-disabled={true}>저장</button>
             </SaveBtnWrapper>
         </Wrapper>
+        {showModal && <CategoryModal showModal={showModal} setShowModal={setShowModal} setChoosedCategory={setChoosedCategory}/>}
+        </>
     )
 }

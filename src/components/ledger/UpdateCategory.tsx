@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components"
 import EmojiPicker from "../Picker"
+import AddingCategory from "components/allowanceInfo/AddingCategory";
 
 
 const EditWrapper = styled.div`
