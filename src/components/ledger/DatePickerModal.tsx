@@ -126,8 +126,8 @@ export default function DatePickerModal(){
     };
 
     useEffect(()=>{
-        const tmp = document.getElementsByClassName('react-datepicker-popper');
-        console.log(tmp)
+        // const tmp = document.getElementsByClassName('react-datepicker-popper');
+        // console.log(tmp)
     },[])
 
     return(

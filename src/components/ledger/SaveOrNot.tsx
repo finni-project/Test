@@ -12,6 +12,7 @@ const Wrapper = styled.div`
     border-radius: 16px;
     box-shadow: 0px 1px 16px 0px rgba(0, 0, 0, 0.10);
     position: fixed;
+    z-index: 300;
     top: calc(50vh - 1/2 * 10.25rem - 1rem);
     left: calc(50vw - 1/2 * 20.5rem);
 `
@@ -54,15 +55,18 @@ const RightButton = styled.button`
 
 type SaveOrNotProps = {
     setSaveOrNot: any;
+    setAddDataModal: any;
 }
 
-export default function SaveOrNot({setSaveOrNot}:SaveOrNotProps){
+export default function SaveOrNot({setSaveOrNot, setAddDataModal}:SaveOrNotProps){
     function handleDeleteClick(){
-        setSaveOrNot(false);
+        setSaveOrNot(!SaveOrNot);
+        setAddDataModal(false);
     }
 
     function handleSaveClick(){
-        setSaveOrNot(false);
+        setSaveOrNot(!SaveOrNot);
+        setAddDataModal(false);
     }
 
     return(

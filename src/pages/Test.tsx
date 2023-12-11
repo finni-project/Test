@@ -10,7 +10,7 @@ export default function Test(){
         <>
             {/* <MonthPicker/> */}
             {/* <SearchBox/> */}
-            <AddDataModal/>
+            {/* <AddDataModal/> */}
             {/* <CategoryModal/> */}
             {/* <DatePickerModal/> */}
             {/* <SaveOrNot/> */}

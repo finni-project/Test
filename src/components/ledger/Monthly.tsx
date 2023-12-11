@@ -8,6 +8,7 @@ import SearchBox from "./SearchBox";
 import { Link } from "react-router-dom";
 import AllowanceModal from "./AllowanceModal";
 import DepositModal from "./DepositModal";
+import AddDataModal from "./AddDataModal";
 
 const Wrapper = styled.div`
     /* background-color: azure; */
@@ -130,6 +131,8 @@ export default function Monthly(){
         (accumulator, currentValue) => accumulator + currentValue, 0,
     ).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
 
+    const [addDataModal, setAddDataModal] = useState(false)
+
     return(
         <Wrapper>
             {shownAmodal && <AllowanceModal setShownModal={setShownAmodal}/>}
@@ -163,7 +166,8 @@ export default function Monthly(){
             {monthlyRecord?
             <IsRecord monthlyData={monthlyRecord} />
             :<NoRecord/>}
-            <PlusBtn/>
+            <PlusBtn setAddDataModal={setAddDataModal}/>
+            {addDataModal && <AddDataModal setAddDataModal={setAddDataModal}/>}
         </Wrapper>
     )
 }

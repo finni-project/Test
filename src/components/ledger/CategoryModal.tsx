@@ -18,6 +18,7 @@ const Wrapper = styled.div`
     border-radius: 1rem 1rem 0rem 0rem;
     box-shadow: 0px -1px 10px 0px rgba(0, 0, 0, 0.12);
     position: fixed;
+    left: 0;
     bottom: 0;
     &.edit{
         top: 2.5rem;
