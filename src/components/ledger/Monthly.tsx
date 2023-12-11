@@ -88,28 +88,28 @@ const thisYear = today.getFullYear();
 const monthlyData = [
     {date: "2023-10-28",
     list: [
-        {emoji: "🍚", name: "예림이랑 떡볶이", type: "spend", amount: 3000},
-        {emoji: "🕹️", name: "PC방 충전", type: "spend", amount: 6000 },
-        {emoji: "🧸", name: "쿠로미 키링", type: "spend", amount: 3000},
-        {emoji: "💰", name: "저금", type: "deposit", amount: 5000},
-        {emoji: "💝", name: "용돈", type: "income", amount: 10000},
+        {id: 1, emoji: "🍚", name: "예림이랑 떡볶이", type: "spend", amount: 3000},
+        {id: 2, emoji: "🕹️", name: "PC방 충전", type: "spend", amount: 6000 },
+        {id: 3, emoji: "🧸", name: "쿠로미 키링", type: "spend", amount: 3000},
+        {id: 4, emoji: "💰", name: "저금", type: "deposit", amount: 5000},
+        {id: 5, emoji: "💝", name: "용돈", type: "income", amount: 10000},
     ]},
     {date: "2023-10-25",
     list: [
-        {emoji: "🎁", name: "하늘이 생일선물", type: "spend", amount: 5000},
+        {id: 6, emoji: "🎁", name: "하늘이 생일선물", type: "spend", amount: 5000},
     ]},
     {date: "2023-10-21",
     list: [
-        {emoji: "💰", name: "저금", type: "deposit", amount: 5000},
-        {emoji: "💝", name: "용돈", type: "income", amount: 10000},
+        {id: 7, emoji: "💰", name: "저금", type: "deposit", amount: 5000},
+        {id: 8, emoji: "💝", name: "용돈", type: "income", amount: 10000},
     ]},
     {date: "2023-10-17",
     list: [
-        {emoji: "🍚", name: "지현이랑 마라탕", type: "spend", amount: 8000},
+        {id: 9, emoji: "🍚", name: "지현이랑 마라탕", type: "spend", amount: 8000},
     ]},
     {date: "2023-10-4",
     list: [
-        {emoji: "💝", name: "용돈", type: "income", amount: 10000},
+        {id: 10, emoji: "💝", name: "용돈", type: "income", amount: 10000},
     ]},
 ]
 
@@ -167,7 +167,7 @@ export default function Monthly(){
             <IsRecord monthlyData={monthlyRecord} />
             :<NoRecord/>}
             <PlusBtn setAddDataModal={setAddDataModal}/>
-            {addDataModal && <AddDataModal setAddDataModal={setAddDataModal}/>}
+            {addDataModal && <AddDataModal setAddDataModal={setAddDataModal} id={undefined}/>}
         </Wrapper>
     )
 }

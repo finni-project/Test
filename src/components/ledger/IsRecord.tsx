@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import React, {useEffect, useState} from "react";
+import AddDataModal from "./AddDataModal";
 
 const TitleWrapper = styled.div`
     padding-top: 1rem;
@@ -33,6 +34,7 @@ const ElmtWrapper = styled.div`
     justify-content: space-between;
     align-items: center;
     height: 3.75rem;
+    cursor: pointer;
     /* background-color: beige; */
     span:last-child{
         ${({theme})=>theme.fonts.body17m}
@@ -76,6 +78,7 @@ type IsRecordProps = {
     monthlyData: {
         date: string;
         list: {
+            id: number;
             emoji: string;
             name: string;
             type: string;
@@ -91,7 +94,7 @@ export default function IsRecord({monthlyData}:IsRecordProps){
                 return(
                     <React.Fragment key={index}>
                         <ListTitle date={itm.date} list={itm.list} />
-                        <ListElmt list={itm.list}/>
+                        <ListElmt date={itm.date} list={itm.list}/>
                     </React.Fragment>
                 )
             })}
@@ -102,6 +105,7 @@ export default function IsRecord({monthlyData}:IsRecordProps){
 type ListTitleProps = {
     date: string;
     list:{
+        id: number;
         emoji: string;
         name: string;
         type: string;
@@ -136,7 +140,9 @@ export function ListTitle({date, list}:ListTitleProps){
 }
 
 type ListElmtProps = {
+    date: string;
     list:{
+        id: number;
         emoji: string;
         name: string;
         type: string;
@@ -144,26 +150,38 @@ type ListElmtProps = {
     }[]
 }
 
-export function ListElmt({list}:ListElmtProps){
+export function ListElmt({date, list}:ListElmtProps){
+    const [addDataModal, setAddDataModal] = useState(false);
+    const [id, setId] = useState(0);
+
+    function handleItemClick(itmId: number){
+        setId(itmId);
+        setAddDataModal(true);
+
+    }
+
     return(
         <>
-            {list.map((elm, index)=>{
+            {list.map((elm)=>{
                 return(
-                    <ElmtWrapper key={index}>
-                        <LeftElmts>
-                            <div><span>{elm.emoji}</span></div>
-                            <span>{elm.name}</span>
-                        </LeftElmts>
-                        {
+                    <>
+                        <ElmtWrapper key={elm.id} onClick={()=>handleItemClick(elm.id)}>
+                            <LeftElmts>
+                                <div><span>{elm.emoji}</span></div>
+                                <span>{elm.name}</span>
+                            </LeftElmts>
                             {
-                                income: <span className="income">+{elm.amount.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}원</span>,
-                                spend: <span className="spend">-{elm.amount.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}원</span>,
-                                deposit: <span className="deposit">{elm.amount.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}원</span>,
-                            }[elm.type]
-                        }
-                    </ElmtWrapper>
+                                {
+                                    income: <span className="income">+{elm.amount.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}원</span>,
+                                    spend: <span className="spend">-{elm.amount.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}원</span>,
+                                    deposit: <span className="deposit">{elm.amount.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}원</span>,
+                                }[elm.type]
+                            }
+                        </ElmtWrapper>
+                    </>
                 )
             })}
+            {addDataModal && <AddDataModal setAddDataModal={setAddDataModal} id={id}/>}
         </>
     )
 }

@@ -220,15 +220,23 @@ const todayFormat = today.getFullYear() + "년 " + (today.getMonth() + 1) + "월
 
 type AddDataModalProps = {
     setAddDataModal: any;
+    id: number | undefined;
 }
 
-export default function AddDataModal({setAddDataModal}: AddDataModalProps){
+export default function AddDataModal({setAddDataModal, id}: AddDataModalProps){
     const [notEdited, setNotEdited] = useState<boolean>(true);
     function handleEditBtnClick(){
         setNotEdited(false)
     }
 
-    const [amount, setAmount] = useState<string>("")
+    // function initialAmount(){
+    //     if(item){
+    //         return item.amount.toString();
+    //     }
+    //     return ""
+    // }
+
+    const [amount, setAmount] = useState<string>("");
     const [btnDisabled, setBtnDisabled] = useState<boolean>(true);
 
     function handleInputChange(e: React.ChangeEvent<HTMLInputElement>){
@@ -246,6 +254,19 @@ export default function AddDataModal({setAddDataModal}: AddDataModalProps){
         setBtnDisabled(true);
     }
 
+    // function initialType(){
+    //     if(item){
+    //         switch(item.type){
+    //             case "spend":
+    //                 return {spend: true, income: false, deposit: false};
+    //             case "income":
+    //                 return {spend: false, income: true, deposit: false};
+    //             case "deposit":
+    //                 return {spend: false, income: false, deposit: true};
+    //         }
+    //     }
+    //     return {spend: true, income: false, deposit: false};
+    // }
     const [select, setSelect] = useState({spend: true, income: false, deposit: false});
     function handleTypeClick(e:any){
         const name = e.target.name;
@@ -259,6 +280,12 @@ export default function AddDataModal({setAddDataModal}: AddDataModalProps){
         }
     }
 
+    // function initialContents(){
+    //     if(item){
+    //         return item.name
+    //     }
+    //     return ""
+    // }
     const [contents, setContents] = useState("");
     function handleContentsChange(e:any){
         setContents(e.target.value);
@@ -277,9 +304,19 @@ export default function AddDataModal({setAddDataModal}: AddDataModalProps){
 
     const [showModal, setShowModal] = useState(false);
 
+    // function initialCategory(){
+    //     if(item){
+    //         return {id: item.id, emogi: item.emoji, name: "분류"};
+    //     }
+    //     return;
+    // }
     const [choosedCategory, setChoosedCategory] = useState<{id: number, emogi: string, name: string} | undefined>();
 
     const [saveOrNot, setSaveOrNot] = useState(false);
+
+    useEffect(()=>{
+        console.log(id)
+    },[id])
 
     return(
         <>
@@ -355,10 +392,10 @@ export default function AddDataModal({setAddDataModal}: AddDataModalProps){
                 </svg>
             </InputBox>
             </div>
-            <SaveBtnWrapper>
+            {/* <SaveBtnWrapper>
                 <button data-disabled={(select.spend === true && Number(amount) > 0 && choosedCategory && contentsLength > 0) || (Number(amount) > 0 && contentsLength > 0) ? "false" : "true"}
                 onClick={()=>setAddDataModal(false)}>저장</button>
-            </SaveBtnWrapper>
+            </SaveBtnWrapper> */}
         </Wrapper>
         {showModal && <CategoryModal showModal={showModal} setShowModal={setShowModal} setChoosedCategory={setChoosedCategory}/>}
         {saveOrNot && <SaveOrNot setSaveOrNot={setSaveOrNot} setAddDataModal={setAddDataModal}/>}
