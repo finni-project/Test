@@ -114,8 +114,10 @@ const monthlyData = [
 
 export default function Monthly(){
     const [monthlyRecord, setMonthlyRecord] = useState(monthlyData);
-    const [shownAmodal, setShownAmodal] = useState(true);
-    const [shownDmodal, setShownDmodal] = useState(true);
+    // 용돈확인 모달
+    const [shownAmodal, setShownAmodal] = useState(false);
+    // 저금확인 모달
+    const [shownDmodal, setShownDmodal] = useState(false);
 
     const ledgerList:any[] = [];
     monthlyRecord.forEach(itm=>itm.list.map(elm => ledgerList.push(elm)));

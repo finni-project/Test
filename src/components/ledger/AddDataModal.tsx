@@ -2,6 +2,7 @@ import { useState, useEffect } from "react"
 import styled from "styled-components"
 import CategoryModal from "./CategoryModal"
 import DatePickerModal from "./DatePickerModal"
+import SaveOrNot from "./SaveOrNot"
 
 const Wrapper = styled.div`
     position: fixed;
@@ -11,7 +12,7 @@ const Wrapper = styled.div`
     width: 100%;
     min-height: calc(100vh - 1.5rem);
     overflow-x: hidden;
-    overflow-y: scroll;
+    overflow-y: auto;
     padding: 1rem;
     display: flex;
     flex-direction: column;
@@ -272,13 +273,15 @@ export default function AddDataModal(){
 
     const [choosedCategory, setChoosedCategory] = useState<{id: number, emogi: string, name: string} | undefined>();
 
+    const [saveOrNot, setSaveOrNot] = useState(false);
+
     return(
         <>
         <Wrapper>
             <div>
             <TitleWrapper>
                 <span>추가</span>
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <svg onClick={()=> setSaveOrNot(true)} width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M4.3407 19.6593C4.18723 19.5058 4.08594 19.3278 4.03683 19.1252C3.98772 18.9227 3.98772 18.7201 4.03683 18.5175C4.08594 18.3149 4.18416 18.14 4.33149 17.9926L9.81952 12.4954L4.33149 7.00737C4.18416 6.86618 4.08594 6.69429 4.03683 6.49171C3.99386 6.283 3.99386 6.07735 4.03683 5.87477C4.08594 5.67219 4.18723 5.49417 4.3407 5.3407C4.48803 5.18723 4.66298 5.08594 4.86556 5.03683C5.07428 4.98772 5.27993 4.98772 5.4825 5.03683C5.69122 5.08594 5.86924 5.18416 6.01657 5.33149L11.5046 10.8195L16.9926 5.33149C17.14 5.18416 17.3149 5.08594 17.5175 5.03683C17.7201 4.98772 17.9227 4.98772 18.1252 5.03683C18.3278 5.08594 18.5058 5.1903 18.6593 5.34991C18.8128 5.49724 18.9141 5.67219 18.9632 5.87477C19.0184 6.07735 19.0184 6.27993 18.9632 6.4825C18.9141 6.68508 18.8158 6.86004 18.6685 7.00737L13.1897 12.4954L18.6685 17.9926C18.8158 18.14 18.9141 18.3149 18.9632 18.5175C19.0123 18.7201 19.0123 18.9227 18.9632 19.1252C18.9141 19.3278 18.8128 19.5058 18.6593 19.6593C18.5058 19.8128 18.3278 19.9141 18.1252 19.9632C17.9227 20.0123 17.7201 20.0123 17.5175 19.9632C17.3149 19.9141 17.14 19.8158 16.9926 19.6685L11.5046 14.1805L6.01657 19.6685C5.86924 19.8158 5.69429 19.9141 5.49171 19.9632C5.28913 20.0123 5.08349 20.0123 4.87477 19.9632C4.67219 19.9141 4.49417 19.8128 4.3407 19.6593Z" fill="#777777"/>
                 </svg>
             </TitleWrapper>
@@ -351,6 +354,7 @@ export default function AddDataModal(){
             </SaveBtnWrapper>
         </Wrapper>
         {showModal && <CategoryModal showModal={showModal} setShowModal={setShowModal} setChoosedCategory={setChoosedCategory}/>}
+        {saveOrNot && <SaveOrNot setSaveOrNot={setSaveOrNot}/>}
         </>
     )
 }

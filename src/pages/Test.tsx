@@ -3,6 +3,7 @@ import AddDataModal from "components/ledger/AddDataModal";
 import CategoryModal from "components/ledger/CategoryModal";
 import DatePickerModal from "components/ledger/DatePickerModal";
 import MonthPicker from "components/ledger/MonthPicker";
+import SaveOrNot from "components/ledger/SaveOrNot";
 import SearchBox from "components/ledger/SearchBox";
 export default function Test(){
     return(
@@ -12,6 +13,7 @@ export default function Test(){
             <AddDataModal/>
             {/* <CategoryModal/> */}
             {/* <DatePickerModal/> */}
+            {/* <SaveOrNot/> */}
         </>
     )
 }
