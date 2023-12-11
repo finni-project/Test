@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react"
 import styled from "styled-components"
 import CategoryModal from "./CategoryModal"
+import DatePickerModal from "./DatePickerModal"
 
 const Wrapper = styled.div`
     position: fixed;
@@ -9,6 +10,8 @@ const Wrapper = styled.div`
     box-shadow: 0px -1px 10px 0px rgba(0, 0, 0, 0.12);
     width: 100%;
     min-height: calc(100vh - 1.5rem);
+    overflow-x: hidden;
+    overflow-y: scroll;
     padding: 1rem;
     display: flex;
     flex-direction: column;
@@ -335,7 +338,8 @@ export default function AddDataModal(){
             <InputBox>
                 <LeftElmWrapper>
                     <span>날짜</span>
-                    <p className="filled-input">{todayFormat}</p>
+                    {/* <p className="filled-input">{todayFormat}</p> */}
+                    <DatePickerModal/>
                 </LeftElmWrapper>
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M9.00002 15.875L12.88 11.995L9.00002 8.11501C8.61002 7.72501 8.61002 7.09501 9.00002 6.70501C9.39002 6.31501 10.02 6.31501 10.41 6.70501L15 11.295C15.39 11.685 15.39 12.315 15 12.705L10.41 17.295C10.02 17.685 9.39002 17.685 9.00002 17.295C8.62002 16.905 8.61002 16.265 9.00002 15.875Z" fill="#777777"/>
