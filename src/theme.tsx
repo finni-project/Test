@@ -156,6 +156,7 @@ const mediumBtns = {
         }
     `,
     tertiary: `
+        white-space: nowrap;
         font-family: 'SF Pro';
         font-size: 14px;
         line-height: 18px;

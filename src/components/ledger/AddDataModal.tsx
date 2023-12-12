@@ -3,6 +3,7 @@ import styled from "styled-components"
 import CategoryModal from "./CategoryModal"
 import DatePickerModal from "./DatePickerModal"
 import SaveOrNot from "./SaveOrNot"
+import DeleteOrNot from "./DeleteOrNot"
 
 const Wrapper = styled.div`
     position: fixed;
@@ -209,7 +210,12 @@ const RightElmWrapper = styled.div`
 `
 
 const SaveBtnWrapper = styled.div`
-    button{
+    display: flex;
+    align-items: center;
+    .delete-btn{
+        ${({theme})=>theme.mediumBtns.tertiary}
+    }
+    .save-btn{
         ${({theme})=>theme.mediumBtns.primary}
         width: 100%;
     }
@@ -229,13 +235,6 @@ export default function AddDataModal({setAddDataModal, id}: AddDataModalProps){
         setNotEdited(false)
     }
 
-    // function initialAmount(){
-    //     if(item){
-    //         return item.amount.toString();
-    //     }
-    //     return ""
-    // }
-
     const [amount, setAmount] = useState<string>("");
     const [btnDisabled, setBtnDisabled] = useState<boolean>(true);
 
@@ -254,19 +253,6 @@ export default function AddDataModal({setAddDataModal, id}: AddDataModalProps){
         setBtnDisabled(true);
     }
 
-    // function initialType(){
-    //     if(item){
-    //         switch(item.type){
-    //             case "spend":
-    //                 return {spend: true, income: false, deposit: false};
-    //             case "income":
-    //                 return {spend: false, income: true, deposit: false};
-    //             case "deposit":
-    //                 return {spend: false, income: false, deposit: true};
-    //         }
-    //     }
-    //     return {spend: true, income: false, deposit: false};
-    // }
     const [select, setSelect] = useState({spend: true, income: false, deposit: false});
     function handleTypeClick(e:any){
         const name = e.target.name;
@@ -280,12 +266,6 @@ export default function AddDataModal({setAddDataModal, id}: AddDataModalProps){
         }
     }
 
-    // function initialContents(){
-    //     if(item){
-    //         return item.name
-    //     }
-    //     return ""
-    // }
     const [contents, setContents] = useState("");
     function handleContentsChange(e:any){
         setContents(e.target.value);
@@ -304,15 +284,11 @@ export default function AddDataModal({setAddDataModal, id}: AddDataModalProps){
 
     const [showModal, setShowModal] = useState(false);
 
-    // function initialCategory(){
-    //     if(item){
-    //         return {id: item.id, emogi: item.emoji, name: "분류"};
-    //     }
-    //     return;
-    // }
     const [choosedCategory, setChoosedCategory] = useState<{id: number, emogi: string, name: string} | undefined>();
 
     const [saveOrNot, setSaveOrNot] = useState(false);
+
+    const [deletOrNot, setDeleteOrNot] = useState(false);
 
     useEffect(()=>{
         console.log(id)
@@ -392,13 +368,15 @@ export default function AddDataModal({setAddDataModal, id}: AddDataModalProps){
                 </svg>
             </InputBox>
             </div>
-            {/* <SaveBtnWrapper>
-                <button data-disabled={(select.spend === true && Number(amount) > 0 && choosedCategory && contentsLength > 0) || (Number(amount) > 0 && contentsLength > 0) ? "false" : "true"}
+            <SaveBtnWrapper>
+                {id && <button className="delete-btn" onClick={()=>setDeleteOrNot(true)}>삭제</button>}
+                <button className="save-btn" data-disabled={(select.spend === true && Number(amount) > 0 && choosedCategory && contentsLength > 0) || (Number(amount) > 0 && contentsLength > 0) ? "false" : "true"}
                 onClick={()=>setAddDataModal(false)}>저장</button>
-            </SaveBtnWrapper> */}
+            </SaveBtnWrapper>
         </Wrapper>
         {showModal && <CategoryModal showModal={showModal} setShowModal={setShowModal} setChoosedCategory={setChoosedCategory}/>}
         {saveOrNot && <SaveOrNot setSaveOrNot={setSaveOrNot} setAddDataModal={setAddDataModal}/>}
+        {deletOrNot && <DeleteOrNot setDeleteOrNot={setDeleteOrNot} setAddDataModal={setAddDataModal}/>}
         </>
     )
 }

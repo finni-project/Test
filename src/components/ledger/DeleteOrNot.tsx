@@ -50,34 +50,34 @@ const LeftButton = styled.button`
 
 const RightButton = styled.button`
     width: 100%;
-    ${({theme}) => theme.mediumBtns.primary}
+    ${({theme}) => theme.mediumBtns.delete}
 `
 
-type SaveOrNotProps = {
-    setSaveOrNot: any;
+type DeleteOrNotProps = {
+    setDeleteOrNot: any;
     setAddDataModal: any;
 }
 
-export default function SaveOrNot({setSaveOrNot, setAddDataModal}:SaveOrNotProps){
-    function handleDeleteClick(){
-        setSaveOrNot(!SaveOrNot);
+export default function DeleteOrNot({setDeleteOrNot, setAddDataModal}: DeleteOrNotProps){
+    function handleCloseClick(){
+        setDeleteOrNot(false);
         setAddDataModal(false);
     }
 
-    function handleSaveClick(){
-        setSaveOrNot(!SaveOrNot);
+    function handleDeleteClick(){
+        setDeleteOrNot(false)
         setAddDataModal(false);
     }
 
     return(
         <Wrapper>
             <TitleWrapper>
-                <h1>작성 중인 내용이 있어요</h1>
-                <p>저장하지 않으면 작성한 내용이 사라질 수 있어요.</p>
+                <h1>항목을 삭제할까요?</h1>
+                <p>삭제 버튼을 누르면 복구할 수 없어요.</p>
             </TitleWrapper>
             <ButtonWrapper>
-                <LeftButton onClick={handleDeleteClick}>삭제 후 닫기</LeftButton>
-                <RightButton onClick={handleSaveClick}>저장할게요</RightButton>
+                <LeftButton onClick={handleCloseClick}>닫기</LeftButton>
+                <RightButton onClick={handleDeleteClick}>삭제할게요</RightButton>
             </ButtonWrapper>
         </Wrapper>
     )
