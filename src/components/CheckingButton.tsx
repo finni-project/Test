@@ -27,6 +27,10 @@ const Button = styled.button`
     span{
         color: ${({theme}) => theme.colors.neutral.n100};
         ${({theme}) => theme.fonts.body14m}
+        pointer-events: none;
+    }
+    svg{
+        pointer-events: none;
     }
     .checked{
         path{
