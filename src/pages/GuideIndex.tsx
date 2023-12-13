@@ -62,7 +62,7 @@ export default function GuideIndex(){
     return(
         <Wrapper>
             <h2>modal</h2>
-            <Modal/>
+            {/* <Modal/> */}
             <br/>
             <input type="checkbox" onChange={handleInputClick} />
             <span>체크시 disabled!</span>

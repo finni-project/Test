@@ -1,8 +1,8 @@
 import styled from "styled-components"
 
 const Wrapper = styled.div`
-    /* width: 20.5rem;
-    height: 10.25rem; */
+    width: 20.5rem;
+    /* height: 10.25rem; */
     background-color: #FFF;
     padding: 1.25rem;
     display: flex;
@@ -12,6 +12,7 @@ const Wrapper = styled.div`
     border-radius: 16px;
     box-shadow: 0px 1px 16px 0px rgba(0, 0, 0, 0.10);
     position: fixed;
+    z-index: 300;
     top: calc(50vh - 1/2 * 10.25rem - 1rem);
     left: calc(50vw - 1/2 * 20.5rem);
 `
@@ -49,26 +50,34 @@ const LeftButton = styled.button`
 
 const RightButton = styled.button`
     width: 100%;
-    ${({theme}) => theme.mediumBtns.primary}
+    ${({theme}) => theme.mediumBtns.delete}
 `
 
-type ModalProps = {
-    title: string;
-    text: string;
-    leftBtn: string;
-    rightBtn: string;
+type DeleteOrNotProps = {
+    setDeleteOrNot: any;
+    setAddDataModal: any;
 }
 
-export default function Modal({title, text, leftBtn, rightBtn}:ModalProps){
+export default function DeleteOrNot({setDeleteOrNot, setAddDataModal}: DeleteOrNotProps){
+    function handleCloseClick(){
+        setDeleteOrNot(false);
+        setAddDataModal(false);
+    }
+
+    function handleDeleteClick(){
+        setDeleteOrNot(false)
+        setAddDataModal(false);
+    }
+
     return(
         <Wrapper>
             <TitleWrapper>
-                <h1>{title}</h1>
-                <p>{text}</p>
+                <h1>항목을 삭제할까요?</h1>
+                <p>삭제 버튼을 누르면 복구할 수 없어요.</p>
             </TitleWrapper>
             <ButtonWrapper>
-                <LeftButton>{leftBtn}</LeftButton>
-                <RightButton>{rightBtn}</RightButton>
+                <LeftButton onClick={handleCloseClick}>닫기</LeftButton>
+                <RightButton onClick={handleDeleteClick}>삭제할게요</RightButton>
             </ButtonWrapper>
         </Wrapper>
     )

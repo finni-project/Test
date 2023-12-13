@@ -1,5 +1,6 @@
-import styled from "styled-components"
+import styled, { keyframes } from "styled-components"
 import { NavLink } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Wrapper = styled.div`
     width: 100%;
@@ -56,6 +57,43 @@ const Wrapper = styled.div`
         }
     }
 `
+
+const DoneSaveAnimation = keyframes`
+    0% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+        -webkit-transform-origin: center center;
+        transform-origin: center center;
+        -webkit-animation-timing-function: ease-out;
+        animation-timing-function: ease-out;
+    }
+    10% {
+        -webkit-transform: scale(.91);
+        transform: scale(.91);
+        -webkit-animation-timing-function: ease-in;
+        animation-timing-function: ease-in;
+    }
+    17% {
+        -webkit-transform: scale(.98);
+        transform: scale(.98);
+        -webkit-animation-timing-function: ease-out;
+        animation-timing-function: ease-out;
+    }
+    33% {
+        -webkit-transform: scale(.87);
+        transform: scale(.87);
+        -webkit-animation-timing-function: ease-in;
+        animation-timing-function: ease-in;
+    }
+    45% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+        -webkit-animation-timing-function: ease-out;
+        animation-timing-function: ease-out;
+    }
+`
+
+
 const IconWrapper = styled.div`
     /* background-color: white; */
     width: 56px;
@@ -69,9 +107,24 @@ const IconWrapper = styled.div`
         ${({theme})=>theme.fonts.label11r};
         color: ${({theme})=>theme.colors.neutral.n60};
     }
+    .piggy-bank{
+        path{
+            fill: ${({theme})=>theme.colors.primary.main};
+            stroke: ${({theme})=>theme.colors.primary.main};
+        }
+        rect{
+            fill: ${({theme})=>theme.colors.primary.main};
+        }
+        circle{
+            stroke: ${({theme})=>theme.colors.primary.main};
+            fill: ${({theme})=>theme.colors.warning.main};
+        }
+        animation: 1.5s ease-in-out 0s 1 normal both running ${DoneSaveAnimation};
+    }
 `
 
 export default function Navbar(){
+    const depositActive = useSelector((state:any)=>state.depositActive);
 
     return(
         <Wrapper>
@@ -97,7 +150,7 @@ export default function Navbar(){
             </NavLink>
             <NavLink to="/piggyBank" className={({isActive}) => (isActive? "save-link" : undefined)}>
                 <IconWrapper>
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg className={depositActive ? "piggy-bank" : undefined} width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <g clipPath="url(#clip0_631_1244)">
                             <rect y="20" width="24" height="1.6" rx="0.8" fill="#B7B7B7"/>
                             <mask id="mask0_631_1244" style={{maskType:"alpha"}} maskUnits="userSpaceOnUse" x="0" y="-1" width="24" height="20">

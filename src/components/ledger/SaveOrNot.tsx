@@ -1,8 +1,8 @@
 import styled from "styled-components"
 
 const Wrapper = styled.div`
-    /* width: 20.5rem;
-    height: 10.25rem; */
+    width: 20.5rem;
+    /* height: 10.25rem; */
     background-color: #FFF;
     padding: 1.25rem;
     display: flex;
@@ -12,6 +12,7 @@ const Wrapper = styled.div`
     border-radius: 16px;
     box-shadow: 0px 1px 16px 0px rgba(0, 0, 0, 0.10);
     position: fixed;
+    z-index: 300;
     top: calc(50vh - 1/2 * 10.25rem - 1rem);
     left: calc(50vw - 1/2 * 20.5rem);
 `
@@ -52,23 +53,31 @@ const RightButton = styled.button`
     ${({theme}) => theme.mediumBtns.primary}
 `
 
-type ModalProps = {
-    title: string;
-    text: string;
-    leftBtn: string;
-    rightBtn: string;
+type SaveOrNotProps = {
+    setSaveOrNot: any;
+    setAddDataModal: any;
 }
 
-export default function Modal({title, text, leftBtn, rightBtn}:ModalProps){
+export default function SaveOrNot({setSaveOrNot, setAddDataModal}:SaveOrNotProps){
+    function handleDeleteClick(){
+        setSaveOrNot(!SaveOrNot);
+        setAddDataModal(false);
+    }
+
+    function handleSaveClick(){
+        setSaveOrNot(!SaveOrNot);
+        setAddDataModal(false);
+    }
+
     return(
         <Wrapper>
             <TitleWrapper>
-                <h1>{title}</h1>
-                <p>{text}</p>
+                <h1>작성 중인 내용이 있어요</h1>
+                <p>저장하지 않으면 작성한 내용이 사라질 수 있어요.</p>
             </TitleWrapper>
             <ButtonWrapper>
-                <LeftButton>{leftBtn}</LeftButton>
-                <RightButton>{rightBtn}</RightButton>
+                <LeftButton onClick={handleDeleteClick}>삭제 후 닫기</LeftButton>
+                <RightButton onClick={handleSaveClick}>저장할게요</RightButton>
             </ButtonWrapper>
         </Wrapper>
     )
