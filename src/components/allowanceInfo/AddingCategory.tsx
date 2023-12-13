@@ -58,8 +58,10 @@ const Input = styled.input`
 `
 
 const Button = styled.button`
-    width: 100%;
+    width: calc(100% - 2rem);
     ${({theme})=>theme.mediumBtns.primary};
+    position: fixed;
+    bottom: calc(${({theme})=>theme.height.navbar} + 0.5rem);
 `
 
 const ElementWrapper = styled.div`
@@ -85,7 +87,6 @@ const SvgWrapper = styled.div`
 
 const PickerWrapper = styled.div`
     display: none;
-    background-color: beige;
 `
 
 type AddingCategoryProps = {
