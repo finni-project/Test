@@ -10,3 +10,14 @@ export type Category = {
     name: string;
     active: boolean;
 }[]
+
+export type MonthlyList = {
+    date: string;
+    list: {
+        id: number;
+        emoji: string;
+        name: string;
+        type: string;
+        amount: number;
+    }[];
+}[]
