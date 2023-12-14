@@ -23,6 +23,7 @@ const TitleWrapper = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 0.25rem;
     h1{
         ${({theme}) => theme.fonts.body17b}
         color: ${({theme}) => theme.colors.neutral.n100}
@@ -51,6 +52,7 @@ const ButtonWrapper = styled.div`
 const LeftButton = styled.button`
     width: 100%;
     ${({theme}) => theme.mediumBtns.tertiary}
+    padding: 1rem;
 `
 
 const RightButton = styled.button`
@@ -84,7 +86,7 @@ export default function LedgerModal({type, text, amount, setShownModal}:LedgerMo
             <TitleWrapper>
                 <h1>오늘 {text} 날이네요!</h1>
                 <p>약속대로
-                    {type==="income" ? <span className="income"> +{amount}</span> : <span className="deposit"> {amount}</span>}
+                    {type==="income" ? <span className="income"> +{amount}원</span> : <span className="deposit"> {amount}원</span>}
                 를 받았나요?</p>
             </TitleWrapper>
             <ButtonWrapper>
