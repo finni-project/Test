@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import React, {useEffect, useState} from "react";
 import AddDataModal from "./AddDataModal";
+import { useNavigate } from "react-router-dom";
 
 const TitleWrapper = styled.div`
     padding-top: 1rem;
@@ -151,13 +152,10 @@ type ListElmtProps = {
 }
 
 export function ListElmt({date, list}:ListElmtProps){
-    const [addDataModal, setAddDataModal] = useState(false);
-    const [id, setId] = useState(0);
 
+    const navigate = useNavigate();
     function handleItemClick(itmId: number){
-        setId(itmId);
-        setAddDataModal(true);
-
+        navigate('/ledger/monthly/add/' + itmId);
     }
 
     return(
@@ -181,7 +179,6 @@ export function ListElmt({date, list}:ListElmtProps){
                     </>
                 )
             })}
-            {addDataModal && <AddDataModal setAddDataModal={setAddDataModal} id={id}/>}
         </>
     )
 }

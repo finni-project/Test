@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom"
 import styled from "styled-components"
 
 const Wrapper = styled.div`
@@ -55,18 +56,19 @@ const RightButton = styled.button`
 
 type SaveOrNotProps = {
     setSaveOrNot: any;
-    setAddDataModal: any;
 }
 
-export default function SaveOrNot({setSaveOrNot, setAddDataModal}:SaveOrNotProps){
+export default function SaveOrNot({setSaveOrNot}:SaveOrNotProps){
+    const navigate = useNavigate();
+    
     function handleDeleteClick(){
         setSaveOrNot(!SaveOrNot);
-        setAddDataModal(false);
+        navigate('/ledger/monthly');
     }
 
     function handleSaveClick(){
         setSaveOrNot(!SaveOrNot);
-        setAddDataModal(false);
+        navigate('/ledger/monthly');
     }
 
     return(

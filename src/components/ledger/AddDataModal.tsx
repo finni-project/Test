@@ -4,6 +4,7 @@ import CategoryModal from "./CategoryModal"
 import DatePickerModal from "./DatePickerModal"
 import SaveOrNot from "./SaveOrNot"
 import DeleteOrNot from "./DeleteOrNot"
+import { Route, useNavigate, useParams } from "react-router-dom"
 
 const Wrapper = styled.div`
     position: fixed;
@@ -225,11 +226,10 @@ const today = new Date();
 const todayFormat = today.getFullYear() + "년 " + (today.getMonth() + 1) + "월 " + today.getDate() + "일";
 
 type AddDataModalProps = {
-    setAddDataModal: any;
-    id: number | undefined;
+    // id: number | undefined;
 }
 
-export default function AddDataModal({setAddDataModal, id}: AddDataModalProps){
+export default function AddDataModal(){
     const [notEdited, setNotEdited] = useState<boolean>(true);
     function handleEditBtnClick(){
         setNotEdited(false)
@@ -282,17 +282,20 @@ export default function AddDataModal({setAddDataModal, id}: AddDataModalProps){
         setContentsLength(len);
     },[contents])
 
+    const navigate = useNavigate();
+    function handleSaveClick(){
+        navigate('/ledger/monthly');
+    }
+
     const [showModal, setShowModal] = useState(false);
 
     const [choosedCategory, setChoosedCategory] = useState<{id: number, emogi: string, name: string} | undefined>();
 
     const [saveOrNot, setSaveOrNot] = useState(false);
 
-    const [deletOrNot, setDeleteOrNot] = useState(false);
+    const [deleteOrNot, setDeleteOrNot] = useState(false);
 
-    useEffect(()=>{
-        console.log(id)
-    },[id])
+    const itmId = useParams().id;
 
     return(
         <>
@@ -369,14 +372,14 @@ export default function AddDataModal({setAddDataModal, id}: AddDataModalProps){
             </InputBox>
             </div>
             <SaveBtnWrapper>
-                {id && <button className="delete-btn" onClick={()=>setDeleteOrNot(true)}>삭제</button>}
+                {itmId && <button className="delete-btn" onClick={()=>setDeleteOrNot(true)}>삭제</button>}
                 <button className="save-btn" data-disabled={(select.spend === true && Number(amount) > 0 && choosedCategory && contentsLength > 0) || (Number(amount) > 0 && contentsLength > 0) ? "false" : "true"}
-                onClick={()=>setAddDataModal(false)}>저장</button>
+                onClick={handleSaveClick}>저장</button>
             </SaveBtnWrapper>
         </Wrapper>
         {showModal && <CategoryModal showModal={showModal} setShowModal={setShowModal} setChoosedCategory={setChoosedCategory}/>}
-        {saveOrNot && <SaveOrNot setSaveOrNot={setSaveOrNot} setAddDataModal={setAddDataModal}/>}
-        {deletOrNot && <DeleteOrNot setDeleteOrNot={setDeleteOrNot} setAddDataModal={setAddDataModal}/>}
+        {saveOrNot && <SaveOrNot setSaveOrNot={setSaveOrNot}/>}
+        {deleteOrNot && <DeleteOrNot setDeleteOrNot={setDeleteOrNot}/>}
         </>
     )
 }

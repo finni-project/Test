@@ -91,7 +91,7 @@ const categoryArr = [{id: 1, emogi: "🍚", name: "밥"},
     ];
 
 type CategoryModalProps = {
-    showModal: boolean;
+    showModal: boolean | undefined;
     setShowModal: any;
     setChoosedCategory: any;
 }

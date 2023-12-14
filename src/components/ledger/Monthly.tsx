@@ -130,8 +130,6 @@ export default function Monthly(){
         (accumulator, currentValue) => accumulator + currentValue, 0,
     ).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
 
-    const [addDataModal, setAddDataModal] = useState<boolean>(false);
-
     return(
         <Wrapper>
             {shownAmodal && <AllowanceModal setShownModal={setShownAmodal}/>}
@@ -165,8 +163,9 @@ export default function Monthly(){
             {monthlyRecord?
             <IsRecord monthlyData={monthlyRecord} />
             :<NoRecord/>}
-            <PlusBtn setAddDataModal={setAddDataModal}/>
-            {addDataModal && <AddDataModal setAddDataModal={setAddDataModal} id={undefined}/>}
+            <Link to='add'>
+                <PlusBtn />
+            </Link>
         </Wrapper>
     )
 }
