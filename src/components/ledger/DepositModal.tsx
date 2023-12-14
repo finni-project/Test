@@ -1,7 +1,7 @@
 import LedgerModal from "./Modal";
 
 type DipositModalProps = {
-    setShownModal: any;
+    setShownModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export default function DepositModal({setShownModal}:DipositModalProps){

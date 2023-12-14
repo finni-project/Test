@@ -1,7 +1,7 @@
 import LedgerModal from "./Modal";
 
 type AllowanceModalProps = {
-    setShownModal: any;
+    setShownModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export default function AllowanceModal({setShownModal}:AllowanceModalProps){
