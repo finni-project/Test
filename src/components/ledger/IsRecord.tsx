@@ -138,21 +138,19 @@ export function ListElmt({list}:DailyItemList){
         <>
             {list.map((elm)=>{
                 return(
-                    <>
-                        <ElmtWrapper key={elm.id} onClick={()=>handleItemClick(elm.id)}>
-                            <LeftElmts>
-                                <div><span>{elm.emoji}</span></div>
-                                <span>{elm.name}</span>
-                            </LeftElmts>
+                    <ElmtWrapper key={elm.id} onClick={()=>handleItemClick(elm.id)}>
+                        <LeftElmts>
+                            <div><span>{elm.emoji}</span></div>
+                            <span>{elm.name}</span>
+                        </LeftElmts>
+                        {
                             {
-                                {
-                                    income: <span className="income">+{elm.amount.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}원</span>,
-                                    spend: <span className="spend">-{elm.amount.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}원</span>,
-                                    deposit: <span className="deposit">{elm.amount.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}원</span>,
-                                }[elm.type]
-                            }
-                        </ElmtWrapper>
-                    </>
+                                income: <span className="income">+{elm.amount.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}원</span>,
+                                spend: <span className="spend">-{elm.amount.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}원</span>,
+                                deposit: <span className="deposit">{elm.amount.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}원</span>,
+                            }[elm.type]
+                        }
+                    </ElmtWrapper>
                 )
             })}
         </>

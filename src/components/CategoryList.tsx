@@ -129,7 +129,7 @@ export default function CategoryList(){
                 </CategoryListWrapper>
                 <Button data-disabled={notDisabled}>저장</Button>
             </>)
-            : <AddingCategory setNotAdding={setNotAdding}/>}
+            : <AddingCategory page={undefined} setNotAdding={setNotAdding}/>}
         </>
     )
 }

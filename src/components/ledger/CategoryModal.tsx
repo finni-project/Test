@@ -154,7 +154,7 @@ export default function CategoryModal({showModal, setShowModal, setChoosedCatego
                     <span>추가</span>
                 </CategoryWrapper>}
             </ListWrapper>)
-            : <AddingCategory setNotAdding={setNotAdding}/>}
+            : <AddingCategory page="ledgerModal" setNotAdding={setNotAdding}/>}
         </Wrapper>
     )
 }
