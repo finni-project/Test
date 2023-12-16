@@ -62,6 +62,10 @@ const Button = styled.button`
     ${({theme})=>theme.mediumBtns.primary};
     position: fixed;
     bottom: calc(${({theme})=>theme.height.navbar} + 0.5rem);
+
+    &.ledger-modal{
+        bottom: 1rem;
+    }
 `
 
 const ElementWrapper = styled.div`
@@ -90,10 +94,11 @@ const PickerWrapper = styled.div`
 `
 
 type AddingCategoryProps = {
+    page: string | undefined;
     setNotAdding: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export default function AddingCategory({setNotAdding}:AddingCategoryProps){
+export default function AddingCategory({page, setNotAdding}:AddingCategoryProps){
     const [input, setInput] = useState<string>("");
     function handleInputChange(e: React.ChangeEvent<HTMLInputElement>){
         const val = e.target.value;
@@ -163,7 +168,7 @@ export default function AddingCategory({setNotAdding}:AddingCategoryProps){
             <PickerWrapper className={isPickerVisible ? "picker-visible" : undefined}>
                 <EmojiPicker handleEmojiPick={handleEmojiPick}/>
             </PickerWrapper>
-            <Button data-disabled={notTyped} onClick={handleSaveBtnClick}>저장</Button>
+            <Button className={page==="ledgerModal" ? "ledger-modal" : undefined} data-disabled={notTyped} onClick={handleSaveBtnClick}>저장</Button>
         </Wrapper>
     )
 }

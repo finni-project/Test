@@ -117,7 +117,7 @@ const Header = styled.div`
 `
 
 export default function DatePickerModal(){
-    const [startDate, setStartDate] = useState(new Date());
+    const [startDate, setStartDate] = useState<Date>(new Date());
     const formatDate = (d: Date): string => {
         const date = new Date(d);
         const monthIndex = date.getMonth() + 1;

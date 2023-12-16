@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 import AllowanceModal from "./AllowanceModal";
 import DepositModal from "./DepositModal";
 import AddDataModal from "./AddDataModal";
+import { DailyList } from "model/model";
 
 const Wrapper = styled.div`
     /* background-color: azure; */
@@ -82,10 +83,7 @@ const Spend = styled.div`
     margin-bottom: 2rem;
 `
 
-const today = new Date();
-const thisYear = today.getFullYear();
-
-const monthlyData = [
+const monthlyData: DailyList[] = [
     {date: "2023-10-28",
     list: [
         {id: 1, emoji: "🍚", name: "예림이랑 떡볶이", type: "spend", amount: 3000},
@@ -114,12 +112,13 @@ const monthlyData = [
 ]
 
 export default function Monthly(){
-    const [monthlyRecord, setMonthlyRecord] = useState(monthlyData);
+    const [monthlyRecord, setMonthlyRecord] = useState<DailyList[]>(monthlyData);
     // 용돈확인 모달
-    const [shownAmodal, setShownAmodal] = useState(false);
+    const [shownAmodal, setShownAmodal] = useState<boolean>(false);
     // 저금확인 모달
-    const [shownDmodal, setShownDmodal] = useState(false);
+    const [shownDmodal, setShownDmodal] = useState<boolean>(false);
 
+    // 수정 필요
     const ledgerList:any[] = [];
     monthlyRecord.forEach(itm=>itm.list.map(elm => ledgerList.push(elm)));
     let incomeArr = ledgerList.filter(itm=>itm.type==="income").map(elm=>elm.amount);
@@ -130,8 +129,6 @@ export default function Monthly(){
     const monthlySpend = spendArr.reduce(
         (accumulator, currentValue) => accumulator + currentValue, 0,
     ).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
-
-    const [addDataModal, setAddDataModal] = useState(false)
 
     return(
         <Wrapper>
@@ -166,8 +163,9 @@ export default function Monthly(){
             {monthlyRecord?
             <IsRecord monthlyData={monthlyRecord} />
             :<NoRecord/>}
-            <PlusBtn setAddDataModal={setAddDataModal}/>
-            {addDataModal && <AddDataModal setAddDataModal={setAddDataModal} id={undefined}/>}
+            <Link to='add'>
+                <PlusBtn />
+            </Link>
         </Wrapper>
     )
 }

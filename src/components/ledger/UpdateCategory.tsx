@@ -62,7 +62,6 @@ const InputWrapper = styled.div`
 
 const PickerWrapper = styled.div`
     display: none;
-    background-color: beige;
     &.picker-visible{
         display: flex;
     }
@@ -98,10 +97,10 @@ export default function UpdateCategory({ pickedCategory }: UpdateCategoryProps){
     const emogi = pickedCategory.emogi;
     const name = pickedCategory.name;
 
-    const [input, setInput] = useState(name);
-    const [inputLength, setInputLength] = useState(0);
+    const [input, setInput] = useState<string>(name);
+    const [inputLength, setInputLength] = useState<number>(0);
     
-    function handleInputChange(e: any){
+    function handleInputChange(e: React.ChangeEvent<HTMLInputElement>){
         const val = e.target.value;
         setInput(val);
     }
@@ -110,7 +109,7 @@ export default function UpdateCategory({ pickedCategory }: UpdateCategoryProps){
         setInput("")
     }
 
-    const [saveDisabled, setSaveDisabled] = useState(true);
+    const [saveDisabled, setSaveDisabled] = useState<boolean>(true);
 
     const [isPickerVisible, setPickerVisible] = useState<boolean>(false);
     function handleIconClick(){

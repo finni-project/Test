@@ -4,6 +4,7 @@ import CategoryModal from "./CategoryModal"
 import DatePickerModal from "./DatePickerModal"
 import SaveOrNot from "./SaveOrNot"
 import DeleteOrNot from "./DeleteOrNot"
+import { Route, useNavigate, useParams } from "react-router-dom"
 
 const Wrapper = styled.div`
     position: fixed;
@@ -156,9 +157,6 @@ const InputBox = styled.div`
         ${({theme})=>theme.fonts.body14r}
         cursor: pointer;
     }
-    svg{
-        cursor: pointer;
-    }
     .filled-input{
         color: ${({theme})=>theme.colors.neutral.n100};
     }
@@ -212,6 +210,7 @@ const RightElmWrapper = styled.div`
 const SaveBtnWrapper = styled.div`
     display: flex;
     align-items: center;
+    gap: 0.5rem;
     .delete-btn{
         ${({theme})=>theme.mediumBtns.tertiary}
     }
@@ -224,15 +223,11 @@ const SaveBtnWrapper = styled.div`
 const today = new Date();
 const todayFormat = today.getFullYear() + "년 " + (today.getMonth() + 1) + "월 " + today.getDate() + "일";
 
-type AddDataModalProps = {
-    setAddDataModal: any;
-    id: number | undefined;
-}
 
-export default function AddDataModal({setAddDataModal, id}: AddDataModalProps){
+export default function AddDataModal(){
     const [notEdited, setNotEdited] = useState<boolean>(true);
     function handleEditBtnClick(){
-        setNotEdited(false)
+        setNotEdited(false);
     }
 
     const [amount, setAmount] = useState<string>("");
@@ -253,7 +248,7 @@ export default function AddDataModal({setAddDataModal, id}: AddDataModalProps){
         setBtnDisabled(true);
     }
 
-    const [select, setSelect] = useState({spend: true, income: false, deposit: false});
+    const [select, setSelect] = useState<{spend: boolean, income: boolean, deposit: boolean}>({spend: true, income: false, deposit: false});
     function handleTypeClick(e:any){
         const name = e.target.name;
         switch(name){
@@ -266,12 +261,12 @@ export default function AddDataModal({setAddDataModal, id}: AddDataModalProps){
         }
     }
 
-    const [contents, setContents] = useState("");
+    const [contents, setContents] = useState<string>("");
     function handleContentsChange(e:any){
         setContents(e.target.value);
     }
 
-    const [contentsLength, setContentsLength] = useState(0);
+    const [contentsLength, setContentsLength] = useState<number>(0);
 
     useEffect(()=>{
         const len = contents.length;
@@ -282,17 +277,20 @@ export default function AddDataModal({setAddDataModal, id}: AddDataModalProps){
         setContentsLength(len);
     },[contents])
 
-    const [showModal, setShowModal] = useState(false);
+    const navigate = useNavigate();
+    function handleSaveClick(){
+        navigate('/ledger/monthly');
+    }
+
+    const [showModal, setShowModal] = useState<boolean>(false);
 
     const [choosedCategory, setChoosedCategory] = useState<{id: number, emogi: string, name: string} | undefined>();
 
-    const [saveOrNot, setSaveOrNot] = useState(false);
+    const [saveOrNot, setSaveOrNot] = useState<boolean>(false);
 
-    const [deletOrNot, setDeleteOrNot] = useState(false);
+    const [deleteOrNot, setDeleteOrNot] = useState<boolean>(false);
 
-    useEffect(()=>{
-        console.log(id)
-    },[id])
+    const itmId = useParams().id;
 
     return(
         <>
@@ -369,14 +367,14 @@ export default function AddDataModal({setAddDataModal, id}: AddDataModalProps){
             </InputBox>
             </div>
             <SaveBtnWrapper>
-                {id && <button className="delete-btn" onClick={()=>setDeleteOrNot(true)}>삭제</button>}
+                {itmId && <button className="delete-btn" onClick={()=>setDeleteOrNot(true)}>삭제</button>}
                 <button className="save-btn" data-disabled={(select.spend === true && Number(amount) > 0 && choosedCategory && contentsLength > 0) || (Number(amount) > 0 && contentsLength > 0) ? "false" : "true"}
-                onClick={()=>setAddDataModal(false)}>저장</button>
+                onClick={handleSaveClick}>저장</button>
             </SaveBtnWrapper>
         </Wrapper>
         {showModal && <CategoryModal showModal={showModal} setShowModal={setShowModal} setChoosedCategory={setChoosedCategory}/>}
-        {saveOrNot && <SaveOrNot setSaveOrNot={setSaveOrNot} setAddDataModal={setAddDataModal}/>}
-        {deletOrNot && <DeleteOrNot setDeleteOrNot={setDeleteOrNot} setAddDataModal={setAddDataModal}/>}
+        {saveOrNot && <SaveOrNot setSaveOrNot={setSaveOrNot}/>}
+        {deleteOrNot && <DeleteOrNot setDeleteOrNot={setDeleteOrNot}/>}
         </>
     )
 }

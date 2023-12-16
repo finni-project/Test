@@ -91,13 +91,13 @@ const categoryArr = [{id: 1, emogi: "🍚", name: "밥"},
     ];
 
 type CategoryModalProps = {
-    showModal: boolean;
-    setShowModal: any;
-    setChoosedCategory: any;
+    showModal: boolean | undefined;
+    setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
+    setChoosedCategory: React.Dispatch<React.SetStateAction<{id: number, emogi: string, name: string} | undefined>>;
 }
 
 export default function CategoryModal({showModal, setShowModal, setChoosedCategory}:CategoryModalProps){
-    const [isEdit, setIsEdit] = useState(false)
+    const [isEdit, setIsEdit] = useState<boolean>(false)
     function handleEditClick(){
         setIsEdit(true);
     }
@@ -117,7 +117,7 @@ export default function CategoryModal({showModal, setShowModal, setChoosedCatego
         setShowModal(!showModal);
     }
 
-    const [notAdding, setNotAdding] = useState(true);
+    const [notAdding, setNotAdding] = useState<boolean>(true);
     function handleAddBtnClick(){
         setNotAdding(false);
     }
@@ -154,7 +154,7 @@ export default function CategoryModal({showModal, setShowModal, setChoosedCatego
                     <span>추가</span>
                 </CategoryWrapper>}
             </ListWrapper>)
-            : <AddingCategory setNotAdding={setNotAdding}/>}
+            : <AddingCategory page="ledgerModal" setNotAdding={setNotAdding}/>}
         </Wrapper>
     )
 }
