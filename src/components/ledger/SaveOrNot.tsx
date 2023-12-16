@@ -27,11 +27,11 @@ const TitleWrapper = styled.div`
     row-gap: 0.25rem;
     h1{
         ${({theme}) => theme.fonts.body17b}
-        color: ${({theme}) => theme.colors.neutral.n100}
+        color: ${({theme}) => theme.colors.neutral.n100};
     }
     p{
         ${({theme}) => theme.fonts.body14r}
-        color: ${({theme}) => theme.colors.neutral.n60}
+        color: ${({theme}) => theme.colors.neutral.n60};
     }
 `
 

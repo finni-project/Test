@@ -11,7 +11,7 @@ export type Category = {
     active: boolean;
 }[]
 
-export type MonthlyList = {
+export type DailyList = {
     date: string;
     list: {
         id: number;
@@ -20,4 +20,6 @@ export type MonthlyList = {
         type: string;
         amount: number;
     }[];
-}[]
+}
+
+export type DailyItemList = Pick<DailyList, 'list'>

@@ -2,6 +2,7 @@ import styled from "styled-components";
 import React, {useEffect, useState} from "react";
 import AddDataModal from "./AddDataModal";
 import { useNavigate } from "react-router-dom";
+import { DailyItemList, DailyList } from "model/model";
 
 const TitleWrapper = styled.div`
     padding-top: 1rem;
@@ -76,16 +77,7 @@ const LeftElmts = styled.div`
 `
 
 type IsRecordProps = {
-    monthlyData: {
-        date: string;
-        list: {
-            id: number;
-            emoji: string;
-            name: string;
-            type: string;
-            amount: number;
-        }[];
-    }[];
+    monthlyData: DailyList[];
 }
 
 export default function IsRecord({monthlyData}:IsRecordProps){
@@ -94,8 +86,8 @@ export default function IsRecord({monthlyData}:IsRecordProps){
             {monthlyData.map((itm, index)=>{
                 return(
                     <React.Fragment key={index}>
-                        <ListTitle date={itm.date} list={itm.list} />
-                        <ListElmt date={itm.date} list={itm.list}/>
+                        <ListTitle dailyList = {itm} />
+                        <ListElmt list={itm.list}/>
                     </React.Fragment>
                 )
             })}
@@ -104,22 +96,18 @@ export default function IsRecord({monthlyData}:IsRecordProps){
 }
 
 type ListTitleProps = {
-    date: string;
-    list:{
-        id: number;
-        emoji: string;
-        name: string;
-        type: string;
-        amount: number;
-    }[];
+    dailyList: DailyList;
 }
 
-export function ListTitle({date, list}:ListTitleProps){
+export function ListTitle({dailyList}:ListTitleProps){
+    const {date, list} = dailyList;
+
     const realDate = new Date(date);
     const dateNum = realDate.getDate();
     const weekdayArr = ['일', '월', '화', '수', '목', '금', '토'];
     let weekday = weekdayArr[realDate.getDay()];
 
+    // 수정 필요
     let incomeArr = list.filter(itm=>itm.type==="income").map(elm=>elm.amount);
     const incomeTotal = incomeArr.reduce(
         (accumulator, currentValue) => accumulator + currentValue, 0,
@@ -140,19 +128,7 @@ export function ListTitle({date, list}:ListTitleProps){
     )
 }
 
-type ListElmtProps = {
-    date: string;
-    list:{
-        id: number;
-        emoji: string;
-        name: string;
-        type: string;
-        amount: number;
-    }[]
-}
-
-export function ListElmt({date, list}:ListElmtProps){
-
+export function ListElmt({list}:DailyItemList){
     const navigate = useNavigate();
     function handleItemClick(itmId: number){
         navigate('/ledger/monthly/add/' + itmId);

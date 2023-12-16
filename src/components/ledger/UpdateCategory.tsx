@@ -62,7 +62,6 @@ const InputWrapper = styled.div`
 
 const PickerWrapper = styled.div`
     display: none;
-    background-color: beige;
     &.picker-visible{
         display: flex;
     }

@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 import AllowanceModal from "./AllowanceModal";
 import DepositModal from "./DepositModal";
 import AddDataModal from "./AddDataModal";
-import { MonthlyList } from "model/model";
+import { DailyList } from "model/model";
 
 const Wrapper = styled.div`
     /* background-color: azure; */
@@ -83,7 +83,7 @@ const Spend = styled.div`
     margin-bottom: 2rem;
 `
 
-const monthlyData: MonthlyList = [
+const monthlyData: DailyList[] = [
     {date: "2023-10-28",
     list: [
         {id: 1, emoji: "🍚", name: "예림이랑 떡볶이", type: "spend", amount: 3000},
@@ -112,7 +112,7 @@ const monthlyData: MonthlyList = [
 ]
 
 export default function Monthly(){
-    const [monthlyRecord, setMonthlyRecord] = useState<MonthlyList>(monthlyData);
+    const [monthlyRecord, setMonthlyRecord] = useState<DailyList[]>(monthlyData);
     // 용돈확인 모달
     const [shownAmodal, setShownAmodal] = useState<boolean>(false);
     // 저금확인 모달
