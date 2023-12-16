@@ -226,14 +226,11 @@ const SaveBtnWrapper = styled.div`
 const today = new Date();
 const todayFormat = today.getFullYear() + "년 " + (today.getMonth() + 1) + "월 " + today.getDate() + "일";
 
-type AddDataModalProps = {
-    // id: number | undefined;
-}
 
 export default function AddDataModal(){
     const [notEdited, setNotEdited] = useState<boolean>(true);
     function handleEditBtnClick(){
-        setNotEdited(false)
+        setNotEdited(false);
     }
 
     const [amount, setAmount] = useState<string>("");
@@ -254,7 +251,7 @@ export default function AddDataModal(){
         setBtnDisabled(true);
     }
 
-    const [select, setSelect] = useState({spend: true, income: false, deposit: false});
+    const [select, setSelect] = useState<{spend: boolean, income: boolean, deposit: boolean}>({spend: true, income: false, deposit: false});
     function handleTypeClick(e:any){
         const name = e.target.name;
         switch(name){
@@ -267,12 +264,12 @@ export default function AddDataModal(){
         }
     }
 
-    const [contents, setContents] = useState("");
+    const [contents, setContents] = useState<string>("");
     function handleContentsChange(e:any){
         setContents(e.target.value);
     }
 
-    const [contentsLength, setContentsLength] = useState(0);
+    const [contentsLength, setContentsLength] = useState<number>(0);
 
     useEffect(()=>{
         const len = contents.length;
@@ -288,13 +285,13 @@ export default function AddDataModal(){
         navigate('/ledger/monthly');
     }
 
-    const [showModal, setShowModal] = useState(false);
+    const [showModal, setShowModal] = useState<boolean>(false);
 
     const [choosedCategory, setChoosedCategory] = useState<{id: number, emogi: string, name: string} | undefined>();
 
-    const [saveOrNot, setSaveOrNot] = useState(false);
+    const [saveOrNot, setSaveOrNot] = useState<boolean>(false);
 
-    const [deleteOrNot, setDeleteOrNot] = useState(false);
+    const [deleteOrNot, setDeleteOrNot] = useState<boolean>(false);
 
     const itmId = useParams().id;
 

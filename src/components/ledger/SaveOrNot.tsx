@@ -55,7 +55,7 @@ const RightButton = styled.button`
 `
 
 type SaveOrNotProps = {
-    setSaveOrNot: any;
+    setSaveOrNot: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export default function SaveOrNot({setSaveOrNot}:SaveOrNotProps){

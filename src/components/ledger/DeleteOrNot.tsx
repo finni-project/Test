@@ -55,7 +55,7 @@ const RightButton = styled.button`
 `
 
 type DeleteOrNotProps = {
-    setDeleteOrNot: any;
+    setDeleteOrNot: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export default function DeleteOrNot({setDeleteOrNot}: DeleteOrNotProps){
