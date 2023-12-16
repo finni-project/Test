@@ -137,7 +137,7 @@ export default function Navbar(){
                     <span>홈</span>
                 </IconWrapper>
             </NavLink>
-            <NavLink to="/ledger" className={({isActive}) => (isActive? "banknote-link" : undefined)}>
+            <NavLink to="/ledger/monthly" className={({isActive}) => (isActive? "banknote-link" : undefined)}>
                 <IconWrapper>
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path fillRule="evenodd" clipRule="evenodd" d="M20.2308 22.9937H3.78123C1.26442 22.9937 0 21.7533 0 19.2606V4.55716C0 2.06444 1.26442 0.824097 3.78123 0.824097H20.2308C22.7476 0.824097 24 2.07648 24 4.55716V19.2606C24 21.7413 22.7476 22.9937 20.2308 22.9937ZM19.1333 21.6H4.87707C2.69583 21.6 1.6 20.7048 1.6 18.9058V8.29419C1.6 6.49518 2.69583 5.60001 4.87707 5.60001H19.1333C21.3146 5.60001 22.4 6.50387 22.4 8.29419V18.9058C22.4 20.6961 21.3146 21.6 19.1333 21.6Z"

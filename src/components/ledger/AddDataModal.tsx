@@ -157,9 +157,6 @@ const InputBox = styled.div`
         ${({theme})=>theme.fonts.body14r}
         cursor: pointer;
     }
-    svg{
-        cursor: pointer;
-    }
     .filled-input{
         color: ${({theme})=>theme.colors.neutral.n100};
     }
