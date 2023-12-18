@@ -10,6 +10,7 @@ import AllowanceModal from "./AllowanceModal";
 import DepositModal from "./DepositModal";
 import AddDataModal from "./AddDataModal";
 import { DailyList } from "model/model";
+import GoToTopBtn from "./GoToTopBtn";
 
 const Wrapper = styled.div`
     /* background-color: azure; */
@@ -163,6 +164,7 @@ export default function Monthly(){
             {monthlyRecord?
             <IsRecord monthlyData={monthlyRecord} />
             :<NoRecord/>}
+            <GoToTopBtn/>
             <Link to='add'>
                 <PlusBtn />
             </Link>
