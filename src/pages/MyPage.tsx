@@ -1,7 +1,10 @@
+import Outline from "components/myPage/Outline";
+import { Route, Routes } from "react-router-dom";
+
 export default function MyPage(){
     return(
-        <>
-            <h1>MyPage</h1>
-        </>
+        <Routes>
+            <Route path='/outline' element={<Outline/>} />
+        </Routes>    
     )
 }

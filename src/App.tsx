@@ -25,6 +25,7 @@ function App() {
         <Route path='/piggyBank' element={<PiggyBank/>} />
         <Route path='/economyClass' element={<EconomyClass/>} />
         <Route path='/myPage' element={<MyPage/>} />
+        <Route path='/myPage/*' element={<MyPage/>} />
         <Route path='/allowanceInfo' element={<AllowanceInfo/>} />
         <Route path='/allowanceInfo/*' element={<AllowanceInfo/>} />
       </Route>
