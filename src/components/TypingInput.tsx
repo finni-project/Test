@@ -64,7 +64,7 @@ const Input = styled.input`
         -moz-appearance: textfield;
     }
     /* background-color: lightcyan; */
-    ${({theme})=>theme.fonts.body17b};
+    ${({theme})=>theme.fonts.body17b}
     color: ${({theme})=>theme.colors.neutral.n100};
 `
 
