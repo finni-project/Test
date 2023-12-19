@@ -74,7 +74,7 @@ export default function Outline(){
         <div>
             <ProfileWrapper>
                 <ProfileImg>
-                    <img src="public_assets/profile13.png" alt="profile"/>
+                    <img src="/public_assets/profile13.png" alt="profile"/>
                 </ProfileImg>
                 <Inform>
                     <h2>삐약이</h2>

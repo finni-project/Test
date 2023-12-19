@@ -16,6 +16,7 @@ const ImageWrapper = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    pointer-events: none;
 `
 
 const ProfileImg = styled.div`
@@ -26,6 +27,11 @@ const ProfileImg = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    pointer-events: none;
+    img{
+        width: 4rem;
+        height: 4rem;
+    }
 `
 
 const SvgWrapper = styled.div`
@@ -36,6 +42,7 @@ const SvgWrapper = styled.div`
     height: 1.5rem;
     background-color: ${({theme})=>theme.colors.primary.main};
     border-radius: 100%;
+    pointer-events: none;
     svg{
         path{
             fill: ${({theme})=>theme.colors.neutral.n0};
@@ -141,17 +148,19 @@ export default function Profile(){
     return(
         <>
             <Wrapper>
-                <ImageWrapper>
-                    <ProfileImg>
-                        <img src="public_assets/profile13.png" alt="profile"/>
-                    </ProfileImg>
-                    <SvgWrapper>
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M6 15.6403V17.6667C6 17.8534 6.14665 18 6.33329 18H8.35967C8.44633 18 8.53298 17.9667 8.59297 17.9L15.872 10.6277L13.3723 8.12804L6.09999 15.4004C6.03333 15.467 6 15.547 6 15.6403Z" fill="#B7B7B7"/>
-                            <path d="M17.805 7.75476L16.2452 6.19497C15.9853 5.93501 15.5653 5.93501 15.3054 6.19497L14.0855 7.4148L16.5852 9.91446L17.805 8.69463C18.065 8.43466 18.065 8.01472 17.805 7.75476Z" fill="#B7B7B7"/>
-                        </svg>
-                    </SvgWrapper>
-                </ImageWrapper>
+                <Link to='images'>
+                    <ImageWrapper>
+                        <ProfileImg>
+                            <img src="/public_assets/profile_13.png" alt="profile"/>
+                        </ProfileImg>
+                        <SvgWrapper>
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M6 15.6403V17.6667C6 17.8534 6.14665 18 6.33329 18H8.35967C8.44633 18 8.53298 17.9667 8.59297 17.9L15.872 10.6277L13.3723 8.12804L6.09999 15.4004C6.03333 15.467 6 15.547 6 15.6403Z" fill="#B7B7B7"/>
+                                <path d="M17.805 7.75476L16.2452 6.19497C15.9853 5.93501 15.5653 5.93501 15.3054 6.19497L14.0855 7.4148L16.5852 9.91446L17.805 8.69463C18.065 8.43466 18.065 8.01472 17.805 7.75476Z" fill="#B7B7B7"/>
+                            </svg>
+                        </SvgWrapper>
+                    </ImageWrapper>
+                </Link>
             </Wrapper>
             <List>
                 <h2>이름</h2>
