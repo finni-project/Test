@@ -1,3 +1,4 @@
+import Inquiry from "components/myPage/Inquiry";
 import MyAllowance from "components/myPage/MyAllowance";
 import Outline from "components/myPage/Outline";
 import Profile from "components/myPage/Profile";
@@ -12,6 +13,7 @@ export default function MyPage(){
             <Route path='/profile' element={<Profile/>} />
             <Route path='/profile/images' element={<ProfileImages/>} />
             <Route path='/allowance' element={<MyAllowance/>} />
+            <Route path='/inquiry' element={<Inquiry />} />
         </Routes>    
     )
 }
