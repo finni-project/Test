@@ -52,7 +52,7 @@ export default function Topbar(){
                 </Link>
                 <Link to='/login'>
                     <ProfileImg>
-                        <img src="public_assets/profile13.png" alt="profile image"/>
+                        <img src="/public_assets/profile13.png" alt="profile"/>
                     </ProfileImg>
                 </Link>
             </ItemsWrapper>
