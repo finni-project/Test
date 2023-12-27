@@ -68,12 +68,12 @@ const PickerWrapper = styled.div`
 `
 
 const ButtonWrapper = styled.div`
-    /* position: fixed; */
+    position: fixed;
     display: flex;
     justify-content: center;
     align-items: center;
     width: calc(100vw - 2 * (1rem) );
-    /* bottom: 1rem; */
+    bottom: 1rem;
     gap: 0.5rem;
     button:first-child{
         ${({theme})=>theme.mediumBtns.tertiary}
@@ -131,7 +131,7 @@ export default function UpdateCategory({ pickedCategory }: UpdateCategoryProps){
     },[input])
 
     useEffect(()=>{
-        name === input && emogi === currentEmoji? setSaveDisabled(true) : setSaveDisabled(false);
+        (name === input && emogi === currentEmoji) || input.length === 0? setSaveDisabled(true) : setSaveDisabled(false);
     },[input, currentEmoji])
 
     return(
