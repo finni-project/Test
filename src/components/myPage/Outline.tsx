@@ -69,17 +69,23 @@ const LogoutBtn = styled.div`
 
 const marginStyle = {marginBottom : "2rem"};
 
+const profileData = {
+    img_path: "/public_assets/profile13.png",
+    nick_name: "삐약이",
+    age: 11,
+}
+
 export default function Outline(){
     return(
         <>
         <div>
             <ProfileWrapper>
                 <ProfileImg>
-                    <img src="/public_assets/profile13.png" alt="profile"/>
+                    <img src={profileData.img_path} alt="profile"/>
                 </ProfileImg>
                 <Inform>
-                    <h2>삐약이</h2>
-                    <span>11살</span>
+                    <h2>{profileData.nick_name}</h2>
+                    <span>{profileData.age}살</span>
                 </Inform>
             </ProfileWrapper>
             <List>
