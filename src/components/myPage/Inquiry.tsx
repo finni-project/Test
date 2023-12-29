@@ -42,6 +42,7 @@ const TextArea = styled.textarea`
     resize: none;
     width: 100%;
     height: calc(100vh - ${({theme})=>theme.height.topbar} - 9.38rem - 1.125rem - 4.5rem - ${({theme})=>theme.height.navbar});
+    /* height: 18.313rem; */
     padding: 1rem;
     border-radius: 0.5rem;
     background-color: ${({theme})=>theme.colors.neutral.n15};
