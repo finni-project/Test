@@ -1,6 +1,12 @@
 import { useState } from "react"
 import styled from "styled-components"
 
+const Wrapper = styled.div`
+    padding-left: 1rem;
+    padding-bottom: calc(${({theme})=>theme.height.navbar} + ${({theme})=>theme.height.bottomPadding});
+    padding-right: 1rem;
+`
+
 const Images = styled.div`
     display: grid;
     grid-template-columns: repeat(6, 1fr);
@@ -84,7 +90,7 @@ export default function ProfileImages(){
     }
 
     return(
-        <>
+        <Wrapper>
             <Images>
                 {profileImg.map(itm => (
                 <ImageWrapper onClick={()=>handleImgClick(itm.id)} className={itm.lock?undefined:(itm.pick?"picked not-locked":"not-locked")} key={itm.id}>
@@ -100,6 +106,6 @@ export default function ProfileImages(){
                 ))}
             </Images>
             <Button>저장</Button>
-        </>
+        </Wrapper>
     )
 }

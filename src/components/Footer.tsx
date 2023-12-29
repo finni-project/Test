@@ -1,8 +1,6 @@
 import styled from "styled-components"
 
 const Wrapper = styled.div`
-    position: absolute;
-    left: 0;
     background-color: ${({theme})=>theme.colors.neutral.n20};
     width: 100%;
     padding: 2.5rem 1rem calc(4.375rem + ${({theme})=>theme.height.navbar}) 1rem;

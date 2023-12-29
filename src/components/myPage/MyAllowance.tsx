@@ -1,6 +1,12 @@
 import { useState } from "react"
 import styled, { keyframes } from "styled-components"
 
+const Wrapper = styled.div`
+    padding-left: 1rem;
+    padding-bottom: calc(${({theme})=>theme.height.navbar} + ${({theme})=>theme.height.bottomPadding});
+    padding-right: 1rem;
+`
+
 const IntroWrapper = styled.div`
     display: flex;
     justify-content: space-between;
@@ -111,7 +117,7 @@ export default function MyAllowance(){
     }
 
     return(
-        <>
+        <Wrapper>
             <IntroWrapper>
                 <Intro>
                     <h2>용돈 자동 입력</h2>
@@ -141,6 +147,6 @@ export default function MyAllowance(){
                     </svg>
                 </InputWrapper>
             </List>
-        </>
+        </Wrapper>
     )
 }

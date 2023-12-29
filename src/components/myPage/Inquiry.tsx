@@ -1,6 +1,12 @@
 import { useState } from "react"
 import styled from "styled-components"
 
+const Wrapper = styled.div`
+    padding-left: 1rem;
+    padding-bottom: calc(${({theme})=>theme.height.navbar} + ${({theme})=>theme.height.bottomPadding});
+    padding-right: 1rem;
+`
+
 const TitleWrapper = styled.div`
     display: flex;
     justify-content: space-between;
@@ -72,7 +78,7 @@ export default function Inquiry(){
     }
 
     return(
-        <>
+        <Wrapper>
             <div>
                 <TitleWrapper>
                     <h2>제목</h2>
@@ -88,6 +94,6 @@ export default function Inquiry(){
                 <TextArea placeholder="궁금한 내용을 적어주세요." value={contents} onChange={handleContentsChange} />
             </div>
             <Button>문의하기</Button>
-        </>
+        </Wrapper>
     )
 }

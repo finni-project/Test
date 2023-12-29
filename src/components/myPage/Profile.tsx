@@ -3,6 +3,12 @@ import { Link } from "react-router-dom"
 import styled from "styled-components"
 import QuitOrNot from "./QuitOrNot"
 
+const TopWrapper = styled.div`
+    padding-left: 1rem;
+    padding-bottom: calc(${({theme})=>theme.height.navbar} + ${({theme})=>theme.height.bottomPadding});
+    padding-right: 1rem;
+`
+
 const Wrapper = styled.div`
     display: flex;
     justify-content: center;
@@ -146,7 +152,7 @@ export default function Profile(){
     }
 
     return(
-        <>
+        <TopWrapper>
             <Wrapper>
                 <Link to='images'>
                     <ImageWrapper>
@@ -186,6 +192,6 @@ export default function Profile(){
                 <span onClick={handleQuitClick}>회원을 탈퇴할게요</span>
             </ButtonWrapper>
             {quitOrNot && <QuitOrNot setQuitOrNot={setQuitOrNot}/>}
-        </>
+        </TopWrapper>
     )
 }
