@@ -343,7 +343,7 @@ export default function AddDataModal(){
             <InputBox>
                 <LeftElmWrapper>
                     <span>내용</span>
-                    <input type="text" placeholder="내용을 남겨보세요" autoFocus value={contents} onChange={handleContentsChange}/>
+                    <input type="text" placeholder="내용을 남겨보세요" value={contents} onChange={handleContentsChange}/>
                 </LeftElmWrapper>
                 <svg className={contentsLength > 0 ? "disappear" : undefined} width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M9.00002 15.875L12.88 11.995L9.00002 8.11501C8.61002 7.72501 8.61002 7.09501 9.00002 6.70501C9.39002 6.31501 10.02 6.31501 10.41 6.70501L15 11.295C15.39 11.685 15.39 12.315 15 12.705L10.41 17.295C10.02 17.685 9.39002 17.685 9.00002 17.295C8.62002 16.905 8.61002 16.265 9.00002 15.875Z" fill="#777777"/>
