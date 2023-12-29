@@ -109,10 +109,7 @@ const ElmWrapper = styled.div`
 `
 
 const ButtonWrapper = styled.div`
-    width: calc(100% - 2rem);
-    position: absolute;
-    left: 1rem;
-    bottom: calc(${({theme})=>theme.height.navbar} + 0.5rem);
+    margin-top: 9.813rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
