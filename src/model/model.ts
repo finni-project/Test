@@ -23,3 +23,10 @@ export type DailyList = {
 }
 
 export type DailyItemList = Pick<DailyList, 'list'>
+
+export type ProfileImagesData = {
+    id: number,
+    img_url: string,
+    lock: boolean,
+    pick: boolean
+}[]

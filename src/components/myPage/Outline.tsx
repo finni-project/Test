@@ -74,7 +74,7 @@ const LogoutBtn = styled.div`
 
 const marginStyle = {marginBottom : "2rem"};
 
-const profileData = {
+const profileData : {img_path: string, nick_name: string, age: number} = {
     img_path: "/public_assets/profile13.png",
     nick_name: "삐약이",
     age: 11,

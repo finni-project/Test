@@ -110,7 +110,7 @@ const Button = styled.button`
     ${({theme})=>theme.mediumBtns.primary}
 `
 
-const myAllowanceData = {
+const myAllowanceData : {automatic: boolean, cycle: number, amount: number} = {
     automatic: true,
     cycle: 1,
     amount: 10000,
@@ -135,7 +135,7 @@ export default function MyAllowance(){
         }
     }
 
-    const addComma = (money: string) => {
+    function addComma(money: string){
         let returnString = money?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         return returnString;
     };

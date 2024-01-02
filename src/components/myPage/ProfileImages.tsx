@@ -1,3 +1,4 @@
+import { ProfileImagesData } from "model/model"
 import { useState } from "react"
 import styled from "styled-components"
 
@@ -67,7 +68,7 @@ const Button = styled.div`
     bottom: calc(${({theme})=>theme.height.navbar} + 0.5rem);
 `
 
-const profileImgData = [
+const profileImgData : ProfileImagesData = [
     {id: 1, img_url: "/public_assets/profile_11.png", lock: true, pick: false},
     {id: 2, img_url: "/public_assets/profile_12.png", lock: true, pick: false},
     {id: 3, img_url: "/public_assets/profile_13.png", lock: false, pick: false},
@@ -83,7 +84,7 @@ const profileImgData = [
 ]
 
 export default function ProfileImages(){
-    const [profileImg, setProfileImg] = useState(profileImgData);
+    const [profileImg, setProfileImg] = useState<ProfileImagesData>(profileImgData);
     function handleImgClick(id: number){
         const result = profileImg.map(itm => itm.id === id ? {...itm, pick: true}: {...itm, pick: false});
         setProfileImg(result);

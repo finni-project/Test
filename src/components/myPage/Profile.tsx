@@ -129,10 +129,12 @@ const Button = styled.button`
     width: 100%;
 `
 
+const nickNameBeforeEdit : string = '삐약이'
+
+
 export default function Profile(){
-    const nickNameBeforeEdit = '삐약이'
-    const [nickName, setNickName] = useState(nickNameBeforeEdit);
-    const [disabled, setDisabled] = useState(true);
+    const [nickName, setNickName] = useState<string>(nickNameBeforeEdit);
+    const [disabled, setDisabled] = useState<boolean>(true);
 
     function handleNickNameChange(e: React.ChangeEvent<HTMLInputElement>){
         const val = e.target.value;
@@ -143,7 +145,7 @@ export default function Profile(){
         }
     }
 
-    const [quitOrNot, setQuitOrNot] = useState(false);
+    const [quitOrNot, setQuitOrNot] = useState<boolean>(false);
     function handleQuitClick(){
         setQuitOrNot(true);
     }
