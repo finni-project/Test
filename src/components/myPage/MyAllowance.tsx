@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import styled, { keyframes } from "styled-components"
 
 const Wrapper = styled.div`
@@ -66,24 +66,40 @@ const InputWrapper = styled.div`
     position: relative;
     display: flex;
     align-items: center;
-    svg{
-        position: absolute;
-        right: 0;
-        margin: 0.62rem;
-    }
+    border-bottom: 1px solid ${({theme})=>theme.colors.neutral.n30};
+    background-color: ${({theme})=>theme.colors.neutral.n0};
 `
 
 const Input = styled.input`
-    width: 100%;
+    min-width: 1h;
     height: 3.25rem;
     border: 0;
-    border-bottom: 1px solid ${({theme})=>theme.colors.neutral.n30};
     /* background-color: lightcyan; */
-    ${({theme})=>theme.fonts.body14br}
+    ${({theme})=>theme.fonts.body14r}
     color: ${({theme})=>theme.colors.neutral.n100};
     &:focus{
         outline: none;
-        border-bottom: 1px solid ${({theme})=>theme.colors.primary.main};
+        /* border-bottom: 1px solid ${({theme})=>theme.colors.primary.main}; */
+    }
+    /* Chrome, Safari, Edge, Opera */
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin : 0;
+    }
+    /* Firefox */
+    input[type="number"] {
+        -moz-appearance: textfield;
+    }
+`
+
+const RightElm = styled.div`
+    position: absolute;
+    right: 0;
+    display: flex;
+    align-items: center;
+    svg{
+        margin: 0.62rem;
     }
 `
 
@@ -106,21 +122,42 @@ export default function MyAllowance(){
         setToggle(!toggle);
     }
 
-    const [cycle, setCycle] = useState<string>(String(myAllowanceData.cycle) + "일");
+    const initialCycle = myAllowanceData.cycle;
+    const [cycle, setCycle] = useState<number>(initialCycle);
+    const [cycleSize, setCycleSize] = useState<string>(String(String(initialCycle).length + 0.5) + 'ch');
     function handleCycleChange(e: React.ChangeEvent<HTMLInputElement>){
-        const regex = /[^0-9]/g;
-        let val = e.target.value;
-        val = val.replace(regex, "").replace("일", "").concat("일");
-        setCycle(val);
+        const val = e.target.value.replace(/[^0-9]/,"");
+        setCycle(Number(val));
+        setCycleSize(String(val.length + 0.5) + 'ch');
+        if(!val){
+            setCycle(0);
+            setCycleSize(String(1 + 0.5) + 'ch');
+        }
     }
 
-    const [amount, setAmount] = useState<string>(String(myAllowanceData.amount).replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",") + "원");
+    const addComma = (money: string) => {
+        let returnString = money?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        return returnString;
+    };
+    const initialAmount = addComma(String(myAllowanceData.amount));
+    const noCommaAmount = String(myAllowanceData.amount).replace(/[^0-9.]/g,"");
+    const countInitialComma = (initialAmount.match(/,/g)?.length) || 0;
+    const [amount, setAmount] = useState<string>(initialAmount);
+    const [amountSize, setAmountSize] = useState<string>(String(noCommaAmount.length + 0.5 + (countInitialComma / 2.5)) + 'ch');
+    
     function handleAmountChange(e: React.ChangeEvent<HTMLInputElement>){
-        const regex = /[^0-9]/g;
-        const regex2 = /\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g;
-        let val = e.target.value.replace("원", "");
-        val = val.replace(regex, "").replace(regex2, ",").concat("원");
-        setAmount(val);
+        const val = e.target.value.replace(/[^0-9.]/g,"");
+        const strWithComma = addComma(val);
+        const countComma = strWithComma.match(/,/g)?.length;
+        setAmount(strWithComma);
+        setAmountSize(String(val.length + 0.5) + 'ch');
+        if(Number(val) < 1){
+            setAmount("");
+            setAmountSize(String(1 + 0.5) + 'ch');
+        }
+        if(countComma){
+            setAmountSize(String((val.length + 0.5) + (countComma / 2.5)) + 'ch');
+        }
     }
 
     return(
@@ -137,24 +174,30 @@ export default function MyAllowance(){
             <List>
                 <h3>용돈 주기</h3>
                 <InputWrapper>
-                    <Input type="text" value={cycle} onChange={handleCycleChange}/>
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M6 15.6403V17.6667C6 17.8534 6.14665 18 6.33329 18H8.35967C8.44633 18 8.53298 17.9667 8.59297 17.9L15.872 10.6277L13.3723 8.12804L6.09999 15.4004C6.03333 15.467 6 15.547 6 15.6403Z" fill="#B7B7B7"/>
-                        <path d="M17.805 7.75476L16.2452 6.19497C15.9853 5.93501 15.5653 5.93501 15.3054 6.19497L14.0855 7.4148L16.5852 9.91446L17.805 8.69463C18.065 8.43466 18.065 8.01472 17.805 7.75476Z" fill="#B7B7B7"/>
-                    </svg>
+                    <Input type="text" autoFocus inputMode="numeric" pattern="[0-9]*" style={{width: `${cycleSize}`}} value={cycle} onChange={handleCycleChange}/>
+                    <span>일</span>
+                    <RightElm>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M6 15.6403V17.6667C6 17.8534 6.14665 18 6.33329 18H8.35967C8.44633 18 8.53298 17.9667 8.59297 17.9L15.872 10.6277L13.3723 8.12804L6.09999 15.4004C6.03333 15.467 6 15.547 6 15.6403Z" fill="#B7B7B7"/>
+                            <path d="M17.805 7.75476L16.2452 6.19497C15.9853 5.93501 15.5653 5.93501 15.3054 6.19497L14.0855 7.4148L16.5852 9.91446L17.805 8.69463C18.065 8.43466 18.065 8.01472 17.805 7.75476Z" fill="#B7B7B7"/>
+                        </svg>
+                    </RightElm>
                 </InputWrapper>
             </List>
             <List>
                 <h3>용돈 금액</h3>
                 <InputWrapper>
-                    <Input type="text" value={amount} onChange={handleAmountChange}/>
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M6 15.6403V17.6667C6 17.8534 6.14665 18 6.33329 18H8.35967C8.44633 18 8.53298 17.9667 8.59297 17.9L15.872 10.6277L13.3723 8.12804L6.09999 15.4004C6.03333 15.467 6 15.547 6 15.6403Z" fill="#B7B7B7"/>
-                        <path d="M17.805 7.75476L16.2452 6.19497C15.9853 5.93501 15.5653 5.93501 15.3054 6.19497L14.0855 7.4148L16.5852 9.91446L17.805 8.69463C18.065 8.43466 18.065 8.01472 17.805 7.75476Z" fill="#B7B7B7"/>
-                    </svg>
+                    <Input type="text" inputMode="numeric" style={{width: `${amountSize}`}} value={amount} onChange={handleAmountChange}/>
+                    <span>원</span>
+                    <RightElm>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M6 15.6403V17.6667C6 17.8534 6.14665 18 6.33329 18H8.35967C8.44633 18 8.53298 17.9667 8.59297 17.9L15.872 10.6277L13.3723 8.12804L6.09999 15.4004C6.03333 15.467 6 15.547 6 15.6403Z" fill="#B7B7B7"/>
+                            <path d="M17.805 7.75476L16.2452 6.19497C15.9853 5.93501 15.5653 5.93501 15.3054 6.19497L14.0855 7.4148L16.5852 9.91446L17.805 8.69463C18.065 8.43466 18.065 8.01472 17.805 7.75476Z" fill="#B7B7B7"/>
+                        </svg>
+                    </RightElm>
                 </InputWrapper>
             </List>
-            <Button>저장</Button>
+            <Button data-disabled={toggle!==myAllowanceData.automatic || (cycle !== initialCycle && cycle >= 0) || (amount !== initialAmount && Number(amount.replace(/[^0-9.]/g,"")) >= 1) ? "false" : "true"} >저장</Button>
         </Wrapper>
     )
 }
