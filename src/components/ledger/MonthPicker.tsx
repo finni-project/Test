@@ -77,23 +77,18 @@ export default function MonthPicker(props: MonthPickerProps){
         let month = thisMonth;
         let year = thisYear;
         let idNum = 0;
-        if(month === standardMonth && year === standardYear){
-            tmpArr.push({id: idNum, month: year + "년" + month + "월", active: true});
-        }else{
-            tmpArr.push({id: idNum, month: year + "년" + month + "월", active: false});
-        }
         while(year >= 2017){
+            if(month === standardMonth && year === standardYear){
+                tmpArr.push({id: idNum, month: year + "년" + month + "월", active: true});
+            }else{
+                tmpArr.push({id: idNum, month: year + "년" + month + "월", active: false});
+            }
             if(month === 1){
                 month = 13;
                 year = year - 1;
             }
             month = month - 1;
             idNum = idNum + 1;
-            if(month === standardMonth && year === standardYear){
-                tmpArr.push({id: idNum, month: year + "년" + month + "월", active: true});
-            }else{
-                tmpArr.push({id: idNum, month: year + "년" + month + "월", active: false});
-            }
         }
         
         return tmpArr;
