@@ -11,6 +11,7 @@ import DepositModal from "./DepositModal";
 import AddDataModal from "./AddDataModal";
 import { DailyList } from "model/model";
 import GoToTopBtn from "./GoToTopBtn";
+import MonthPicker from "./MonthPicker";
 
 const Wrapper = styled.div`
     /* background-color: azure; */
@@ -131,16 +132,28 @@ export default function Monthly(){
         (accumulator, currentValue) => accumulator + currentValue, 0,
     ).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
 
+    const today = new Date();
+    const thisMonth = today.getMonth() + 1;
+    const thisYear = today.getFullYear();
+
+    const [standardMonth, setStandardMonth] = useState<number>(thisMonth);
+    const [standardYear, setStandardYear] = useState<number>(thisYear);
+    const [isMonthPicker, setIsMonthPicker] = useState(false);
+    function handleMonthPicker(){
+        setIsMonthPicker(true);
+    }
+
     return(
         <Wrapper>
             {shownAmodal && <AllowanceModal setShownModal={setShownAmodal}/>}
             {shownDmodal && <DepositModal setShownModal={setShownDmodal}/>}
+            {isMonthPicker && <MonthPicker setIsMonthPicker={setIsMonthPicker} standardMonth={standardMonth} setStandardMonth={setStandardMonth} standardYear={standardYear} setStandardYear={setStandardYear}/>}
             <TopWrapper>
                 <Month>
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M15 15.875L11.12 11.995L15 8.11501C15.39 7.72501 15.39 7.09501 15 6.70501C14.61 6.31501 13.98 6.31501 13.59 6.70501L8.99998 11.295C8.60998 11.685 8.60998 12.315 8.99998 12.705L13.59 17.295C13.98 17.685 14.61 17.685 15 17.295C15.38 16.905 15.39 16.265 15 15.875Z" fill="#777777"/>
                     </svg>
-                    {/* {year === thisYear ? <span className="this-year">{month}월</span> : <span>{year}년 {month}월</span>} */}
+                    {standardYear === thisYear ? <span onClick={handleMonthPicker} className="this-year">{standardMonth}월</span> : <span onClick={handleMonthPicker}>{standardYear}년 {standardMonth}월</span>}
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M9.00002 15.875L12.88 11.995L9.00002 8.11501C8.61002 7.72501 8.61002 7.09501 9.00002 6.70501C9.39002 6.31501 10.02 6.31501 10.41 6.70501L15 11.295C15.39 11.685 15.39 12.315 15 12.705L10.41 17.295C10.02 17.685 9.39002 17.685 9.00002 17.295C8.62002 16.905 8.61002 16.265 9.00002 15.875Z" fill="#777777"/>
                     </svg>
