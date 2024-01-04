@@ -138,7 +138,7 @@ export default function Monthly(){
 
     const [standardMonth, setStandardMonth] = useState<number>(thisMonth);
     const [standardYear, setStandardYear] = useState<number>(thisYear);
-    const [isMonthPicker, setIsMonthPicker] = useState(false);
+    const [isMonthPicker, setIsMonthPicker] = useState<boolean>(false);
     function handleMonthPicker(){
         setIsMonthPicker(true);
     }
