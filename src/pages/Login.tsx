@@ -1,6 +1,9 @@
 import styled from "styled-components"
 
 const Wrapper = styled.div`
+    padding-left: 1rem;
+    padding-bottom: calc(${({theme})=>theme.height.navbar} + ${({theme})=>theme.height.bottomPadding});
+    padding-right: 1rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
