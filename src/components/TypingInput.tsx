@@ -117,7 +117,7 @@ export default function TypingInput({nextPage, unit}:TypingInputProps){
     const navigate = useNavigate();
     function handleLinkClick(){
         // dispatch({type: "GONEXT", payload: nextPage});
-        navigate(`/allowanceInfo/` + nextPage)
+        navigate(nextPage)
     }
 
     return(

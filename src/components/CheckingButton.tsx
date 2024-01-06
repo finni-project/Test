@@ -92,7 +92,7 @@ export default function CheckingButton({ nextPage, buttonArr, setNotTyping}:Chec
     const navigate = useNavigate();
     function handleLinkClick(){
         // dispatch({type: "GONEXT", payload: nextPage});
-        navigate(`/allowanceInfo/` + nextPage)
+        navigate(nextPage);
     }
 
     const [btnDisabled, setBtnDisabled] = useState(true);
