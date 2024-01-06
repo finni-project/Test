@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import styled from "styled-components"
 
 const Intro = styled.div`
@@ -63,7 +64,7 @@ export default function PiggyBankStart(){
                 </WordsWrapper>
                 <BoldText>FiNNi가 저금하도록 도와줄게요!</BoldText>
             </Intro>
-            <Button>지금 시작하기</Button>
+            <Link to="/savingInfo/cycle"><Button>지금 시작하기</Button></Link>
         </>
     )
 }

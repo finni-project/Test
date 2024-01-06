@@ -1,4 +1,5 @@
 import PiggyBankStart from "components/savingInfo/PiggyBankStart"
+import SavingAmount from "components/savingInfo/SavingAmount"
 import SavingCycle from "components/savingInfo/SavingCycle"
 import { Route, Routes } from "react-router-dom"
 import styled from "styled-components"
@@ -16,6 +17,7 @@ export default function SavingInfo(){
             <Routes>
                 <Route path='/start' element={<PiggyBankStart/>} />
                 <Route path='/cycle' element={<SavingCycle/>} />
+                <Route path='/amount' element={<SavingAmount/>} />
             </Routes>
         </Wrapper>
     )

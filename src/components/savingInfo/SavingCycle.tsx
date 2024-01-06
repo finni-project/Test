@@ -18,10 +18,10 @@ export default function SavingCycle(){
             <FormTop step="first" text="저금 주기" title="저금은 언제마다 할래요?" detail={undefined}/>
             {notTyping?
             (<>
-                <CheckingButton nextPage={"amount"} buttonArr={buttonArr} setNotTyping={setNotTyping}/>
+                <CheckingButton nextPage={"/savingInfo/amount"} buttonArr={buttonArr} setNotTyping={setNotTyping}/>
             </>
             ):(
-            <TypingInput nextPage={"amount"} unit={"일"}/>
+            <TypingInput nextPage={"/savingInfo/amount"} unit={"일"}/>
             )}
         </>
     )
