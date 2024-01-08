@@ -13,6 +13,12 @@ function reducer(currentState: any, action: any){
       return {
           page: "start",
           depositActive: false,
+          savingInfo:{
+            cycle: "",
+            amount: 0,
+            goal: "",
+            total: 0,
+          }
       }
   }
   const newState = {...currentState};
@@ -24,6 +30,9 @@ function reducer(currentState: any, action: any){
   }
   if(action.type === "INACTIVE_DEPOSIT"){
     newState.depositActive = false;
+  }
+  if(action.type === "GET_SAVING_CYCLE"){
+    newState.savingInfo = action.payload;
   }
   return newState;
 }

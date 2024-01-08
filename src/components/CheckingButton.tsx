@@ -2,7 +2,7 @@ import styled from "styled-components"
 import {useState} from "react"
 import { useDispatch } from "react-redux"
 import { CheckBtns } from "model/model"
-import { useNavigate } from "react-router-dom"
+import { useLocation, useNavigate } from "react-router-dom"
 import { Link } from "react-router-dom"
 
 const ButtonsWrapper = styled.div`
@@ -90,8 +90,15 @@ export default function CheckingButton({ nextPage, buttonArr, setNotTyping}:Chec
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    function handleLinkClick(){
-        // dispatch({type: "GONEXT", payload: nextPage});
+    const location = useLocation();
+    function handleNextClick(){
+        const btnType = buttonState.filter(itm => itm.active === true)[0].text;
+        switch(location.pathname){
+            case "/savingInfo/cycle"
+            :{
+                dispatch({type: "GET_SAVING_CYCLE", payload: btnType});
+            }
+        }
         navigate(nextPage);
     }
 
@@ -115,7 +122,7 @@ export default function CheckingButton({ nextPage, buttonArr, setNotTyping}:Chec
                     <span>제가 직접 입력할게요</span>
                 </TypingButton>
             </ButtonsWrapper>
-            <NextButton data-disabled={btnDisabled} onClick={handleLinkClick}>다음으로</NextButton>
+            <NextButton data-disabled={btnDisabled} onClick={handleNextClick}>다음으로</NextButton>
         </>
     )
 }

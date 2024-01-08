@@ -10,8 +10,7 @@ const buttonArr: CheckBtns = [{id: 1, text: "매일", active: false},
         {id: 4, text: "한 달에 한 번", active: false}];
 
 export default function SavingCycle(){
-
-    const [notTyping, setNotTyping] = useState<boolean>(true)
+    const [notTyping, setNotTyping] = useState<boolean>(true);
 
     return(
         <>
