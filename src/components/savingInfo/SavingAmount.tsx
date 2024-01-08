@@ -16,8 +16,8 @@ export default function SavingAmount(){
         <>
             <FormTop type={"saving"} step={"second"} text={"저금 금액"} title={"저금은 한번에 얼마씩 할래요?"} detail={undefined}/>
             {notTyping?
-            <CheckingButton nextPage={"/savingInfo/category"} buttonArr={buttonArr} setNotTyping={setNotTyping}/>
-            :<TypingInput nextPage={"/savingInfo/category"} unit={"원"}/>
+            <CheckingButton nextPage={"/savingInfo/goal"} buttonArr={buttonArr} setNotTyping={setNotTyping}/>
+            :<TypingInput nextPage={"/savingInfo/goal"} unit={"원"}/>
             }
         </>
     )
