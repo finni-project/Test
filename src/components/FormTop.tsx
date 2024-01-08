@@ -40,19 +40,30 @@ const TitleWrapper = styled.div`
 `
 
 type FormTopProps = {
+    type: string;
     step: string;
     text: string;
     title: string;
     detail: string | undefined;
 }
 
-export default function FormTop({step, text, title, detail}:FormTopProps){
+export default function FormTop({type, step, text, title, detail}:FormTopProps){
     return(
         <>
             <StepCirclesWrapper>
+            {type === "ledger"?
+            (<>
                 <StepCircle className={step==="first"? "filled-circle":undefined}/>
                 <StepCircle className={step==="second"? "filled-circle":undefined}/>
                 <StepCircle className={step==="third"? "filled-circle":undefined}/>
+            </>)
+            :(<>
+                <StepCircle className={step==="first"? "filled-circle":undefined}/>
+                <StepCircle className={step==="second"? "filled-circle":undefined}/>
+                <StepCircle className={step==="third"? "filled-circle":undefined}/>
+                <StepCircle className={step==="fourth"? "filled-circle":undefined}/>
+            </>)
+            }
             </StepCirclesWrapper>
             <TitleWrapper>
                 <span>{text}</span>

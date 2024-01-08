@@ -15,7 +15,7 @@ export default function SavingCycle(){
 
     return(
         <>
-            <FormTop step="first" text="저금 주기" title="저금은 언제마다 할래요?" detail={undefined}/>
+            <FormTop type={"saving"} step="first" text="저금 주기" title="저금은 언제마다 할래요?" detail={undefined}/>
             {notTyping?
             (<>
                 <CheckingButton nextPage={"/savingInfo/amount"} buttonArr={buttonArr} setNotTyping={setNotTyping}/>

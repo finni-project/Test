@@ -14,7 +14,7 @@ export default function AmountReceving(){
 
     return(
         <>
-            <FormTop step={"second"} text={"용돈 금액"} title={"용돈은 얼마씩 받아요?"} detail={undefined}/>
+            <FormTop type={"ledger"} step={"second"} text={"용돈 금액"} title={"용돈은 얼마씩 받아요?"} detail={undefined}/>
             {notTyping?
             <CheckingButton nextPage={"/allowanceInfo/category"} buttonArr={buttonArr} setNotTyping={setNotTyping}/>
             :<TypingInput nextPage={"/allowanceInfo/category"} unit={"원"}/>
