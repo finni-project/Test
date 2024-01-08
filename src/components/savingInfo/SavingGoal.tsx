@@ -1,6 +1,7 @@
 import EmojiPicker from "../Picker";
 import FormTop from "components/FormTop";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const InputWrapper = styled.div`
@@ -154,7 +155,7 @@ export default function SavingGoal(){
             <PickerWrapper className={isPickerVisible ? "picker-visible" : undefined}>
                 <EmojiPicker handleEmojiPick={handleEmojiPick}/>
             </PickerWrapper>
-            <Button data-disabled={disabled}>다음으로</Button>
+            <Link to="/savingInfo/total"><Button data-disabled={disabled}>다음으로</Button></Link>
         </>
     )
 }
