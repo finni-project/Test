@@ -88,7 +88,7 @@ const NextButton = styled.button`
 `
 
 const Caution = styled.div`
-    margin-top: calc(10.69rem - 1.688rem);
+    margin-top: calc(2rem - 1.688rem);
     width: 100%;
     height: 2.75rem;
     border-radius: 0.5rem;
