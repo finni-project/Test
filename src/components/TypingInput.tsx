@@ -121,6 +121,12 @@ export default function TypingInput({nextPage, unit}:TypingInputProps){
             case "/savingInfo/cycle"
             :{
                 dispatch({type: "GET_SAVING_CYCLE", payload: Number(input)});
+                break;
+            }
+            case "/savingInfo/amount"
+            :{
+                dispatch({type: "GET_SAVING_AMOUNT", payload: Number(input)});
+                break;
             }
         }
         navigate(nextPage)

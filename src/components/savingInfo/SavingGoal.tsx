@@ -1,6 +1,7 @@
 import EmojiPicker from "../Picker";
 import FormTop from "components/FormTop";
 import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
@@ -126,8 +127,11 @@ export default function SavingGoal(){
         }
     },[input, currentEmoji])
 
+    const result = useSelector((state:any)=>state.savingInfo);
+
     return(
         <>
+            {result.cycle},{result.amount}
             <FormTop type="saving" step="third" text="저금 목표" title="저금한 돈으로 뭘 하고 싶어요?" detail={undefined}/>
             <InputWrapper>
                 <IconWrapper onClick={handleIconClick}>

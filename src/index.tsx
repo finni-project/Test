@@ -35,6 +35,7 @@ function reducer(currentState: any, action: any){
     newState.savingInfo = {...newState.savingInfo, cycle: action.payload};
   }
   if(action.type === "GET_SAVING_AMOUNT"){
+    newState.savingInfo = {...newState.savingInfo, amount: action.payload};
   }
   return newState;
 }

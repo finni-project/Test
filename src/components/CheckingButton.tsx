@@ -104,12 +104,30 @@ export default function CheckingButton({ nextPage, buttonArr, setNotTyping}:Chec
             : return 30;
         }
     }
+    function getMoney(type: string){
+        switch(type){
+            case "5천원"
+            : return 5000;
+            case "1만원"
+            : return 10000;
+            case "2만원"
+            : return 20000;
+            case "3만원"
+            : return 30000;
+        }
+    }
     function handleNextClick(){
         const btnType = buttonState.filter(itm => itm.active === true)[0].text;
         switch(location.pathname){
             case "/savingInfo/cycle"
             :{
                 dispatch({type: "GET_SAVING_CYCLE", payload: Number(getDate(btnType))});
+                break;
+            }
+            case "/savingInfo/amount"
+            :{
+                dispatch({type: "GET_SAVING_AMOUNT", payload: Number(getMoney(btnType))});
+                break;
             }
         }
         navigate(nextPage);
