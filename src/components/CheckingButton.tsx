@@ -91,12 +91,25 @@ export default function CheckingButton({ nextPage, buttonArr, setNotTyping}:Chec
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const location = useLocation();
+    function getDate(type: string){
+        switch(type){
+            case "매일"
+            : return 1;
+            case "일주일에 한 번"
+            : return 7;
+            case "2주에 한 번"
+            : return 14;
+            case "한 달에 한 번"
+            // 한 달에 한 번은 30일? 31일?
+            : return 30;
+        }
+    }
     function handleNextClick(){
         const btnType = buttonState.filter(itm => itm.active === true)[0].text;
         switch(location.pathname){
             case "/savingInfo/cycle"
             :{
-                dispatch({type: "GET_SAVING_CYCLE", payload: btnType});
+                dispatch({type: "GET_SAVING_CYCLE", payload: Number(getDate(btnType))});
             }
         }
         navigate(nextPage);

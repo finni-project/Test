@@ -14,7 +14,7 @@ function reducer(currentState: any, action: any){
           page: "start",
           depositActive: false,
           savingInfo:{
-            cycle: "",
+            cycle: 0,
             amount: 0,
             goal: "",
             total: 0,
