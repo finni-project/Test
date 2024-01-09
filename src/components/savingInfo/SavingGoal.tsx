@@ -128,8 +128,6 @@ export default function SavingGoal(){
         }
     },[input, currentEmoji])
 
-    const result = useSelector((state:any)=>state.savingInfo);
-
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -140,7 +138,6 @@ export default function SavingGoal(){
 
     return(
         <>
-            {result.cycle},{result.amount}
             <FormTop type="saving" step="third" text="저금 목표" title="저금한 돈으로 뭘 하고 싶어요?" detail={undefined}/>
             <InputWrapper>
                 <IconWrapper onClick={handleIconClick}>
