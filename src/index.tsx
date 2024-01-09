@@ -41,6 +41,9 @@ function reducer(currentState: any, action: any){
   if(action.type === "GET_SAVING_GOAL"){
     newState.savingInfo = {...newState.savingInfo, goalEmogi: action.payload.emogi, goalText: action.payload.text};
   }
+  if(action.type === "GET_SAVING_TOTAL"){
+    newState.savingInfo = {...newState.savingInfo, total: action.payload};
+  }
   return newState;
 }
 const store = createStore(reducer);

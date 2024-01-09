@@ -1,6 +1,8 @@
 import FormTop from "components/FormTop";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const EditWrapper = styled.div`
@@ -111,11 +113,20 @@ export default function SavingTotal(){
     const [btnDisabled, setBtnDisabled] = useState<boolean>(true);
 
     const result = useSelector((state:any)=>state.savingInfo);
+    const amountTotal = (result.amount * 5).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    function handleStartBtnClick(){
+        dispatch({type: "GET_SAVING_TOTAL", payload: input });
+        // navigate("");
+    }
 
     return(
         <>
             {result.cycle},{result.amount},{result.goalEmogi},{result.goalText}
-            <FormTop type="saving" step="fourth" text="목표 금액" title="총 얼마를 저금하고 싶어요?" detail="최소 금액은 ???(저금금액X5)원이에요."/>
+            <FormTop type="saving" step="fourth" text="목표 금액" title="총 얼마를 저금하고 싶어요?" detail={`최소 금액은 ${amountTotal}(저금금액X5)원이에요.`}/>
             {notEdited?
             (
             <EditWrapper>
@@ -139,7 +150,7 @@ export default function SavingTotal(){
                 </DeleteBtnWrapper>
             </Form>
             )}
-            <NextButton data-disabled={btnDisabled}>시작하기</NextButton>
+            <NextButton onClick={handleStartBtnClick} data-disabled={btnDisabled}>시작하기</NextButton>
         </>
     )
 }
