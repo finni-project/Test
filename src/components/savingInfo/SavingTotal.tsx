@@ -1,5 +1,6 @@
 import FormTop from "components/FormTop";
 import { useState } from "react";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 
 const EditWrapper = styled.div`
@@ -109,9 +110,11 @@ export default function SavingTotal(){
 
     const [btnDisabled, setBtnDisabled] = useState<boolean>(true);
 
+    const result = useSelector((state:any)=>state.savingInfo);
 
     return(
         <>
+            {result.cycle},{result.amount},{result.goalEmogi},{result.goalText}
             <FormTop type="saving" step="fourth" text="목표 금액" title="총 얼마를 저금하고 싶어요?" detail="최소 금액은 ???(저금금액X5)원이에요."/>
             {notEdited?
             (

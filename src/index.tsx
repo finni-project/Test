@@ -16,7 +16,8 @@ function reducer(currentState: any, action: any){
           savingInfo:{
             cycle: 0,
             amount: 0,
-            goal: "",
+            goalEmogi: "",
+            goalText: "",
             total: 0,
           }
       }
@@ -36,6 +37,9 @@ function reducer(currentState: any, action: any){
   }
   if(action.type === "GET_SAVING_AMOUNT"){
     newState.savingInfo = {...newState.savingInfo, amount: action.payload};
+  }
+  if(action.type === "GET_SAVING_GOAL"){
+    newState.savingInfo = {...newState.savingInfo, goalEmogi: action.payload.emogi, goalText: action.payload.text};
   }
   return newState;
 }

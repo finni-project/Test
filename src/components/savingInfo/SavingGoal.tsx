@@ -1,8 +1,9 @@
 import EmojiPicker from "../Picker";
 import FormTop from "components/FormTop";
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const InputWrapper = styled.div`
@@ -129,6 +130,14 @@ export default function SavingGoal(){
 
     const result = useSelector((state:any)=>state.savingInfo);
 
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    function handleNextBtnClick(){
+        dispatch({type: "GET_SAVING_GOAL", payload: {emogi: currentEmoji, text: input} });
+        navigate("/savingInfo/total");
+    }
+
     return(
         <>
             {result.cycle},{result.amount}
@@ -159,7 +168,7 @@ export default function SavingGoal(){
             <PickerWrapper className={isPickerVisible ? "picker-visible" : undefined}>
                 <EmojiPicker handleEmojiPick={handleEmojiPick}/>
             </PickerWrapper>
-            <Link to="/savingInfo/total"><Button data-disabled={disabled}>다음으로</Button></Link>
+            <Button onClick={handleNextBtnClick} data-disabled={disabled}>다음으로</Button>
         </>
     )
 }
