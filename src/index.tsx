@@ -32,7 +32,9 @@ function reducer(currentState: any, action: any){
     newState.depositActive = false;
   }
   if(action.type === "GET_SAVING_CYCLE"){
-    newState.savingInfo = action.payload;
+    newState.savingInfo = {...newState.savingInfo, cycle: action.payload};
+  }
+  if(action.type === "GET_SAVING_AMOUNT"){
   }
   return newState;
 }

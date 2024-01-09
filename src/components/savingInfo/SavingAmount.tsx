@@ -14,10 +14,9 @@ export default function SavingAmount(){
     const result = useSelector((state:any)=>state.savingInfo);
 
     const [notTyping, setNotTyping] = useState<boolean>(true);
-
     return(
         <>
-            {result}
+            {result.cycle}
             <FormTop type={"saving"} step={"second"} text={"저금 금액"} title={"저금은 한번에 얼마씩 할래요?"} detail={undefined}/>
             {notTyping?
             <CheckingButton nextPage={"/savingInfo/goal"} buttonArr={buttonArr} setNotTyping={setNotTyping}/>
