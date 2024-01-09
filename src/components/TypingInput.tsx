@@ -148,7 +148,7 @@ export default function TypingInput({nextPage, unit}:TypingInputProps){
             ):(
             <Form>
                 {/* 수정가능 부분 */}
-                <Input type="number" autoFocus name="allowanceCycle" value={input} onChange={handleInputChange} onBlur={handleEditBtnClick}/>
+                <Input type="number" autoFocus name="allowanceCycle" value={input} onChange={handleInputChange}/>
                 <span>{unit}</span>
                 <DeleteBtnWrapper onClick={handleIconClick}>
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
