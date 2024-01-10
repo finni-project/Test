@@ -140,7 +140,7 @@ export default function CheckingButton({ nextPage, buttonArr, setNotTyping}:Chec
             <ButtonsWrapper>
                 {buttonState.map((btn) => {
                     return(
-                        <Button id={btn.id+''} data-disabled={false} onClick={handleButtonClick}>
+                        <Button key={btn.id} id={btn.id+''} data-disabled={false} onClick={handleButtonClick}>
                             <span>{btn.text}</span>
                             <svg className={btn.active? "checked" : undefined}
                                 width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
