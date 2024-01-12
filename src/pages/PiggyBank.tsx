@@ -1,3 +1,4 @@
+import BottomSheet from "components/piggyBank/BottomSheet"
 import { Route, Routes } from "react-router-dom"
 import styled from "styled-components"
 
@@ -10,10 +11,11 @@ const Wrapper = styled.div`
 
 export default function PiggyBank(){
     return(
-        <Wrapper>
-            <Routes>
-                {/* <Route path='/start' element={<PiggyBankStart/>} /> */}
-            </Routes>
-        </Wrapper>
+        <div>
+            {/* <div>
+                애니메이션
+            </div> */}
+            <BottomSheet/>
+        </div>
     )
 }
