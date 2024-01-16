@@ -14,7 +14,7 @@ export default function PiggyBank(){
     return(
         <div>
             <SavingProgress/>
-            {/* <BottomSheet/> */}
+            <BottomSheet/>
         </div>
     )
 }

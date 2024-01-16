@@ -15,6 +15,7 @@ const TopWrapper = styled.div`
     padding-right: 1rem;
     overflow-y: auto;
     overflow-x: hidden;
+    z-index: 200;
 `
 
 const BarWrapper = styled.div`
