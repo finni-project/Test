@@ -7,6 +7,7 @@ import GoToTopBtn from "components/ledger/GoToTopBtn";
 import MonthPicker from "components/ledger/MonthPicker";
 import SaveOrNot from "components/ledger/SaveOrNot";
 import SearchBox from "components/ledger/SearchBox";
+import DeleteModal from "components/piggyBank/DeleteModal";
 export default function Test(){
     return(
         <>
@@ -18,6 +19,7 @@ export default function Test(){
             {/* <SaveOrNot/> */}
             {/* <DeleteOrNot/> */}
             {/* <GoToTopBtn/> */}
+            {/* <DeleteModal/> */}
         </>
     )
 }
