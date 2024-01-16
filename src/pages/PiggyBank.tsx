@@ -1,4 +1,5 @@
 import BottomSheet from "components/piggyBank/BottomSheet"
+import SavingProgress from "components/piggyBank/SavingProgress"
 import { Route, Routes } from "react-router-dom"
 import styled from "styled-components"
 
@@ -12,10 +13,8 @@ const Wrapper = styled.div`
 export default function PiggyBank(){
     return(
         <div>
-            {/* <div>
-                애니메이션
-            </div> */}
-            <BottomSheet/>
+            <SavingProgress/>
+            {/* <BottomSheet/> */}
         </div>
     )
 }
