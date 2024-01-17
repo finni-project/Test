@@ -1,3 +1,4 @@
+import { Navigate, useNavigate } from "react-router-dom"
 import styled from "styled-components"
 
 const Wrapper = styled.div`
@@ -53,10 +54,19 @@ const RightButton = styled.button`
 `
 
 type DeleteModalProps = {
-    setIsDelete: any;
+    setIsDelete: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export default function DeleteModal({setIsDelete}: DeleteModalProps){
+    function handleCloseBtn(){
+        setIsDelete(false);
+    }
+
+    const navigate = useNavigate();
+    function handleDeleteBtn(){
+        navigate('/')
+    }
+
     return(
         <Wrapper>
             <TitleWrapper>
@@ -64,8 +74,8 @@ export default function DeleteModal({setIsDelete}: DeleteModalProps){
                 <p>삭제 버튼을 누르면 복구할 수 없어요.</p>
             </TitleWrapper>
             <ButtonWrapper>
-                <LeftButton>닫기</LeftButton>
-                <RightButton>삭제할게요</RightButton>
+                <LeftButton onClick={handleCloseBtn}>닫기</LeftButton>
+                <RightButton onClick={handleDeleteBtn}>삭제할게요</RightButton>
             </ButtonWrapper>
         </Wrapper>
     )

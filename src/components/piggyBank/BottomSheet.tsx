@@ -1,5 +1,6 @@
 import { useState } from "react"
 import styled from "styled-components"
+import DeleteModal from "./DeleteModal"
 
 const TopWrapper = styled.div`
     position: absolute;
@@ -153,6 +154,8 @@ export default function BottomSheet(){
     const [heightSize, setHeightSize] = useState<number>(15);
     const [yetSave, setYetSave] = useState<boolean>(true);
 
+    const [isDelete, setIsDelete] = useState<boolean>(false);
+
     function dragEventHandler(e: any){
         // const { target } = e;
         // const { parentNode } = target;
@@ -169,6 +172,10 @@ export default function BottomSheet(){
             }
             setHeightSize(bottomSheetSize / 16);
         }
+    }
+
+    function handleDeleteBtn(){
+        setIsDelete(true);
     }
 
     return(
@@ -311,7 +318,7 @@ export default function BottomSheet(){
                         <RecordAmount>10,000원</RecordAmount>
                     </RecordItem>
                 </RecordList>
-                <DeleteBtn>삭제할래요</DeleteBtn>
+                <DeleteBtn onClick={handleDeleteBtn}>삭제할래요</DeleteBtn>
             </>
             : undefined}
             {yetSave
@@ -323,6 +330,8 @@ export default function BottomSheet(){
             </GoToSaveBtn>
             :<DoneSaveBtn>저금 완료!</DoneSaveBtn>
             }
+            {isDelete &&
+            <DeleteModal setIsDelete={setIsDelete}/>}
         </TopWrapper>
     )
 }

@@ -11,18 +11,18 @@ const TopWrapper = styled.div`
     overflow-x: hidden;
 `
 
-const Left = styled.div`
+const SideBackGround = styled.div`
     width: 50%;
-    background-color: ${({theme})=>theme.colors.neutral.n0};
-    opacity: 1;
-    z-index: 200;
-`
-
-const Right = styled.div`
-    width: 50%;
-    background-color: ${({theme})=>theme.colors.neutral.n0};
-    opacity: 1;
-    z-index: 200;
+    /* background-color: ${({theme})=>theme.colors.neutral.n0}; */
+    /* opacity: 1; */
+    /* z-index: 200; */
+    div:first-child{
+        height: calc(10.375rem);
+    }
+    div:last-child{
+        height: calc(100% - 10.375rem);
+        background-color: ${({theme})=>theme.colors.warning.surface};
+    }
 `
 
 const Wrapper = styled.div`
@@ -154,7 +154,9 @@ export default function SavingProgress(){
 
     return(
         <TopWrapper>
-            <Left/>
+            <SideBackGround>
+                <div/><div/>
+            </SideBackGround>
             <Wrapper>
                 <TopBackGround/>
                 <BottomBackGround>
@@ -171,7 +173,9 @@ export default function SavingProgress(){
                     </ProgressWrapper>
                 </BottomBackGround>
             </Wrapper>
-            <Right/>
+            <SideBackGround>
+                <div/><div/>
+            </SideBackGround>
         </TopWrapper>
     )
 }
