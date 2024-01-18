@@ -7,7 +7,7 @@ export default function PiggyBank(){
     return(
         <Routes>
             <Route path='/state' element={<SavingState/>} />
-            <Route path='/complete' element={<GoalComplete/>} />
+            <Route path='/complete/*' element={<GoalComplete/>} />
         </Routes>
     )
 }
