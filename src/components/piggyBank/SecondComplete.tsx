@@ -1,6 +1,8 @@
 import Lottie from "lottie-react";
 import present from "../../src_assets/present.json"
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 const Wrapper = styled.div`
     height: calc(100vh - ${({theme})=>theme.height.topPadding} - ${({theme})=>theme.height.topbar} - ${({theme})=>theme.height.navbar});
@@ -28,6 +30,14 @@ const Text = styled.div`
 `
 
 export default function SecondComplete(){
+    const navigate = useNavigate();
+    
+    useEffect(()=>{
+        setTimeout(()=>{
+            navigate("/piggyBank/complete/third")
+        },5000)
+    },[])
+    
     return(
         <Wrapper>
             <PresentWrapper>

@@ -2,6 +2,7 @@ import Lottie from "lottie-react";
 import clapping from "../../src_assets/simple_clapping.json"
 import styled from "styled-components";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Wrapper = styled.div`
     /* background-color: aliceblue; */
@@ -44,12 +45,17 @@ export default function FirstComplete(){
         let returnString = money?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         return returnString;
     };
+
+    const navigate = useNavigate();
     
     useEffect(()=>{
         setTimeout(()=>{
             if(count < goalAmout){
                 setCount(count + 1000);
             } else{
+                setTimeout(()=>{
+                    navigate("/piggyBank/complete/second")
+                },3000)
                 return;
             }
         },10)
