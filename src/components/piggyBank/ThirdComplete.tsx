@@ -2,10 +2,11 @@ import { Link } from "react-router-dom"
 import styled from "styled-components"
 
 const Wrapper = styled.div`
+    padding-top: calc(${({theme})=>theme.height.topbar} + ${({theme})=>theme.height.topPadding});
     margin-left: 1rem;
     margin-right: 1rem;
     /* background-color: aliceblue; */
-    height: calc(100vh - ${({theme})=>theme.height.topbar} - ${({theme})=>theme.height.navbar});
+    height: calc(100vh - ${({theme})=>theme.height.navbar});
     position: relative;
 `
 

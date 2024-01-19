@@ -5,7 +5,8 @@ import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
 const Wrapper = styled.div`
-    height: calc(100vh - ${({theme})=>theme.height.topbar} - ${({theme})=>theme.height.navbar});
+    padding-top: calc(${({theme})=>theme.height.topbar} + ${({theme})=>theme.height.topPadding});
+    height: calc(100vh - ${({theme})=>theme.height.navbar});
     display: flex;
     flex-direction: column;
     justify-content: center;
