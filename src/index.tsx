@@ -13,6 +13,13 @@ function reducer(currentState: any, action: any){
       return {
           page: "start",
           depositActive: false,
+          savingInfo:{
+            cycle: 0,
+            amount: 0,
+            goalEmogi: "",
+            goalText: "",
+            total: 0,
+          }
       }
   }
   const newState = {...currentState};
@@ -24,6 +31,18 @@ function reducer(currentState: any, action: any){
   }
   if(action.type === "INACTIVE_DEPOSIT"){
     newState.depositActive = false;
+  }
+  if(action.type === "GET_SAVING_CYCLE"){
+    newState.savingInfo = {...newState.savingInfo, cycle: action.payload};
+  }
+  if(action.type === "GET_SAVING_AMOUNT"){
+    newState.savingInfo = {...newState.savingInfo, amount: action.payload};
+  }
+  if(action.type === "GET_SAVING_GOAL"){
+    newState.savingInfo = {...newState.savingInfo, goalEmogi: action.payload.emogi, goalText: action.payload.text};
+  }
+  if(action.type === "GET_SAVING_TOTAL"){
+    newState.savingInfo = {...newState.savingInfo, total: action.payload};
   }
   return newState;
 }

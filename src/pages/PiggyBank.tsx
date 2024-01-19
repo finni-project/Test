@@ -1,7 +1,13 @@
+import GoalComplete from "components/piggyBank/GoalComplete"
+import SavingState from "components/piggyBank/SavingState"
+import { Route, Routes } from "react-router-dom"
+
+
 export default function PiggyBank(){
     return(
-        <>
-            <h1>PiggyBank</h1>
-        </>
+        <Routes>
+            <Route path='/state' element={<SavingState/>} />
+            <Route path='/complete/*' element={<GoalComplete/>} />
+        </Routes>
     )
 }

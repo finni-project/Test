@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { useDispatch } from "react-redux"
-import { Link, useNavigate } from "react-router-dom"
+import { Link, useLocation, useNavigate } from "react-router-dom"
 import styled from "styled-components"
 
 const EditWrapper = styled.div`
@@ -115,11 +115,31 @@ export default function TypingInput({nextPage, unit}:TypingInputProps){
     
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const location = useLocation();
     function handleLinkClick(){
-        // dispatch({type: "GONEXT", payload: nextPage});
-        navigate(`/allowanceInfo/` + nextPage)
+        switch(location.pathname){
+            case "/savingInfo/cycle"
+            :{
+                dispatch({type: "GET_SAVING_CYCLE", payload: Number(input)});
+                break;
+            }
+            case "/savingInfo/amount"
+            :{
+                dispatch({type: "GET_SAVING_AMOUNT", payload: Number(input)});
+                break;
+            }
+        }
+        navigate(nextPage)
     }
 
+    function addThousand(num: string){
+        let noThousand = "";
+        if(num.includes("000")){
+            noThousand = num.replace("000","");
+        }
+        return noThousand.concat("000");
+    }
+    
     return(
         <>
             {notEdited?
@@ -136,7 +156,7 @@ export default function TypingInput({nextPage, unit}:TypingInputProps){
             ):(
             <Form>
                 {/* 수정가능 부분 */}
-                <Input type="number" autoFocus name="allowanceCycle" value={input} onChange={handleInputChange} onBlur={handleEditBtnClick}/>
+                <Input type="number" autoFocus name="allowanceCycle" value={location.pathname==="/savingInfo/amount"?addThousand(input):input} onChange={handleInputChange}/>
                 <span>{unit}</span>
                 <DeleteBtnWrapper onClick={handleIconClick}>
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

@@ -3,6 +3,7 @@ import { useState } from "react"
 import styled from "styled-components"
 
 const Wrapper = styled.div`
+    padding-top: calc(${({theme})=>theme.height.topbar} + ${({theme})=>theme.height.topPadding});
     padding-left: 1rem;
     padding-bottom: calc(${({theme})=>theme.height.navbar} + ${({theme})=>theme.height.bottomPadding});
     padding-right: 1rem;

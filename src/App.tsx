@@ -12,6 +12,7 @@ import Layout from 'components/Layout';
 import AllowanceInfo from 'pages/AllowanceInfo';
 import AddingCategory from 'components/allowanceInfo/AddingCategory';
 import Test from 'pages/Test';
+import SavingInfo from 'pages/SavingInfo';
 
 
 function App() {
@@ -23,11 +24,14 @@ function App() {
         <Route path='/ledger' element={<Ledger/>} />
         <Route path='/ledger/*' element={<Ledger/>} />
         <Route path='/piggyBank' element={<PiggyBank/>} />
+        <Route path='/piggyBank/*' element={<PiggyBank/>} />
         <Route path='/economyClass' element={<EconomyClass/>} />
         <Route path='/myPage' element={<MyPage/>} />
         <Route path='/myPage/*' element={<MyPage/>} />
         <Route path='/allowanceInfo' element={<AllowanceInfo/>} />
         <Route path='/allowanceInfo/*' element={<AllowanceInfo/>} />
+        <Route path='/savingInfo' element={<SavingInfo/>} />
+        <Route path='/savingInfo/*' element={<SavingInfo/>} />
       </Route>
       <Route path='/guideIndex' element={<GuideIndex />} />
       <Route path='/test' element={<Test/>} />

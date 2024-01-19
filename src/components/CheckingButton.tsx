@@ -2,7 +2,7 @@ import styled from "styled-components"
 import {useState} from "react"
 import { useDispatch } from "react-redux"
 import { CheckBtns } from "model/model"
-import { useNavigate } from "react-router-dom"
+import { useLocation, useNavigate } from "react-router-dom"
 import { Link } from "react-router-dom"
 
 const ButtonsWrapper = styled.div`
@@ -90,9 +90,47 @@ export default function CheckingButton({ nextPage, buttonArr, setNotTyping}:Chec
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    function handleLinkClick(){
-        // dispatch({type: "GONEXT", payload: nextPage});
-        navigate(`/allowanceInfo/` + nextPage)
+    const location = useLocation();
+    function getDate(type: string){
+        switch(type){
+            case "매일"
+            : return 1;
+            case "일주일에 한 번"
+            : return 7;
+            case "2주에 한 번"
+            : return 14;
+            case "한 달에 한 번"
+            // 한 달에 한 번은 30일? 31일?
+            : return 30;
+        }
+    }
+    function getMoney(type: string){
+        switch(type){
+            case "5천원"
+            : return 5000;
+            case "1만원"
+            : return 10000;
+            case "2만원"
+            : return 20000;
+            case "3만원"
+            : return 30000;
+        }
+    }
+    function handleNextClick(){
+        const btnType = buttonState.filter(itm => itm.active === true)[0].text;
+        switch(location.pathname){
+            case "/savingInfo/cycle"
+            :{
+                dispatch({type: "GET_SAVING_CYCLE", payload: Number(getDate(btnType))});
+                break;
+            }
+            case "/savingInfo/amount"
+            :{
+                dispatch({type: "GET_SAVING_AMOUNT", payload: Number(getMoney(btnType))});
+                break;
+            }
+        }
+        navigate(nextPage);
     }
 
     const [btnDisabled, setBtnDisabled] = useState(true);
@@ -102,7 +140,7 @@ export default function CheckingButton({ nextPage, buttonArr, setNotTyping}:Chec
             <ButtonsWrapper>
                 {buttonState.map((btn) => {
                     return(
-                        <Button id={btn.id+''} data-disabled={false} onClick={handleButtonClick}>
+                        <Button key={btn.id} id={btn.id+''} data-disabled={false} onClick={handleButtonClick}>
                             <span>{btn.text}</span>
                             <svg className={btn.active? "checked" : undefined}
                                 width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -115,7 +153,7 @@ export default function CheckingButton({ nextPage, buttonArr, setNotTyping}:Chec
                     <span>제가 직접 입력할게요</span>
                 </TypingButton>
             </ButtonsWrapper>
-            <NextButton data-disabled={btnDisabled} onClick={handleLinkClick}>다음으로</NextButton>
+            <NextButton data-disabled={btnDisabled} onClick={handleNextClick}>다음으로</NextButton>
         </>
     )
 }
