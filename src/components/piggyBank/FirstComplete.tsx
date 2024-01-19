@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 const Wrapper = styled.div`
     /* background-color: aliceblue; */
-    height: calc(100vh - ${({theme})=>theme.height.topPadding} - ${({theme})=>theme.height.topbar} - ${({theme})=>theme.height.navbar});
+    height: calc(100vh - ${({theme})=>theme.height.topbar} - ${({theme})=>theme.height.navbar});
     display: flex;
     flex-direction: column;
     justify-content: center;

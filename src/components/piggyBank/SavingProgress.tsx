@@ -4,6 +4,7 @@ import Circles from "./Circle"
 import React, { useEffect, useState } from "react"
 
 const TopWrapper = styled.div`
+    padding-top: calc(${({theme})=>theme.height.topbar} + ${({theme})=>theme.height.topPadding});
     width: 100%;
     display: flex;
     justify-content: center;

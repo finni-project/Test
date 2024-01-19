@@ -5,7 +5,7 @@ const Wrapper = styled.div`
     margin-left: 1rem;
     margin-right: 1rem;
     /* background-color: aliceblue; */
-    height: calc(100vh - ${({theme})=>theme.height.topPadding} - ${({theme})=>theme.height.topbar} - ${({theme})=>theme.height.navbar});
+    height: calc(100vh - ${({theme})=>theme.height.topbar} - ${({theme})=>theme.height.navbar});
     position: relative;
 `
 
