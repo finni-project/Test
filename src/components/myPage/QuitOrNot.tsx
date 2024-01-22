@@ -63,12 +63,11 @@ export default function QuitOrNot({setQuitOrNot}: QuitOrNotProps){
 
     function handleCloseClick(){
         setQuitOrNot(false);
-        // navigate('/');
     }
 
     function handleDeleteClick(){
         setQuitOrNot(false);
-        // navigate('/');
+        navigate('/');
     }
 
     return(
