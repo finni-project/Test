@@ -102,27 +102,43 @@ type ListTitleProps = {
 export function ListTitle({dailyList}:ListTitleProps){
     const {date, list} = dailyList;
 
-    const realDate = new Date(date);
-    const dateNum = realDate.getDate();
-    const weekdayArr = ['일', '월', '화', '수', '목', '금', '토'];
-    let weekday = weekdayArr[realDate.getDay()];
+    const [dateNum, setDateNum] = useState<number>();
+    const [weekday, setWeekday] = useState<string>();
 
-    // 수정 필요
-    let incomeArr = list.filter(itm=>itm.type==="income").map(elm=>elm.amount);
-    const incomeTotal = incomeArr.reduce(
-        (accumulator, currentValue) => accumulator + currentValue, 0,
-    );
-    let spendArr = list.filter(itm=>itm.type==="spend").map(elm=>elm.amount);
-    const spendTotal = spendArr.reduce(
-        (accumulator, currentValue) => accumulator + currentValue, 0,
-    );
+    useEffect(()=>{
+        const realDate = new Date(date);
+        setDateNum(realDate.getDate());
+        const weekdayArr = ['일', '월', '화', '수', '목', '금', '토'];
+        setWeekday(weekdayArr[realDate.getDay()]);
+    },[date])
+
+    const [dailyIncome, setDailyIncome] = useState<number>();
+    const [dailySpend, setDailySpend] = useState<number>();
+
+    function addComma(money: number | undefined){
+        if(money){
+            const numberWithComma = money.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+            return numberWithComma;
+        }
+    }
+
+    useEffect(()=>{
+        let incomeArr = list.filter(itm=>itm.type==="income").map(elm=>elm.amount);
+        const incomeTotal = incomeArr.reduce((accumulator, currentValue) => accumulator + currentValue, 0,);
+        setDailyIncome(incomeTotal);
+
+        let spendArr = list.filter(itm=>itm.type==="spend").map(elm=>elm.amount);
+        const spendTotal = spendArr.reduce((accumulator, currentValue) => accumulator + currentValue, 0,);
+        setDailySpend(spendTotal);
+
+    },[list]);
 
     return(
         <TitleWrapper>
             <span className="date">{dateNum}일 {weekday}요일</span>
             <TotalWrapper>
-                {incomeTotal === 0 ? undefined :  <span className="icome-total">+{incomeTotal.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}</span>}
-                {spendTotal === 0 ? undefined : <span className="spend-total">-{spendTotal.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}</span>}
+                {dailyIncome === 0 ? undefined :  <span className="icome-total">+{addComma(dailyIncome)}</span>}
+                {dailySpend === 0 ? undefined : <span className="spend-total">-{addComma(dailySpend)}</span>}
             </TotalWrapper>
         </TitleWrapper>
     )
