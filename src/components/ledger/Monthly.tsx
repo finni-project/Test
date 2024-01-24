@@ -2,7 +2,7 @@ import styled from "styled-components";
 import NoRecord from "./NoRecord";
 import Navbar from "components/Navbar";
 import PlusBtn from "./PlusBtn";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import IsRecord from "./IsRecord";
 import SearchBox from "./SearchBox";
 import { Link } from "react-router-dom";
@@ -12,6 +12,7 @@ import AddDataModal from "./AddDataModal";
 import { DailyList } from "model/model";
 import GoToTopBtn from "./GoToTopBtn";
 import MonthPicker from "./MonthPicker";
+import { number } from "yargs";
 
 const Wrapper = styled.div`
     /* background-color: azure; */
@@ -120,17 +121,29 @@ export default function Monthly(){
     // 저금확인 모달
     const [shownDmodal, setShownDmodal] = useState<boolean>(false);
 
-    // 수정 필요
-    const ledgerList:any[] = [];
-    monthlyRecord.forEach(itm=>itm.list.map(elm => ledgerList.push(elm)));
-    let incomeArr = ledgerList.filter(itm=>itm.type==="income").map(elm=>elm.amount);
-    const monthlyIncome = incomeArr.reduce(
-        (accumulator, currentValue) => accumulator + currentValue, 0,
-    ).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
-    let spendArr = ledgerList.filter(itm=>itm.type==="spend").map(elm=>elm.amount);
-    const monthlySpend = spendArr.reduce(
-        (accumulator, currentValue) => accumulator + currentValue, 0,
-    ).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+    const [monthlyIncome, setMonthlyIncome] = useState<number>();
+    const [monthlySpend, setMonthlySpend] = useState<number>();
+
+    function addComma(money: number | undefined){
+        if(money){
+            const numberWithComma = money.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+            return numberWithComma;
+        }
+    }
+
+    useEffect(()=>{
+        const ledgerList:any[] = [];
+        monthlyRecord.forEach(itm => itm.list.map(elm => ledgerList.push(elm)));
+
+        const incomeArr = ledgerList.filter(itm=>itm.type==="income").map(elm=>elm.amount);
+        const incomeTotal = incomeArr.reduce((accumulator, currentValue) => accumulator + currentValue, 0,);
+        setMonthlyIncome(incomeTotal);
+
+        const spendArr = ledgerList.filter(itm=>itm.type==="spend").map(elm=>elm.amount);
+        const spendTotal = spendArr.reduce((accumulator, currentValue) => accumulator + currentValue, 0,);
+        setMonthlySpend(spendTotal);
+
+    },[monthlyRecord])
 
     const today = new Date();
     const thisMonth = today.getMonth() + 1;
@@ -196,11 +209,11 @@ export default function Monthly(){
             </TopWrapper>
             <Income>
                 <span>수입</span>
-                <span>{monthlyIncome === 0 ? monthlyIncome : "+" + monthlyIncome}원</span>
+                <span>{monthlyIncome === 0 ? monthlyIncome : "+" + addComma(monthlyIncome)}원</span>
             </Income>
             <Spend>
                 <span>지출</span>
-                <span>{monthlySpend === 0 ? monthlySpend : "-" + monthlySpend}원</span>
+                <span>{monthlySpend === 0 ? monthlySpend : "-" + addComma(monthlySpend)}원</span>
             </Spend>
             {monthlyRecord?
             <IsRecord monthlyData={monthlyRecord} />
