@@ -4,9 +4,32 @@ import { ko } from 'date-fns/esm/locale'; //한국어 설정
 import {useState, useEffect} from 'react';
 import styled from 'styled-components';
 
+const Header = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1rem;
+    svg{
+        cursor: pointer;
+    }
+    .header-title{
+        color: ${({theme})=>theme.colors.neutral.n100};
+        ${({theme})=>theme.fonts.body17b}
+    }
+
+`
+
 const Wrapper = styled.div`
+    .popper-style{
+        position: fixed !important;
+        transform: translate(-50%, -50%) !important;;
+        left: 50% !important;
+        top: 50% !important;
+    }
+
     .react-datepicker {
-        padding: 1.5rem 1rem;
+        padding: 1.5rem 0;
+        /* background-color: antiquewhite; */
         background-color: ${({theme})=>theme.colors.neutral.n0};
         border: 0;
         border-radius: 1rem;
@@ -101,21 +124,6 @@ const Wrapper = styled.div`
     
 `
 
-const Header = styled.div`
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    svg{
-        margin: 0.625rem;
-        cursor: pointer;
-    }
-    span{
-        color: ${({theme})=>theme.colors.neutral.n100};
-        ${({theme})=>theme.fonts.body17b}
-    }
-
-`
-
 export default function DatePickerModal(){
     const [startDate, setStartDate] = useState<Date>(new Date());
     const formatDate = (d: Date): string => {
@@ -125,14 +133,10 @@ export default function DatePickerModal(){
         return `${year}. ${`0${monthIndex}`.slice(-2)}월`;
     };
 
-    useEffect(()=>{
-        // const tmp = document.getElementsByClassName('react-datepicker-popper');
-        // console.log(tmp)
-    },[])
-
     return(
         <Wrapper>
             <DatePicker
+                popperClassName="popper-style"
                 locale={ko} //한글
                 dateFormat="yyyy년 MM월 d일"
                 shouldCloseOnSelect // 날짜를 선택하면 datepicker가 자동으로 닫힘
@@ -146,7 +150,7 @@ export default function DatePickerModal(){
                         width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M15 15.875L11.12 11.995L15 8.11501C15.39 7.72501 15.39 7.09501 15 6.70501C14.61 6.31501 13.98 6.31501 13.59 6.70501L8.99998 11.295C8.60998 11.685 8.60998 12.315 8.99998 12.705L13.59 17.295C13.98 17.685 14.61 17.685 15 17.295C15.38 16.905 15.39 16.265 15 15.875Z" fill="#111"/>
                         </svg>
-                        <span>{formatDate(date)}</span>
+                        <span className='header-title'>{formatDate(date)}</span>
                         <svg aria-disabled={nextMonthButtonDisabled} onClick={increaseMonth}
                         width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M9.00002 15.875L12.88 11.995L9.00002 8.11501C8.61002 7.72501 8.61002 7.09501 9.00002 6.70501C9.39002 6.31501 10.02 6.31501 10.41 6.70501L15 11.295C15.39 11.685 15.39 12.315 15 12.705L10.41 17.295C10.02 17.685 9.39002 17.685 9.00002 17.295C8.62002 16.905 8.61002 16.265 9.00002 15.875Z" fill="#111"/>
