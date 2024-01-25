@@ -39,7 +39,7 @@ const TopBackGround = styled.div`
 const BottomBackGround = styled.div`
     width: 100%;
     /* 수정 필요 */
-    height: calc(50vh - 10.375rem);
+    height: calc(80vh - 10.375rem);
     background-color: ${({theme})=>theme.colors.warning.surface};
 `
 
