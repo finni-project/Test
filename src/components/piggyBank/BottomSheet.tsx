@@ -4,7 +4,7 @@ import DeleteModal from "./DeleteModal"
 import React from "react";
 
 const TopWrapper = styled.div`
-    position: absolute;
+    position: fixed;
     /* top: ${({theme})=>theme.height.topbar}; */
     /* height: calc(100vh - ${({theme})=>theme.height.topbar}); */
     height: calc(15rem);
