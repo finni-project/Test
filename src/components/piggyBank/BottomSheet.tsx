@@ -1,6 +1,7 @@
 import { useState } from "react"
 import styled from "styled-components"
 import DeleteModal from "./DeleteModal"
+import React from "react";
 
 const TopWrapper = styled.div`
     position: absolute;
@@ -19,6 +20,10 @@ const TopWrapper = styled.div`
     z-index: 200;
 `
 
+const DraggableSection = styled.div`
+    cursor: pointer;
+`
+
 const BarWrapper = styled.div`
     height: 0.75rem;
     /* background-color: beige; */
@@ -26,7 +31,6 @@ const BarWrapper = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    cursor: pointer;
 `
 
 const Bar = styled.div`
@@ -160,11 +164,11 @@ export default function BottomSheet(){
         // const { target } = e;
         // const { parentNode } = target;
         // const parentBox = parentNode.getBoundingClientRect();
-        const barY = e.clientY;
+        const draggableSectionY = e.clientY;
         const bodyY = document.body.scrollHeight;
-        const bottomSheetSize = bodyY - barY - 69;
-        if(barY !== 0){
-            if(barY < 56){
+        const bottomSheetSize = bodyY - draggableSectionY - 69;
+        if(draggableSectionY !== 0){
+            if(draggableSectionY < 56){
                 return;
             }
             if(bottomSheetSize < 240){
@@ -180,34 +184,36 @@ export default function BottomSheet(){
 
     return(
         <TopWrapper style={{height: heightSize + "rem"}}>
-            <BarWrapper draggable="true" onDrag={dragEventHandler}>
-                <Bar/>
-            </BarWrapper>
-            <Information>
-                <Goal>
-                    <h2>🎡</h2>
-                    <h3>놀이공원</h3>
-                </Goal>
-                <span>Lv. 1</span>
-            </Information>
-            <SavingAmount>
-                <h2>현재까지 모은 금액</h2>
-                <span>0원</span>
-            </SavingAmount>
-            <States>
-                <SavingState>
-                    <h2>저금 주기</h2>
-                    <span>7일</span>
-                </SavingState>
-                <SavingState>
-                    <h2>저금 액수</h2>
-                    <span>10,000원</span>
-                </SavingState>
-                <SavingState>
-                    <h2>저금 목표</h2>
-                    <span>63,000원</span>
-                </SavingState>
-            </States>
+            <DraggableSection draggable="true" onDrag={dragEventHandler}>
+                <BarWrapper>
+                    <Bar/>
+                </BarWrapper>
+                <Information>
+                    <Goal>
+                        <h2>🎡</h2>
+                        <h3>놀이공원</h3>
+                    </Goal>
+                    <span>Lv. 1</span>
+                </Information>
+                <SavingAmount>
+                    <h2>현재까지 모은 금액</h2>
+                    <span>0원</span>
+                </SavingAmount>
+                <States>
+                    <SavingState>
+                        <h2>저금 주기</h2>
+                        <span>7일</span>
+                    </SavingState>
+                    <SavingState>
+                        <h2>저금 액수</h2>
+                        <span>10,000원</span>
+                    </SavingState>
+                    <SavingState>
+                        <h2>저금 목표</h2>
+                        <span>63,000원</span>
+                    </SavingState>
+                </States>
+            </DraggableSection>
             {heightSize > 15
             ?<>
                 <RecordList>
