@@ -81,10 +81,11 @@ const DeleteBtnWrapper = styled.div`
 `
 
 const NextButton = styled.button`
-    width: calc(100% - 2rem);
+    width: calc(100%);
     ${({theme}) => theme.mediumBtns.primary};
-    position: fixed;
-    bottom: calc(${({theme})=>theme.height.navbar} + 0.5rem);
+    /* position: fixed; */
+    /* bottom: calc(${({theme})=>theme.height.navbar} + 0.5rem); */
+    margin-top: calc(13.938rem - 2rem - 1.688rem)
 `
 
 const Caution = styled.div`
