@@ -127,11 +127,18 @@ export default function AddingCategory({page, setNotAdding}:AddingCategoryProps)
         setNotAdding(true);
     }
 
+    const [disabled, SetDisabled] = useState<boolean>(true);
+
     useEffect(()=>{
-        if(input.length > 0){
-            setInputLength(input.length);
+        const len = input.length;
+        if(len > 0){
+            setInputLength(len);
+            setNotTyped(false);
+            if(len > 6){
+                setInput(input.substring(0,6));
+            }
             if(currentEmoji){
-                setNotTyped(false);
+                SetDisabled(false);
             }
         }else{
             setNotTyped(true);
@@ -168,7 +175,7 @@ export default function AddingCategory({page, setNotAdding}:AddingCategoryProps)
             <PickerWrapper className={isPickerVisible ? "picker-visible" : undefined}>
                 <EmojiPicker handleEmojiPick={handleEmojiPick}/>
             </PickerWrapper>
-            <Button className={page==="ledgerModal" ? "ledger-modal" : undefined} data-disabled={notTyped} onClick={handleSaveBtnClick}>저장</Button>
+            <Button className={page==="ledgerModal" ? "ledger-modal" : undefined} data-disabled={disabled} onClick={handleSaveBtnClick}>저장</Button>
         </Wrapper>
     )
 }

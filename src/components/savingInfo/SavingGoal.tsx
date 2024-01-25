@@ -116,9 +116,13 @@ export default function SavingGoal(){
     const [disabled, SetDisabled] = useState<boolean>(true);
 
     useEffect(()=>{
-        if(input.length > 0){
-            setInputLength(input.length);
+        const len = input.length;
+        if(len > 0){
+            setInputLength(len);
             setNotTyped(false);
+            if(len > 6){
+                setInput(input.substring(0,6));
+            }
             if(currentEmoji){
                 SetDisabled(false);
             }
