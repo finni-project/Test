@@ -161,7 +161,6 @@ export default function SavingTotal(){
 
     return(
         <>
-            {result.cycle},{result.amount},{result.goalEmogi},{result.goalText}
             <FormTop type="saving" step="fourth" text="목표 금액" title="총 얼마를 저금하고 싶어요?" detail={`최소 금액은 ${amountTotalStr}(저금금액X5)원이에요.`}/>
             {notEdited?
             (
@@ -192,7 +191,7 @@ export default function SavingTotal(){
                         <rect x="11" y="9" width="2" height="5" rx="1" fill="white"/>
                         <path d="M13 16.5C13 15.9477 12.5523 15.5 12 15.5C11.4477 15.5 11 15.9477 11 16.5C11 17.0523 11.4477 17.5 12 17.5C12.5523 17.5 13 17.0523 13 16.5Z" fill="white"/>
                     </svg>
-                    <p>최소 금액보다 높아야 해요.</p>
+                    <p>최소 금액보다 높거나 같아야 해요.</p>
                 </Caution>)}
             </>)}
             <NextButton onClick={handleStartBtnClick} data-disabled={btnDisabled}>시작하기</NextButton>
