@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { useDispatch } from "react-redux"
 import { Link, useLocation, useNavigate } from "react-router-dom"
+import { getSavingAmount, getSavingCycle } from "reducers/savingInfo"
 import styled from "styled-components"
 
 const EditWrapper = styled.div`
@@ -120,12 +121,12 @@ export default function TypingInput({nextPage, unit}:TypingInputProps){
         switch(location.pathname){
             case "/savingInfo/cycle"
             :{
-                dispatch({type: "GET_SAVING_CYCLE", payload: Number(input)});
+                dispatch(getSavingCycle(Number(input)));
                 break;
             }
             case "/savingInfo/amount"
             :{
-                dispatch({type: "GET_SAVING_AMOUNT", payload: Number(input)});
+                dispatch(getSavingAmount(Number(input)));
                 break;
             }
         }

@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux"
 import { CheckBtns } from "model/model"
 import { useLocation, useNavigate } from "react-router-dom"
 import { Link } from "react-router-dom"
+import { getSavingAmount, getSavingCycle } from "reducers/savingInfo"
 
 const ButtonsWrapper = styled.div`
     /* background-color: beige; */
@@ -121,12 +122,12 @@ export default function CheckingButton({ nextPage, buttonArr, setNotTyping}:Chec
         switch(location.pathname){
             case "/savingInfo/cycle"
             :{
-                dispatch({type: "GET_SAVING_CYCLE", payload: Number(getDate(btnType))});
+                dispatch(getSavingCycle(Number(getDate(btnType))));
                 break;
             }
             case "/savingInfo/amount"
             :{
-                dispatch({type: "GET_SAVING_AMOUNT", payload: Number(getMoney(btnType))});
+                dispatch(getSavingAmount(Number(getMoney(btnType))));
                 break;
             }
         }

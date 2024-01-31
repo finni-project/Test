@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+import { getSavingGoal } from "reducers/savingInfo";
 import styled from "styled-components";
 
 const InputWrapper = styled.div`
@@ -136,7 +137,7 @@ export default function SavingGoal(){
     const navigate = useNavigate();
 
     function handleNextBtnClick(){
-        dispatch({type: "GET_SAVING_GOAL", payload: {emogi: currentEmoji, text: input} });
+        dispatch(getSavingGoal({emogi: currentEmoji, text: input}));
         navigate("/savingInfo/total");
     }
 

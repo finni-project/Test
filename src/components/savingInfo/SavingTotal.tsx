@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { getSavingTotal } from "reducers/savingInfo";
 import styled from "styled-components";
 
 const EditWrapper = styled.div`
@@ -139,7 +140,7 @@ export default function SavingTotal(){
 
     const [btnDisabled, setBtnDisabled] = useState<boolean>(true);
 
-    const result = useSelector((state:any)=>state.savingInfo);
+    const result = useSelector((state:any)=>state.saver);
     const amountTotal = result.amount * 5;
     const amountTotalStr = amountTotal.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
 
@@ -147,7 +148,7 @@ export default function SavingTotal(){
     const navigate = useNavigate();
 
     function handleStartBtnClick(){
-        dispatch({type: "GET_SAVING_TOTAL", payload: input });
+        dispatch(getSavingTotal(Number(input)));
         // navigate("");
     }
 

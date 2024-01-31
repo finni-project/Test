@@ -1,4 +1,5 @@
 import { useDispatch } from "react-redux"
+import { activeDeposit } from "reducers/depositActive"
 import styled from "styled-components"
 
 const Wrapper = styled.div`
@@ -78,7 +79,7 @@ export default function LedgerModal({type, text, amount, setShownModal}:LedgerMo
     }
     function doneSaveBtnClick(){
         handleYesBtnClick();
-        dispatch({type: "ACTIVE_DEPOSIT"});
+        dispatch(activeDeposit());
     }
 
     return(
