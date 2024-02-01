@@ -5,7 +5,6 @@ import React, { useEffect, useState } from "react"
 
 const TopWrapper = styled.div`
     padding-top: calc(${({theme})=>theme.height.topbar} + ${({theme})=>theme.height.topPadding});
-    width: 100%;
     display: flex;
     justify-content: center;
     background-color: ${({theme})=>theme.colors.neutral.n0};
@@ -46,7 +45,7 @@ const BottomBackGround = styled.div`
 const ProgressWrapper = styled.div`
     position: relative;
     /* background-color: aliceblue; */
-    padding: 0 0.3rem;
+    padding: 0 1rem;
     display: flex;
 `
 
@@ -57,7 +56,7 @@ const PlateWrapper = styled.div`
 
 const Present = styled.img`
     position: absolute;
-    left: 0;
+    left: 0.75rem;
     top: -3.1rem;
     z-index: 100;
 `
