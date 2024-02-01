@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import BottomSheet from "./BottomSheet";
 import SavingProgress from "./SavingProgress";
+import { useState } from "react";
 
 const Wrapper = styled.div`
     width: 100%;
@@ -8,10 +9,12 @@ const Wrapper = styled.div`
 `
 
 export default function SavingState(){
+    const [leftNum, setLeftNum] = useState<number>(1);
+
     return(
         <Wrapper>
-            <SavingProgress/>
-            <BottomSheet/>
+            <SavingProgress leftNum={leftNum} setLeftNum={setLeftNum}/>
+            <BottomSheet leftNum={leftNum}/>
         </Wrapper>
     )
 }

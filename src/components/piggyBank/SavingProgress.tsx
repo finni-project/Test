@@ -135,14 +135,17 @@ function getNumberArr(lastNum: number){
 
 const doneGoal = 5;
 
-export default function SavingProgress(){
+type SavingProgressProps = {
+    leftNum: number;
+    setLeftNum: any;
+}
+
+export default function SavingProgress({leftNum, setLeftNum}: SavingProgressProps){
     const [numberArr, setNumberArr] = useState<number[]>();
 
     useEffect(()=>{
         setNumberArr(getNumberArr(7));
     },[])
-
-    const [leftNum, setLeftNum] = useState(1);
 
     useEffect(()=>{
         if(leftNum <= doneGoal-1){

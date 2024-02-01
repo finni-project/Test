@@ -154,7 +154,11 @@ const DeleteBtn = styled.button`
     margin-bottom: 0.5rem;
 `
 
-export default function BottomSheet(){
+type BottomSheetProps = {
+    leftNum: number;
+}
+
+export default function BottomSheet({leftNum}: BottomSheetProps){
     const [heightSize, setHeightSize] = useState<number>(15);
     const [yetSave, setYetSave] = useState<boolean>(true);
 
@@ -193,7 +197,7 @@ export default function BottomSheet(){
                         <h2>🎡</h2>
                         <h3>놀이공원</h3>
                     </Goal>
-                    <span>Lv. 1</span>
+                    <span>Lv. {leftNum}</span>
                 </Information>
                 <SavingAmount>
                     <h2>현재까지 모은 금액</h2>
