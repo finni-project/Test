@@ -128,7 +128,12 @@ export default function MyAllowance(){
     const [cycleSize, setCycleSize] = useState<string>(String(String(initialCycle).length + 0.5) + 'ch');
     function handleCycleChange(e: React.ChangeEvent<HTMLInputElement>){
         const val = e.target.value.replace(/[^0-9]/,"");
-        setCycle(Number(val));
+        const valToNumber = Number(val);
+        if(Number(valToNumber)<100000000){
+            setCycle(Number(valToNumber));
+        } else{
+            return;
+        }
         setCycleSize(String(val.length + 0.5) + 'ch');
         if(!val){
             setCycle(0);
