@@ -164,6 +164,22 @@ export default function BottomSheet({leftNum}: BottomSheetProps){
 
     const [isDelete, setIsDelete] = useState<boolean>(false);
 
+    function touchEventHandler(e: any){
+        // 수정필요
+        const draggableSectionY = e.targetTouches[0].clientY;
+        const bodyY = document.body.scrollHeight;
+        const bottomSheetSize = bodyY - draggableSectionY - 69;
+        if(draggableSectionY !== 0){
+            if(draggableSectionY < 56){
+                return;
+            }
+            if(bottomSheetSize < 240){
+                return;
+            }
+            setHeightSize(bottomSheetSize / 16);
+        }
+    }
+
     function dragEventHandler(e: any){
         // const { target } = e;
         // const { parentNode } = target;
@@ -188,7 +204,7 @@ export default function BottomSheet({leftNum}: BottomSheetProps){
 
     return(
         <TopWrapper style={{height: heightSize + "rem"}}>
-            <DraggableSection draggable="true" onDrag={dragEventHandler}>
+            <DraggableSection draggable="true" onDrag={dragEventHandler} onTouchMove={touchEventHandler}>
                 <BarWrapper>
                     <Bar/>
                 </BarWrapper>
