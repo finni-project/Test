@@ -56,7 +56,7 @@ const PlateWrapper = styled.div`
 
 const Present = styled.img`
     position: absolute;
-    left: 0.75rem;
+    left: 0.65rem;
     top: -3.1rem;
     z-index: 100;
 `
