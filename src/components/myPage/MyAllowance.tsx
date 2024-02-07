@@ -6,6 +6,8 @@ const Wrapper = styled.div`
     padding-left: 1rem;
     padding-bottom: calc(${({theme})=>theme.height.navbar} + ${({theme})=>theme.height.bottomPadding});
     padding-right: 1rem;
+    height: 100vh;
+    position: relative;
 `
 
 const IntroWrapper = styled.div`
@@ -108,7 +110,7 @@ const Button = styled.button`
     position: absolute;
     width: calc(100% - 2rem);
     bottom: calc(${({theme})=>theme.height.navbar} + 0.5rem);
-    ${({theme})=>theme.mediumBtns.primary}
+    ${({theme})=>theme.mediumBtns.primary};
 `
 
 const myAllowanceData : {automatic: boolean, cycle: number, amount: number} = {
