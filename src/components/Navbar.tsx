@@ -11,7 +11,7 @@ const Wrapper = styled.div`
     gap: 16px;
     position: fixed;
     bottom: 0;
-    z-index: 1000;
+    z-index: 99;
     .home-link {
         path{
             fill: ${({theme})=>theme.colors.neutral.n100};

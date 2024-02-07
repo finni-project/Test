@@ -4,7 +4,7 @@ import Topbar from "./Topbar";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
-    background-color: lemonchiffon;
+    /* background-color: lemonchiffon; */
     min-height: 100vh;
     /* padding-top: calc(${({theme})=>theme.height.topbar} + ${({theme})=>theme.height.topPadding}); */
     /* padding-left: 1rem;

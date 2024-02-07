@@ -15,7 +15,7 @@ const Wrapper = styled.div`
 const Temp = styled.div`
     width: 100%;
     height: 800px;
-    background-color: lemonchiffon;
+    /* background-color: lemonchiffon; */
 `
 
 export default function Home(){

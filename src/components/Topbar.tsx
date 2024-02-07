@@ -11,7 +11,7 @@ const Wrapper = styled.div`
     align-items: center;
     position: fixed;
     top: 0;
-    z-index: 1000;
+    z-index: 99;
 `
 const ItemsWrapper = styled.div`
     width: 100%;
