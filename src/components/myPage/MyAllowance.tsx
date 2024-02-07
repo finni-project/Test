@@ -6,8 +6,6 @@ const Wrapper = styled.div`
     padding-left: 1rem;
     padding-bottom: calc(${({theme})=>theme.height.navbar} + ${({theme})=>theme.height.bottomPadding});
     padding-right: 1rem;
-    height: 100vh;
-    position: relative;
 `
 
 const IntroWrapper = styled.div`
@@ -107,9 +105,8 @@ const RightElm = styled.div`
 `
 
 const Button = styled.button`
-    position: absolute;
-    width: calc(100% - 2rem);
-    bottom: calc(${({theme})=>theme.height.navbar} + 0.5rem);
+    margin-top: 11.313rem;
+    width: calc(100%);
     ${({theme})=>theme.mediumBtns.primary};
 `
 
