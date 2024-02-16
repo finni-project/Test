@@ -1,5 +1,6 @@
+import { useEffect } from "react";
 import { useDispatch } from "react-redux"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import styled from "styled-components"
 
 const Wrapper = styled.div`
@@ -19,16 +20,17 @@ const Wrapper = styled.div`
 `
 
 export default function AllowanceInfoStart(){
-    const dispatch = useDispatch();
-    function handleLinkCLick(){
-        dispatch({type: "GONEXT", payload: "cycle"});
-    }
+    const navigate = useNavigate();
+
+    useEffect(()=>{
+        setTimeout(()=>{
+            navigate('/allowanceInfo/cycle')
+        },3000)
+    },[])
 
     return(
-        <Link to='/allowanceInfo/cycle'>
-            <Wrapper>
-                <p>용돈을 주기적으로 입력하기 위해서 몇 가지 질문을 할게요</p>
-            </Wrapper>
-        </Link>
+        <Wrapper>
+            <p>용돈을 주기적으로 입력하기 위해서 몇 가지 질문을 할게요</p>
+        </Wrapper>
     )
 }
