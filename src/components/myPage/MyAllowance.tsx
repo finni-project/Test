@@ -179,7 +179,7 @@ export default function MyAllowance(){
             <List>
                 <h3>용돈 주기</h3>
                 <InputWrapper>
-                    <Input type="text" autoFocus inputMode="numeric" pattern="[0-9]*" style={{width: `${cycleSize}`}} value={cycle} onChange={handleCycleChange}/>
+                    <Input type="text" inputMode="numeric" pattern="[0-9]*" style={{width: `${cycleSize}`}} value={cycle} onChange={handleCycleChange}/>
                     <span>일</span>
                     <RightElm>
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
