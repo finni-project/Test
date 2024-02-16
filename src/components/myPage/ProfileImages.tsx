@@ -1,5 +1,5 @@
 import { ProfileImagesData } from "model/model"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import styled from "styled-components"
 
 const Wrapper = styled.div`
@@ -92,6 +92,19 @@ export default function ProfileImages(){
         setProfileImg(result);
     }
 
+    const [pickedImgId, setPickedImgId] = useState<number>();
+    const [firstPickedImgId, setFirstPickedImgId] = useState<number>();
+
+    useEffect(()=>{
+        let pickedImg = profileImg?.find(itm => itm.pick === true);
+        setPickedImgId(pickedImg?.id);
+    },[profileImg])
+
+    useEffect(()=>{
+        let firstPickedImg = profileImg?.find(itm => itm.pick === true);
+        setFirstPickedImgId(firstPickedImg?.id);
+    },[])
+
     return(
         <>
             <Wrapper>
@@ -110,7 +123,7 @@ export default function ProfileImages(){
                     ))}
                 </Images>
             </Wrapper>
-            <Button>저장</Button>
+            <Button data-disabled={firstPickedImgId === pickedImgId ? true: false}>저장</Button>
         </>
     )
 }
