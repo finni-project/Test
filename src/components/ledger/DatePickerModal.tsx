@@ -71,7 +71,7 @@ const Wrapper = styled.div`
 
     .react-datepicker__day--outside-month, .react-datepicker__day--disabled{
         color: ${({theme})=>theme.colors.neutral.n20};
-        pointer-events: none;
+        /* pointer-events: none; */
     }
 
     .react-datepicker__day--outside-month.react-datepicker__day--weekend{
@@ -96,6 +96,13 @@ const Wrapper = styled.div`
         &:hover{
             border-radius: 3.75rem;
             ${({theme})=>theme.fonts.body14b}
+            color: ${({theme})=>theme.colors.neutral.n100}
+        }
+    }
+
+    .react-datepicker__day--disabled{
+        &:hover{
+            color: ${({theme})=>theme.colors.neutral.n20};
         }
     }
 
