@@ -59,6 +59,7 @@ const Present = styled.img`
     left: 0.65rem;
     top: -3.1rem;
     z-index: 100;
+    width: 4rem;
 `
 
 const Progress = styled.div`
