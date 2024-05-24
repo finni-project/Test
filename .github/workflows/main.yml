@@ -29,6 +29,6 @@ jobs:
           REACT_APP_REST_API_KEY: ${{ secrets.REACT_APP_REST_API_KEY }}
       - name: ✨ Deploy ✨
         run: |
-          export NODE_OPTIONS="--max-old-space-size=2048"
+          export NODE_OPTIONS="--max-old-space-size=8192"
           chmod +x /home/ubuntu/deploy_frontend.sh
           sh /home/ubuntu/deploy_frontend.sh
